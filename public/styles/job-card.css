@@ -1,10 +1,12 @@
 .job-logo-container {
-    display: inline-block;
-    background-color: orange;
-    padding-block: 0.85rem;
-    padding-inline: 0.3rem;
-    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
+    background-color: orange;
+    height: 50px;
+    width: 50px;
+    border-radius: 16px;
     top:-20px;
 }
 
