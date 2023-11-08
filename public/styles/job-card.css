@@ -1,0 +1,41 @@
+.job-logo-container {
+    display: inline-block;
+    background-color: orange;
+    padding-block: 0.85rem;
+    padding-inline: 0.3rem;
+    border-radius: 16px;
+    position: absolute;
+    top:-20px;
+}
+
+.job-time-container span:first-of-type::after {
+    content: '';
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background-color: var(--clr-accent-200);
+    display: inline-block;
+    margin-inline: 0.5rem;
+}
+
+.job-card {
+    min-width: 330px;
+    max-width: 350px;
+    border-radius: 6px;
+    padding: 2rem;
+    position: relative;
+    margin-inline: auto;
+}
+
+.job-time-container {
+    margin-bottom: 1rem;
+}
+
+.job-title {
+    color: var(--clr-primary-switch-100);
+    margin-bottom: 0.5rem;
+}
+
+.job-company {
+    margin-bottom: 2rem;
+}
