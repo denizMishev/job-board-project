@@ -1,6 +1,28 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 
 export function Header() {
+  const [darkModeToggleChecked, setDarkModeToggleChecked] = useState(
+    localStorage.getItem("theme") === "darkmode"
+  );
+
+  if (localStorage.getItem("theme") === "darkmode") {
+    document.body.classList.add("darkmode");
+  }
+
+  const toggleDarkMode = () => {
+    setDarkModeToggleChecked(!darkModeToggleChecked);
+    if (document.body.classList.contains("darkmode")) {
+      document.body.classList.remove("darkmode");
+      localStorage.clear();
+    } else {
+      localStorage.setItem("theme", "darkmode");
+      document.body.classList.add("darkmode");
+    }
+  };
+
+  console.log(darkModeToggleChecked);
+
   return (
     <header className="site-header | bg-primary-200">
       <div className="site-header-container | container">
@@ -22,8 +44,8 @@ export function Header() {
                 fillRule="nonzero"
               />
             </svg>
-            <label className="switch">
-              <input type="checkbox" />
+            <label onChange={toggleDarkMode} className="switch">
+              <input type="checkbox" checked={darkModeToggleChecked} />
               <span className="slider round"></span>
             </label>
             <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg">

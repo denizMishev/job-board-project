@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 // import { ReactSVG } from "react-svg";
 
-import scoot from "../logos/scoot.svg";
-import blogr from "../logos/blogr.svg";
-import vector from "../logos/vector.svg";
-import officelite from "../logos/officelite.svg";
-import pod from "../logos/pod.svg";
-import creative from "../logos/creative.svg";
-import pomodoro from "../logos/pomodoro.svg";
-import maker from "../logos/maker.svg";
-import coffeeroasters from "../logos/coffeeroasters.svg";
+// import scoot from "../logos/scoot.svg";
+// import blogr from "../logos/blogr.svg";
+// import vector from "../logos/vector.svg";
+// import officelite from "../logos/officelite.svg";
+// import pod from "../logos/pod.svg";
+// import creative from "../logos/creative.svg";
+// import pomodoro from "../logos/pomodoro.svg";
+// import maker from "../logos/maker.svg";
+// import coffeeroasters from "../logos/coffeeroasters.svg";
 
 export function Jobcard({
   jobId,
@@ -21,8 +21,6 @@ export function Jobcard({
   workingTime,
   location,
 }) {
-  console.log(logoBackgroundColor);
-
   return (
     <Link className="display-block" to={`/jobs/${jobId}`}>
       <article className="job-card bg-neutral-100">

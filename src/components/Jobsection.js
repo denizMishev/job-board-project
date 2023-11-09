@@ -1,20 +1,27 @@
 import { Jobcard } from "./Jobcard";
 
 import { jobsData } from "../data/data";
+import { useState } from "react";
 
 export function Jobsection() {
+  const [displayJobsAmount, setDisplayJobsAmount] = useState(9);
+
+  const loadMoreHandler = () => {
+    setDisplayJobsAmount(
+      displayJobsAmount >= jobsData.length
+        ? displayJobsAmount
+        : displayJobsAmount + 9
+    );
+  };
+
+  console.log(displayJobsAmount);
+
   return (
     <main>
       <section className="landingpage-jobs | bg-neutral-200">
         <div className="jobs-container | container">
           <div className="jobs-grid">
-            {/* <Jobcard></Jobcard>
-            <Jobcard></Jobcard>
-            <Jobcard></Jobcard>
-            <Jobcard></Jobcard>
-            <Jobcard></Jobcard>
-            <Jobcard></Jobcard> */}
-            {jobsData.map((jobData) => (
+            {jobsData.slice(0, displayJobsAmount).map((jobData) => (
               <Jobcard
                 key={jobData.id}
                 jobId={jobData.id}
@@ -28,7 +35,12 @@ export function Jobsection() {
               />
             ))}
           </div>
-          <button className="jobs-load-more-button | button">Load More</button>
+          <button
+            onClick={() => loadMoreHandler()}
+            className="jobs-load-more-button | button"
+          >
+            Load More
+          </button>
         </div>
       </section>
     </main>

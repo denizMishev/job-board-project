@@ -313,215 +313,215 @@ export const jobsData = [
       ],
     },
   },
-  // {
-  //   id: 10,
-  //   company: "Mastercraft",
-  //   logo: "../logos/mastercraft.svg",
-  //   logoBackground: "hsl(0, 0%, 12%)",
-  //   position: "App & Website Designer",
-  //   postedAt: "2w ago",
-  //   contract: "Freelance",
-  //   location: "United States",
-  //   website: "https://example.com/mastercraft",
-  //   apply: "https://example.com/mastercraft/apply",
-  //   description:
-  //     "Mastercraft is looking for a UX/UI Designer to turn our software into easy-to-use products for our clients. Responsibilities include gathering user requirements, designing graphic elements and building software component",
-  //   requirements: {
-  //     content:
-  //       "To be successful in this role, you should have experience with design software and wireframe tools preferably Figma. You should also have a portfolio of professional design projects that includes work with web/mobile applications.",
-  //     items: [
-  //       "At least 3 years of experience in a related field.",
-  //       "Portfolio of design projects.",
-  //       "Degree in Design, UX or relevant field.",
-  //       "Experience with design process and systematic approach to organization, workflow",
-  //     ],
-  //   },
-  //   role: {
-  //     content:
-  //       "You’ll create both functional and appealing features that address our clients’ needs and help us grow our customer base. We expect you to have experience with market/user research and stay current with most recent trends, tools, workflows.",
-  //     items: [
-  //       "Gather and evaluate user requirements in collaboration with UX/UI manager or stakeholders.",
-  //       "Illustrate design ideas using storyboards, process flows and sitemaps.",
-  //       "Develop UI mockups and prototypes that clearly illustrate how sites function and look like.",
-  //       "Create original graphic designs (eg. images, sketches and tables).",
-  //       "Identify and troubleshoot UX problems",
-  //       "Conduct layout adjustments based on user feedback.",
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 11,
-  //   company: "Crowdfund",
-  //   logo: "../logos/crowdfund.svg",
-  //   logoBackground: "hsl(157, 57%, 50%)",
-  //   position: "Fullstack Developer",
-  //   postedAt: "1mo ago",
-  //   contract: "Part Time",
-  //   location: "New Zealand",
-  //   website: "https://example.com/crowdfund",
-  //   apply: "https://example.com/crowdfund/apply",
-  //   description:
-  //     "Crowdfund is currently expanding and working on revolutionizing the world of raising funds for any project – creative, entrepreneurial or cause-related. Come and join us in this growth! We are looking for an exceptionally talented Fullstack Developer who will become an integral part of the company’s exciting new chapter.",
-  //   requirements: {
-  //     content:
-  //       "We'd love to hear from you if you take ownership of your work and continuously want to improve the products you've built. We're looking for developers who have an uncanny abilithy to work very well cross-functionality in a flat startup.",
-  //     items: [
-  //       "4+ years of web development experience",
-  //       "Strong CS fundamentals and problem solving skills",
-  //       "Production expertise with Ruby on Rails [preferred], Python, PHP, Java, or your favorite modern stack",
-  //       "Excellent debugging skills & strong belief in automated testing and coverage",
-  //       "Team player who enjoys mentoring and agile environments",
-  //       "Passion, drive, energy, a sense of humor and a great attitude!",
-  //     ],
-  //   },
-  //   role: {
-  //     content:
-  //       "At Crowdfund, you will have the opportunity to literally change the world and people’s lives by developing new features for our consumer platform to make it even more robust. You’ll work with exceptional developers and there are lots of interesting technical challenges to tackle, including projects dealing with heavy transaction volume, scalability and Big Data.",
-  //     items: [
-  //       "Build a marketplace that empowers people to follow their dreams!",
-  //       "Architect, design and implement beautiful, performant & scalable Ruby code.",
-  //       "Create features for the international payment system which sees millions of transactions per day.",
-  //       "Extend the reach of our platform APIs.",
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 12,
-  //   company: "Typemaster",
-  //   logo: "../logos/typemaster.svg",
-  //   logoBackground: "hsl(22, 89%, 52%)",
-  //   position: "Technical Lead Engineer",
-  //   postedAt: "1mo ago",
-  //   contract: "Part Time",
-  //   location: "United Kingdom",
-  //   website: "https://example.com/typemaster",
-  //   apply: "https://example.com/typemaster/apply",
-  //   description:
-  //     "We are looking for a talented tech lead to join a team that creates large-scale, highly-performant web applications. This team creates highly visible and responsive user interfaces used by millions of people.",
-  //   requirements: {
-  //     content:
-  //       "Our work is not just about the code: we seek a tech lead who cares deeply about user experience and how their work impacts users. An ideal candidate has extensive experience as a full-stack software engineer, including experience with both Django and React/Redux, our stack. This role is perfect for a seasoned full-stack developer who is looking to grow both as an engineer and technical product owner. We want someone who takes the initiative to learn, enjoys thoughtful code review, and has a history collaborating with other software engineers to develop best patterns and practices.",
-  //     items: [
-  //       "5-7 years of experience in infrastructure engineering of applications",
-  //       "Experience in web application security analysis and resolution.",
-  //       "Experience working within a modern Javascript workflow through technologies such as: GitHub, CSS Preprocessors, Styled Components, Single Page Application frameworks and Module Bundlers (Webpack etc.)",
-  //       "Experience in implementing A/B Tests",
-  //       "Hands on experience with React/Redux in a production application",
-  //     ],
-  //   },
-  //   role: {
-  //     content:
-  //       "Here's the role: sling code, architect new systems, mentor junior engineers, and manage product as a tech lead on Typemaster’s growing dev team. You will work directly with Typemaster’s two technical co-founders and other engineers in a culture that includes clean code, extensive testing, rapid iteration, and the values you bring to the table. You will come to own one of our product lines, and will have the ability to contribute to multiple projects.",
-  //     items: [
-  //       "Security audit of web application with an emphasis on commerce/transactional flows",
-  //       "Maintain and improve security skills, knowledge, and training through professional development, including participating in tech conferences and wider tech community forums",
-  //       "Work on a modern stack including React and Django.",
-  //       "Enforce code quality through test driven development via unit tests and automated tests.",
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 13,
-  //   company: "Crowdfund",
-  //   logo: "../logos/crowdfund.svg",
-  //   logoBackground: "hsl(157, 57%, 50%)",
-  //   position: "Front-end Developer",
-  //   postedAt: "1mo ago",
-  //   contract: "Full Time",
-  //   location: "New Zealand",
-  //   website: "https://example.com/crowdfund",
-  //   apply: "https://example.com/crowdfund/apply",
-  //   description:
-  //     "We’re hiring a Front-end Developer to help create the front-end experience for Crowdfund’s management interface. As our ideal candidate, you’re an adept user of the front-end stack (React, Yarn, webpack, Babel, SCSS, JSX, GraphQL) and an avid learner of new frameworks. You enjoy building excellent user experiences as well as reusable components that other developers can use to solve similar problems. You love open-source and being part of a thriving developer community and understand that strong businesses enable great enduring communities.",
-  //   requirements: {
-  //     content:
-  //       "As a mid-level developer, we expect you to have a complete understanding of JavaScript, CSS, and HTML, and proven experience building and deploying single-page applications at scale. Experience with modern JavaScript application frameworks is a given, but you also have the ability to think outside the frameworks.",
-  //     items: [
-  //       "Multiple years of React experience",
-  //       "Good eye for detail",
-  //       "Passion for great user experience and API design",
-  //       "Comfortable working with cross-functional and cross-cultural teams",
-  //     ],
-  //   },
-  //   role: {
-  //     content:
-  //       "We want people who are passionate about building apps that you and your peers will love. We are looking for an experienced Front-end Developer who shares our passion for making complex applications appear simple for our customers. We’ll give you the freedom to do what you do best, so you should feel comfortable owning your work from start to finish, as well as bringing fresh ideas to the table that can make our products, development experience, and team better. You’ll have the opportunity to work closely with designers, product managers, and other engineers across the stack to make ideas a reality.",
-  //     items: [
-  //       "Working with our team to build out our React/Typescript/GraphQL stack",
-  //       "Collaborating with product and design to increase conversions and improve user experience",
-  //       "Building new, efficient, and scalable front-end applications that will interface with public and internal APIs",
-  //       "Writing clean, maintainable, and testable code",
-  //       "Work with backend teams to solve complex problems",
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 14,
-  //   company: "Coffeeroasters",
-  //   logo: "../logos/coffeeroasters.svg",
-  //   logoBackground: "hsl(29, 60%, 87%)",
-  //   position: "Junior Full-Stack Developer",
-  //   postedAt: "1mo ago",
-  //   contract: "Full Time",
-  //   location: "Singapore",
-  //   website: "https://example.com/coffeeroasters",
-  //   apply: "https://example.com/coffeeroasters/apply",
-  //   description:
-  //     "We’re looking for a Junior Full-Stack Developer to join our Product and Engineering team. This is an exciting opportunity to work on building our core web application.",
-  //   requirements: {
-  //     content:
-  //       "This is an entry level full stack developer position that will assist in developing the next generation apps and APIs. You will be a contributor to agile teams by providing services that ensure Coffeeroasters is aligning technology efforts with business information needs. The intent is to develop a junior full stack developer to become a well-rounded API developer ready to take on any challenging opportunity.",
-  //     items: [
-  //       "A degree in Computer Science or an equivalent engineering foundation.",
-  //       "Experience in Python and/or JavaScript.",
-  //       "Ability to thrive in a fast-paced startup.",
-  //       "Someone who loves to learn and is passionate about helping others.",
-  //     ],
-  //   },
-  //   role: {
-  //     content:
-  //       "We're looking for a dynamic individual who is no stranger to building well-designed, performant and effective front-end web applications that support complex business rules/flows. You will start by learning from the experiences of our current team and our current offerings and become intimately familiar with our codebase. You will leverage your experience to establish best practices for web development and drive the team and the codebase to a higher level.",
-  //     items: [
-  //       "Write frontend code and build UI to implement new features. Includes taking in data from our API, structuring that data, and displaying it.",
-  //       "Build backend code for API.",
-  //       "Consistently improve our platform so we can deliver features quickly with high reliability and scalability.",
-  //       "Apply user experience methodology and best practices to translate user needs and business requirements into engaging user-centered design.",
-  //       "Write/maintain documentation for the client and other team members.",
-  //     ],
-  //   },
-  // },
-  // {
-  //   id: 15,
-  //   company: "Blogr",
-  //   logo: "../logos/blogr.svg",
-  //   logoBackground: "hsl(12, 79%, 52%)",
-  //   position: "Midweight Front-end Developer",
-  //   postedAt: "1mo ago",
-  //   contract: "Full Time",
-  //   location: "United States",
-  //   website: "https://example.com/blogr",
-  //   apply: "https://example.com/blogr/apply",
-  //   description:
-  //     "We’re looking for a Frontend Developer who values user experience, performance and accessibility. Through our enduring interest in how people use our products, Blogr embraces a model of software development that is iterative and gradual. Like high-performance engines, our products are built through a process of continuous refinement (usually on two week release cycles). We’re looking for someone who is comfortable embodying this approach.",
-  //   requirements: {
-  //     content:
-  //       "You will be responsible for writing and debugging your code while writing your own unit tests. We are looking for self-motivated developers who are interested in learning and can quickly pick up new technologies. We’re a relatively small team in a stable yet fast growing company and would love for you to join us.",
-  //     items: [
-  //       "Experience in JavaScript software development, preferably in a product company",
-  //       "Experience with React and state management libraries (such as Redux or Mobx)",
-  //       "Understand cross-browser compatibility issues and ways to work around them.",
-  //       "English language fluency, excellent communication skills",
-  //     ],
-  //   },
-  //   role: {
-  //     content:
-  //       "In this role, you are part of our Product team comprised of Frontend & Backend Developers, UX & UI Specialists and Product Owners. You'll work on mission critical projects from the first day on, support other engineers, share your knowledge with your colleagues, and contribute to agile projects.",
-  //     items: [
-  //       "Help define our software engineering culture",
-  //       "Write high quality software for the frontend",
-  //       "Do code reviews",
-  //       "Proactively solve the problems most important to the business",
-  //     ],
-  //   },
-  // },
+  {
+    id: 10,
+    company: "Mastercraft",
+    logo: "../logos/mastercraft.svg",
+    logoBackground: "hsl(0, 0%, 12%)",
+    position: "App & Website Designer",
+    postedAt: "2w ago",
+    contract: "Freelance",
+    location: "United States",
+    website: "https://example.com/mastercraft",
+    apply: "https://example.com/mastercraft/apply",
+    description:
+      "Mastercraft is looking for a UX/UI Designer to turn our software into easy-to-use products for our clients. Responsibilities include gathering user requirements, designing graphic elements and building software component",
+    requirements: {
+      content:
+        "To be successful in this role, you should have experience with design software and wireframe tools preferably Figma. You should also have a portfolio of professional design projects that includes work with web/mobile applications.",
+      items: [
+        "At least 3 years of experience in a related field.",
+        "Portfolio of design projects.",
+        "Degree in Design, UX or relevant field.",
+        "Experience with design process and systematic approach to organization, workflow",
+      ],
+    },
+    role: {
+      content:
+        "You’ll create both functional and appealing features that address our clients’ needs and help us grow our customer base. We expect you to have experience with market/user research and stay current with most recent trends, tools, workflows.",
+      items: [
+        "Gather and evaluate user requirements in collaboration with UX/UI manager or stakeholders.",
+        "Illustrate design ideas using storyboards, process flows and sitemaps.",
+        "Develop UI mockups and prototypes that clearly illustrate how sites function and look like.",
+        "Create original graphic designs (eg. images, sketches and tables).",
+        "Identify and troubleshoot UX problems",
+        "Conduct layout adjustments based on user feedback.",
+      ],
+    },
+  },
+  {
+    id: 11,
+    company: "Crowdfund",
+    logo: "../logos/crowdfund.svg",
+    logoBackground: "hsl(157, 57%, 50%)",
+    position: "Fullstack Developer",
+    postedAt: "1mo ago",
+    contract: "Part Time",
+    location: "New Zealand",
+    website: "https://example.com/crowdfund",
+    apply: "https://example.com/crowdfund/apply",
+    description:
+      "Crowdfund is currently expanding and working on revolutionizing the world of raising funds for any project – creative, entrepreneurial or cause-related. Come and join us in this growth! We are looking for an exceptionally talented Fullstack Developer who will become an integral part of the company’s exciting new chapter.",
+    requirements: {
+      content:
+        "We'd love to hear from you if you take ownership of your work and continuously want to improve the products you've built. We're looking for developers who have an uncanny abilithy to work very well cross-functionality in a flat startup.",
+      items: [
+        "4+ years of web development experience",
+        "Strong CS fundamentals and problem solving skills",
+        "Production expertise with Ruby on Rails [preferred], Python, PHP, Java, or your favorite modern stack",
+        "Excellent debugging skills & strong belief in automated testing and coverage",
+        "Team player who enjoys mentoring and agile environments",
+        "Passion, drive, energy, a sense of humor and a great attitude!",
+      ],
+    },
+    role: {
+      content:
+        "At Crowdfund, you will have the opportunity to literally change the world and people’s lives by developing new features for our consumer platform to make it even more robust. You’ll work with exceptional developers and there are lots of interesting technical challenges to tackle, including projects dealing with heavy transaction volume, scalability and Big Data.",
+      items: [
+        "Build a marketplace that empowers people to follow their dreams!",
+        "Architect, design and implement beautiful, performant & scalable Ruby code.",
+        "Create features for the international payment system which sees millions of transactions per day.",
+        "Extend the reach of our platform APIs.",
+      ],
+    },
+  },
+  {
+    id: 12,
+    company: "Typemaster",
+    logo: "../logos/typemaster.svg",
+    logoBackground: "hsl(22, 89%, 52%)",
+    position: "Technical Lead Engineer",
+    postedAt: "1mo ago",
+    contract: "Part Time",
+    location: "United Kingdom",
+    website: "https://example.com/typemaster",
+    apply: "https://example.com/typemaster/apply",
+    description:
+      "We are looking for a talented tech lead to join a team that creates large-scale, highly-performant web applications. This team creates highly visible and responsive user interfaces used by millions of people.",
+    requirements: {
+      content:
+        "Our work is not just about the code: we seek a tech lead who cares deeply about user experience and how their work impacts users. An ideal candidate has extensive experience as a full-stack software engineer, including experience with both Django and React/Redux, our stack. This role is perfect for a seasoned full-stack developer who is looking to grow both as an engineer and technical product owner. We want someone who takes the initiative to learn, enjoys thoughtful code review, and has a history collaborating with other software engineers to develop best patterns and practices.",
+      items: [
+        "5-7 years of experience in infrastructure engineering of applications",
+        "Experience in web application security analysis and resolution.",
+        "Experience working within a modern Javascript workflow through technologies such as: GitHub, CSS Preprocessors, Styled Components, Single Page Application frameworks and Module Bundlers (Webpack etc.)",
+        "Experience in implementing A/B Tests",
+        "Hands on experience with React/Redux in a production application",
+      ],
+    },
+    role: {
+      content:
+        "Here's the role: sling code, architect new systems, mentor junior engineers, and manage product as a tech lead on Typemaster’s growing dev team. You will work directly with Typemaster’s two technical co-founders and other engineers in a culture that includes clean code, extensive testing, rapid iteration, and the values you bring to the table. You will come to own one of our product lines, and will have the ability to contribute to multiple projects.",
+      items: [
+        "Security audit of web application with an emphasis on commerce/transactional flows",
+        "Maintain and improve security skills, knowledge, and training through professional development, including participating in tech conferences and wider tech community forums",
+        "Work on a modern stack including React and Django.",
+        "Enforce code quality through test driven development via unit tests and automated tests.",
+      ],
+    },
+  },
+  {
+    id: 13,
+    company: "Crowdfund",
+    logo: "../logos/crowdfund.svg",
+    logoBackground: "hsl(157, 57%, 50%)",
+    position: "Front-end Developer",
+    postedAt: "1mo ago",
+    contract: "Full Time",
+    location: "New Zealand",
+    website: "https://example.com/crowdfund",
+    apply: "https://example.com/crowdfund/apply",
+    description:
+      "We’re hiring a Front-end Developer to help create the front-end experience for Crowdfund’s management interface. As our ideal candidate, you’re an adept user of the front-end stack (React, Yarn, webpack, Babel, SCSS, JSX, GraphQL) and an avid learner of new frameworks. You enjoy building excellent user experiences as well as reusable components that other developers can use to solve similar problems. You love open-source and being part of a thriving developer community and understand that strong businesses enable great enduring communities.",
+    requirements: {
+      content:
+        "As a mid-level developer, we expect you to have a complete understanding of JavaScript, CSS, and HTML, and proven experience building and deploying single-page applications at scale. Experience with modern JavaScript application frameworks is a given, but you also have the ability to think outside the frameworks.",
+      items: [
+        "Multiple years of React experience",
+        "Good eye for detail",
+        "Passion for great user experience and API design",
+        "Comfortable working with cross-functional and cross-cultural teams",
+      ],
+    },
+    role: {
+      content:
+        "We want people who are passionate about building apps that you and your peers will love. We are looking for an experienced Front-end Developer who shares our passion for making complex applications appear simple for our customers. We’ll give you the freedom to do what you do best, so you should feel comfortable owning your work from start to finish, as well as bringing fresh ideas to the table that can make our products, development experience, and team better. You’ll have the opportunity to work closely with designers, product managers, and other engineers across the stack to make ideas a reality.",
+      items: [
+        "Working with our team to build out our React/Typescript/GraphQL stack",
+        "Collaborating with product and design to increase conversions and improve user experience",
+        "Building new, efficient, and scalable front-end applications that will interface with public and internal APIs",
+        "Writing clean, maintainable, and testable code",
+        "Work with backend teams to solve complex problems",
+      ],
+    },
+  },
+  {
+    id: 14,
+    company: "Coffeeroasters",
+    logo: "../logos/coffeeroasters.svg",
+    logoBackground: "hsl(29, 60%, 87%)",
+    position: "Junior Full-Stack Developer",
+    postedAt: "1mo ago",
+    contract: "Full Time",
+    location: "Singapore",
+    website: "https://example.com/coffeeroasters",
+    apply: "https://example.com/coffeeroasters/apply",
+    description:
+      "We’re looking for a Junior Full-Stack Developer to join our Product and Engineering team. This is an exciting opportunity to work on building our core web application.",
+    requirements: {
+      content:
+        "This is an entry level full stack developer position that will assist in developing the next generation apps and APIs. You will be a contributor to agile teams by providing services that ensure Coffeeroasters is aligning technology efforts with business information needs. The intent is to develop a junior full stack developer to become a well-rounded API developer ready to take on any challenging opportunity.",
+      items: [
+        "A degree in Computer Science or an equivalent engineering foundation.",
+        "Experience in Python and/or JavaScript.",
+        "Ability to thrive in a fast-paced startup.",
+        "Someone who loves to learn and is passionate about helping others.",
+      ],
+    },
+    role: {
+      content:
+        "We're looking for a dynamic individual who is no stranger to building well-designed, performant and effective front-end web applications that support complex business rules/flows. You will start by learning from the experiences of our current team and our current offerings and become intimately familiar with our codebase. You will leverage your experience to establish best practices for web development and drive the team and the codebase to a higher level.",
+      items: [
+        "Write frontend code and build UI to implement new features. Includes taking in data from our API, structuring that data, and displaying it.",
+        "Build backend code for API.",
+        "Consistently improve our platform so we can deliver features quickly with high reliability and scalability.",
+        "Apply user experience methodology and best practices to translate user needs and business requirements into engaging user-centered design.",
+        "Write/maintain documentation for the client and other team members.",
+      ],
+    },
+  },
+  {
+    id: 15,
+    company: "Blogr",
+    logo: "../logos/blogr.svg",
+    logoBackground: "hsl(12, 79%, 52%)",
+    position: "Midweight Front-end Developer",
+    postedAt: "1mo ago",
+    contract: "Full Time",
+    location: "United States",
+    website: "https://example.com/blogr",
+    apply: "https://example.com/blogr/apply",
+    description:
+      "We’re looking for a Frontend Developer who values user experience, performance and accessibility. Through our enduring interest in how people use our products, Blogr embraces a model of software development that is iterative and gradual. Like high-performance engines, our products are built through a process of continuous refinement (usually on two week release cycles). We’re looking for someone who is comfortable embodying this approach.",
+    requirements: {
+      content:
+        "You will be responsible for writing and debugging your code while writing your own unit tests. We are looking for self-motivated developers who are interested in learning and can quickly pick up new technologies. We’re a relatively small team in a stable yet fast growing company and would love for you to join us.",
+      items: [
+        "Experience in JavaScript software development, preferably in a product company",
+        "Experience with React and state management libraries (such as Redux or Mobx)",
+        "Understand cross-browser compatibility issues and ways to work around them.",
+        "English language fluency, excellent communication skills",
+      ],
+    },
+    role: {
+      content:
+        "In this role, you are part of our Product team comprised of Frontend & Backend Developers, UX & UI Specialists and Product Owners. You'll work on mission critical projects from the first day on, support other engineers, share your knowledge with your colleagues, and contribute to agile projects.",
+      items: [
+        "Help define our software engineering culture",
+        "Write high quality software for the frontend",
+        "Do code reviews",
+        "Proactively solve the problems most important to the business",
+      ],
+    },
+  },
 ];
