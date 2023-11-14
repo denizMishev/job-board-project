@@ -21,22 +21,27 @@ export function Jobsection() {
 
   useEffect(() => {
     let displayData = jobsData.filter((job) => {
-      const lowerSearchQuery = searchQuery.toLowerCase();
+      const mainSearchQuery = searchQuery.mainSearch?.toLowerCase() || "";
+      const locationSearchQuery =
+        searchQuery.locationSearch?.toLowerCase() || "";
 
-      return (
-        lowerSearchQuery === "" ||
-        job.company.toLowerCase().includes(lowerSearchQuery) ||
-        job.position.toLowerCase().includes(lowerSearchQuery) ||
+      const matchesMainSearchQuery =
+        mainSearchQuery === "" ||
+        job.company.toLowerCase().includes(mainSearchQuery) ||
+        job.position.toLowerCase().includes(mainSearchQuery) ||
         job.requirements.items.some((requirement) =>
-          requirement.toLowerCase().includes(lowerSearchQuery)
-        )
-      );
+          requirement.toLowerCase().includes(mainSearchQuery)
+        );
+
+      const matchesLocationSearchQuery =
+        locationSearchQuery === "" ||
+        job.location.toLowerCase().includes(locationSearchQuery);
+
+      return matchesMainSearchQuery && matchesLocationSearchQuery;
     });
 
     setDisplayJobs(displayData);
   }, [searchQuery]);
-
-  console.log("render");
 
   return (
     <main>

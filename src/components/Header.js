@@ -28,7 +28,11 @@ export function Header() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const searchInput = e.target.elements.mainSearch.value;
+    const searchInput = {
+      mainSearch: e.target.elements.mainSearch.value,
+
+      locationSearch: e.target.elements.locationSearch.value,
+    };
     setSearchQuery(searchInput);
   };
 
@@ -93,6 +97,7 @@ export function Header() {
                   />
                 </svg>
                 <input
+                  name="locationSearch"
                   className="color-primary-switch-100 bg-neutral-100"
                   type="text"
                   placeholder="Filter by location.."
