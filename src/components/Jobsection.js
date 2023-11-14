@@ -1,10 +1,15 @@
 import { Jobcard } from "./Jobcard";
-
 import { jobsData } from "../data/data";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+
+import { useSearch } from "../Context/SearchContext";
 
 export function Jobsection() {
+  const { searchQuery } = useSearch();
+
   const [displayJobsAmount, setDisplayJobsAmount] = useState(9);
+  const [displayJobs, setDisplayJobs] = useState(jobsData);
 
   const loadMoreHandler = () => {
     setDisplayJobsAmount(
@@ -14,14 +19,31 @@ export function Jobsection() {
     );
   };
 
-  console.log(displayJobsAmount);
+  useEffect(() => {
+    let displayData = jobsData.filter((job) => {
+      const lowerSearchQuery = searchQuery.toLowerCase();
+
+      return (
+        lowerSearchQuery === "" ||
+        job.company.toLowerCase().includes(lowerSearchQuery) ||
+        job.position.toLowerCase().includes(lowerSearchQuery) ||
+        job.requirements.items.some((requirement) =>
+          requirement.toLowerCase().includes(lowerSearchQuery)
+        )
+      );
+    });
+
+    setDisplayJobs(displayData);
+  }, [searchQuery]);
+
+  console.log("render");
 
   return (
     <main>
       <section className="landingpage-jobs | bg-neutral-200">
         <div className="jobs-container | container">
           <div className="jobs-grid">
-            {jobsData.slice(0, displayJobsAmount).map((jobData) => (
+            {displayJobs.slice(0, displayJobsAmount).map((jobData) => (
               <Jobcard
                 key={jobData.id}
                 jobId={jobData.id}
@@ -36,7 +58,7 @@ export function Jobsection() {
             ))}
           </div>
           <button
-            onClick={() => loadMoreHandler()}
+            onClick={loadMoreHandler}
             className="jobs-load-more-button | button"
           >
             Load More

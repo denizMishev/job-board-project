@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+
+import { useState } from "react";
+
+import { useSearch } from "../Context/SearchContext";
 
 export function Header() {
   const [darkModeToggleChecked, setDarkModeToggleChecked] = useState(
@@ -21,7 +24,13 @@ export function Header() {
     }
   };
 
-  console.log(darkModeToggleChecked);
+  const { searchQuery, setSearchQuery } = useSearch();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchInput = e.target.elements.mainSearch.value;
+    setSearchQuery(searchInput);
+  };
 
   return (
     <header className="site-header | bg-primary-200">
@@ -58,7 +67,7 @@ export function Header() {
           </div>
         </div>
         <div className="main-search-container">
-          <form action="">
+          <form onSubmit={handleSearch} action="">
             <div className="form-elements-container">
               <div className="keyword-filter-container | bg-neutral-100">
                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -69,9 +78,10 @@ export function Header() {
                   />
                 </svg>
                 <input
+                  name="mainSearch"
                   className="color-primary-switch-100 bg-neutral-100"
                   type="text"
-                  placeholder="Filter by title, companies, expertise.."
+                  placeholder="Filter by title, companies, technologies.."
                 />
               </div>
               <div className="location-filter-container | bg-neutral-100">
