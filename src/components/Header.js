@@ -29,7 +29,9 @@ export function Header() {
   const handleSearch = (e) => {
     e.preventDefault();
     const searchInput = {
-      mainSearch: e.target.elements.mainSearch.value,
+      mainSearch:
+        e.target.elements.mainSearch.value ||
+        e.target.elements.mobileMainSearch.value,
 
       locationSearch: e.target.elements.locationSearch.value,
     };
@@ -115,7 +117,11 @@ export function Header() {
                 </button>
               </div>
               <div className="mobile-search-input-container">
-                <input type="text" placeholder="Filter by title.." />
+                <input
+                  name="mobileMainSearch"
+                  type="text"
+                  placeholder="Filter by title.."
+                />
               </div>
               <div className="mobile-search-icons-container">
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
