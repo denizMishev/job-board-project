@@ -1,6 +1,6 @@
-export function SearchModalMobile() {
+export function MobileSearchModal() {
   return (
-    <div class="modal">
+    <div className="modal">
       <div className="location-filter-container | bg-neutral-100">
         <svg width="17" height="24" xmlns="http://www.w3.org/2000/svg">
           <path

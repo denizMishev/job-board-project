@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SearchModalMobile } from "./SearchModalMobile";
+import { MobileSearchModal } from "./MobileSearchModal";
 
 import { useState } from "react";
 
@@ -137,7 +137,6 @@ export function Header() {
                       fillRule="nonzero"
                     />
                   </svg>
-                  <SearchModalMobile></SearchModalMobile>
                 </div>
                 <button
                   className="button-search-mobile | button"
