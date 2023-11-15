@@ -10,6 +10,8 @@ export function Header() {
     localStorage.getItem("theme") === "darkmode"
   );
 
+  const [showMobileSearchModal, setShowMobileSearchModal] = useState(false);
+
   if (localStorage.getItem("theme") === "darkmode") {
     document.body.classList.add("darkmode");
   }
@@ -27,16 +29,28 @@ export function Header() {
 
   const { searchQuery, setSearchQuery } = useSearch();
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const searchInput = {
-      mainSearch:
-        e.target.elements.mainSearch.value ||
-        e.target.elements.mobileMainSearch.value,
+  const handleSearch = (e, mobileLocationSearch) => {
+    if (e === "calledFromMobile") {
+      setSearchQuery((state) => ({
+        ...state,
+        locationSearch: mobileLocationSearch,
+      }));
+    } else {
+      e.preventDefault();
 
-      locationSearch: e.target.elements.locationSearch.value,
-    };
-    setSearchQuery(searchInput);
+      const searchInput = {
+        mainSearch:
+          e.target.elements.mainSearch.value ||
+          e.target.elements.mobileMainSearch.value,
+
+        locationSearch:
+          e.target.elements.locationSearch.value || searchQuery.locationSearch,
+      };
+      setSearchQuery((state) => ({
+        ...state,
+        ...searchInput,
+      }));
+    }
   };
 
   return (
@@ -125,7 +139,10 @@ export function Header() {
                 />
               </div>
               <div className="mobile-search-icons-container">
-                <div>
+                <div
+                  className="mobile-search-location-filter-icon-container"
+                  onClick={() => setShowMobileSearchModal(true)}
+                >
                   <svg
                     width="20"
                     height="20"
@@ -138,6 +155,11 @@ export function Header() {
                     />
                   </svg>
                 </div>
+                <MobileSearchModal
+                  onClose={() => setShowMobileSearchModal(false)}
+                  show={showMobileSearchModal}
+                  handleSearch={handleSearch}
+                />
                 <button
                   className="button-search-mobile | button"
                   data-type="square"
