@@ -55,14 +55,16 @@ export function MobileSearchModal({ onClose, show, handleSearch }) {
             onChange={(e) => setLocationFilter(e.target.value)}
           />
         </div>
+        <hr className="modal-seperator" />
         <div
           style={{ display: "flex" }}
           className="submition-container | bg-neutral-100"
         >
           <div>
-            <input type="checkbox" />
-            <label className="color-primary-switch-100 fw-bold">
-              Full Time <span className="dynamic-text">Only</span>
+            <label class="custom-checkbox-container | color-primary-switch-100 fw-bold">
+              Full Time <span class="dynamic-text">Only</span>
+              <input type="checkbox" />
+              <span class="checkmark"></span>
             </label>
           </div>
           <button

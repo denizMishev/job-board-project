@@ -13,7 +13,7 @@
 
 .modal-content {
     width: 335px;
-    background-color: white;
+    background-color: var(--clr-neutral-100);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -28,16 +28,37 @@
     width: 100%;
     max-width: unset;
     align-items: unset;
+    gap: 1.7rem;
 }
+
+.modal-content .modal-seperator {
+    width: calc(100% + 2 * 1.7rem);
+    height: 1px;
+    background-color: var(--clr-neutral-400);
+    /* margin: 0.5rem 0; */
+    margin-top: 0.5rem;
+    margin-left: -1.7rem;
+  }
 
 .modal-content .location-filter-container {
     width: 100%;
     max-width: unset;
+    /* margin-bottom: 1rem; */
 }
 
 .modal-content .submition-container > div {
     width: 100%;
 }
+
+.modal-content .submition-container label .dynamic-text {
+    font-size: unset;
+}
+
+.modal-content .submition-container .custom-checkbox-container {
+    padding-left: 45px;
+}
+
+
 
 
 

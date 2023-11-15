@@ -122,9 +122,10 @@ export function Header() {
               </div>
               <div className="submition-container | bg-neutral-100">
                 <div>
-                  <input type="checkbox" />
-                  <label className="color-primary-switch-100 fw-bold">
-                    Full Time <span className="dynamic-text">Only</span>
+                  <label class="custom-checkbox-container | color-primary-switch-100 fw-bold">
+                    Full Time <span class="dynamic-text">Only</span>
+                    <input type="checkbox" />
+                    <span class="checkmark"></span>
                   </label>
                 </div>
                 <button className="button" data-type="main-search-btn">
@@ -133,6 +134,7 @@ export function Header() {
               </div>
               <div className="mobile-search-input-container">
                 <input
+                  className="color-primary-switch-100 bg-neutral-100"
                   name="mobileMainSearch"
                   type="text"
                   placeholder="Filter by title.."
