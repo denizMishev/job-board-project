@@ -1,17 +1,10 @@
 import React from "react";
+
+// import { app } from "./firebaseConfig";
+
 import { Header } from "./components/Header";
 import { Jobsection } from "./components/Jobsection";
 import { SearchProvider } from "./Context/SearchContext";
-
-// function App() {
-//   return (
-
-//     <div className="App">
-//       <Header></Header>
-//       <Jobsection></Jobsection>
-//     </div>
-//   );
-// }
 
 function App() {
   return (
