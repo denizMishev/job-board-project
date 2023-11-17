@@ -10,4 +10,4 @@ const firebaseConfig = {
   measurementId: "G-L88S4N096X",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);

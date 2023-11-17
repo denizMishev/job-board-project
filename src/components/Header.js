@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useSearch } from "../Context/SearchContext";
 
 import { app } from "../firebaseConfig";
+import { RegisterModal } from "./RegisterModal";
+import { LoginModal } from "./LoginModal";
 
 export function Header() {
   const [darkModeToggleChecked, setDarkModeToggleChecked] = useState(
@@ -12,6 +14,9 @@ export function Header() {
   );
 
   const [showMobileSearchModal, setShowMobileSearchModal] = useState(false);
+
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   if (localStorage.getItem("theme") === "darkmode") {
     document.body.classList.add("darkmode");
@@ -68,8 +73,21 @@ export function Header() {
             </svg>
           </Link>
           <div className="login-register-container">
-            <span>Login</span>
-            <span style={{ marginLeft: "20px" }}>Register</span>
+            <span onClick={() => setShowLoginModal(true)}>Login</span>
+            <LoginModal
+              onClose={() => setShowLoginModal(false)}
+              show={showLoginModal}
+            />
+            <span
+              onClick={() => setShowRegisterModal(true)}
+              style={{ marginLeft: "20px" }}
+            >
+              Register
+            </span>
+            <RegisterModal
+              onClose={() => setShowRegisterModal(false)}
+              show={showRegisterModal}
+            />
           </div>
           <div className="themeswitch-container">
             <svg width="20" height="19" xmlns="http://www.w3.org/2000/svg">
