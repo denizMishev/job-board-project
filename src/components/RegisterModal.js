@@ -1,66 +1,96 @@
 import React, { useState } from "react";
 
-import { app } from "../firebaseConfig";
+import { database } from "../firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
 export function RegisterModal({ onClose, show }) {
-  let auth = getAuth();
+  const auth = getAuth();
+  const usersCollection = collection(database, "users");
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [registerFormValues, setRegisterFormValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const onChangeHandler = (e) => {
+    const value = e.target.value;
+    const target = e.target.name;
+
+    setRegisterFormValues((state) => ({
+      ...state,
+      [target]: value,
+    }));
+  };
 
   if (!show) {
     return null;
   }
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const { email, password, firstName, lastName } = registerFormValues;
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        console.log(response.user);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+        const userData = {
+          email: email,
+          first_name: firstName,
+          last_name: lastName,
+          saved_jobs: [],
+          jobs_applied_for: [],
+        };
 
-    onClose();
+        return addDoc(usersCollection, userData);
+      })
+      .then(() => {
+        console.log("User added to Firestore");
+        onClose();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   return (
-    <div
-      style={{
-        width: "350px",
-        height: "350px",
-        zIndex: "3",
-        backgroundColor: "red",
-        position: "absolute",
-      }}
-    >
-      <form onSubmit={handleSubmit}>
-        <div onClick={onClose}>Close</div>
-        <input
-          type="email"
-          value={email}
-          onChange={handleEmailChange}
-          placeholder="Email"
-        />
-        <input
-          type="text"
-          value={password}
-          onChange={handlePasswordChange}
-          placeholder="Password"
-        />
-        <button type="submit">Submit</button>
-      </form>
+    <div onClick={onClose} className="modal">
+      <div onClick={(e) => e.stopPropagation()} className="modal-content">
+        <div className="register-modal-container | bg-neutral-100">
+          <form onSubmit={handleSubmit}>
+            <div onClick={onClose}>Close</div>
+            <input
+              name="firstName"
+              type="text"
+              value={registerFormValues.firstName}
+              onChange={onChangeHandler}
+            />
+            <input
+              name="lastName"
+              type="text"
+              value={registerFormValues.lastName}
+              onChange={onChangeHandler}
+            />
+            <input
+              name="email"
+              // type="email"
+              value={registerFormValues.email}
+              onChange={onChangeHandler}
+              placeholder="Email"
+            />
+            <input
+              name="password"
+              type="text"
+              value={registerFormValues.password}
+              onChange={onChangeHandler}
+              placeholder="Password"
+            />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
