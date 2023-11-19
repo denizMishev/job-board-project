@@ -20,6 +20,8 @@ html {
     --clr-neutral-200: hsla(210, 22%, 96%, 1);
     --clr-neutral-100: hsla(0, 100%, 100%, 1);
 
+    --clr-linkblue: hsla(240, 100%, 47%, 1);
+
     --font-weight-regular: 400;
     --font-weight-bold: 700;
 
@@ -30,7 +32,12 @@ html {
     --font-size-350: 1.5rem;   
     --font-size-400: 1.625rem; 
     --font-size-450: 1.75rem;  
-    --font-size-500: 1rem;     
+    --font-size-500: 1rem;
+    
+    --space-100: 0.5rem;
+    --space-200: 1rem;
+    --space-300: 1.5rem;
+    --space-350: 1.7rem;
 
 }
 
@@ -48,6 +55,8 @@ html {
     --clr-neutral-200: hsla(220, 29%, 10%, 1);
 
     --clr-neutral-400: hsla(214, 17%, 21%, 1);
+
+    --clr-linkblue: hsla(217, 90%, 73%, 1);
   }
 
 main {
@@ -71,6 +80,14 @@ main {
     display: none;
 }
 
+.padding-300 {
+  padding: var(--space-300);
+}
+
+.padding-350 {
+  padding: var(--space-350);
+}
+
 .color-primary-200 {
     color: var(--clr-primary-200);
   }
@@ -86,6 +103,10 @@ main {
 .color-primary-switch-100 {
     color: var(--clr-primary-switch-100);
   }
+
+  .color-primary-switch-100-light {
+    color: var(--clr-primary-switch-100-light);
+  }
   
 .color-accent-200 {
     color: var(--clr-accent-200);
@@ -95,12 +116,20 @@ main {
     color: var(--clr-accent-100);
   }
   
+  .color-neutral-400 {
+    color: var(--clr-neutral-400);
+  }
+
 .color-neutral-200 {
     color: var(--clr-neutral-200);
   }
   
 .color-neutral-100 {
     color: var(--clr-neutral-100);
+  }
+
+  .color-linkblue {
+    color: var(--clr-linkblue);
   }
 
 

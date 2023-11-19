@@ -1,6 +1,6 @@
-/* darkmode slider */ /* darkmode slider */ /* darkmode slider */
-/* darkmode slider */ /* darkmode slider */
-/* darkmode slider */
+/* slider */ /* slider */ /* slider */
+/* slider */ /* slider */
+/* slider */
 
 .switch {
     position: relative;
@@ -90,25 +90,21 @@
   padding-inline: 0.85rem;
 }
 
-/* .button[data-type="main-search-btn"] {
-
-} */
-
-/* custom checkbox input */
+/* custom checkbox */ /* custom checkbox */ /* custom checkbox */
+/* custom checkbox */ /* custom checkbox */
+/* custom checkbox */
 
 .custom-checkbox-container {
   display: block;
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  /* font-size: 22px; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
-/* Hide the browser's default checkbox */
 .custom-checkbox-container input {
   position: absolute;
   opacity: 0;
@@ -117,7 +113,6 @@
   width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: -1px;
@@ -127,29 +122,24 @@
   background-color: var(--clr-neutral-400);
 }
 
-/* On mouse-over, add a grey background color */
 .custom-checkbox-container:hover input ~ .checkmark {
   background-color: var(--clr-neutral-400)
 }
 
-/* When the checkbox is checked, add a blue background */
 .custom-checkbox-container input:checked ~ .checkmark {
   background-color: var(--clr-primary-200)
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
 .custom-checkbox-container input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .container .checkmark:after {
   left: 8px;
   top: 2px;
@@ -162,3 +152,98 @@
   transform: rotate(45deg);
 }
 
+/* modal */ /* modal */ /* modal */
+/* modal */ /* modal */
+/* modal */
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.modal-content {
+  width: 335px;
+  background-color: var(--clr-neutral-100);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* form component */ /* form component */  /* form component */ 
+/* form component */ /* form component */ 
+/* form component */
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.form-container .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 1.85em;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.form-input-container input {
+  font-family: 'Kumbh Sans', sans-serif;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--clr-neutral-400);
+  padding-bottom: 0.85em;
+  font-size: 1rem;
+}
+
+.form-submit-button {
+  margin-top: 2em;
+  min-width: 50%;
+  margin-inline: auto;
+}
+
+.switch-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 2.5em;
+  gap: 1rem;
+}
+
+.switch-form-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+input[type='password'] {
+  font-family: Verdana;
+  letter-spacing: 0.125em;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active { 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--clr-primary-switch-100);
+    transition: background-color 5000s ease-in-out 0s;
+}

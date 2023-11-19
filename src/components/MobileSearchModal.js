@@ -30,7 +30,10 @@ export function MobileSearchModal({ onClose, show, handleSearch }) {
 
   return (
     <div className="modal" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal-content | padding-350"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div
           style={{ display: "flex" }}
           className="location-filter-container | bg-neutral-100"
