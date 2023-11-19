@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
-import { MobileSearchModal } from "./MobileSearchModal";
-
 import { useState } from "react";
 import { useSearch } from "../Context/SearchContext";
 
-import { app } from "../firebaseConfig";
+import { Link } from "react-router-dom";
+import { MobileSearchModal } from "./MobileSearchModal";
 import { RegisterModal } from "./RegisterModal";
 import { LoginModal } from "./LoginModal";
+import { Logout } from "./Logout";
 
 export function Header() {
   const [darkModeToggleChecked, setDarkModeToggleChecked] = useState(
@@ -88,6 +87,7 @@ export function Header() {
               onClose={() => setShowRegisterModal(false)}
               show={showRegisterModal}
             />
+            <Logout />
           </div>
           <div className="themeswitch-container">
             <svg width="20" height="19" xmlns="http://www.w3.org/2000/svg">

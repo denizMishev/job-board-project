@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { app } from "../firebaseConfig";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export function LoginModal({ onClose, show }) {
@@ -27,8 +26,8 @@ export function LoginModal({ onClose, show }) {
       .then((response) => {
         console.log(response.user);
       })
-      .catch((err) => {
-        alert(err.message);
+      .catch((error) => {
+        alert(error.message);
       });
 
     onClose();
