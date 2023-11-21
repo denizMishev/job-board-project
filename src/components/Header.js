@@ -18,6 +18,7 @@ export function Header() {
         locationSearch: mobileLocationSearch,
       }));
     } else {
+      console.log(e.target.elements.locationSearch.value, "otheader");
       e.preventDefault();
 
       const searchInput = {
@@ -26,7 +27,8 @@ export function Header() {
           e.target.elements.mobileMainSearch.value,
 
         locationSearch:
-          e.target.elements.locationSearch.value || searchQuery.locationSearch,
+          // e.target.elements.locationSearch.value || searchQuery.locationSearch,
+          e.target.elements.locationSearch.value,
       };
       setSearchQuery((state) => ({
         ...state,
