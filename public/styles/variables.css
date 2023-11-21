@@ -6,6 +6,7 @@ html {
     
     --clr-primary-200: hsla(235, 69%, 61%, 1);
     --clr-primary-100: hsla(235, 82%, 77%, 1);
+    --clr-primary-50: hsla(235, 82%, 77%, 0.15);
 
     --clr-primary-switch-200: hsla(220, 29%, 10%, 1);
     --clr-primary-switch-100: hsla(219, 29%, 14%, 1);
@@ -25,6 +26,7 @@ html {
     --font-weight-regular: 400;
     --font-weight-bold: 700;
 
+    --font-size-080: 0.775rem;
     --font-size-100: 0.875rem; 
     --font-size-200: 1.125rem; 
     --font-size-250: 1.25rem;  

@@ -1,0 +1,28 @@
+.themeswitch-container {
+    width: 112px;
+    height: 24px;
+    align-items: center;
+    gap: 0.8rem;
+    flex-shrink: 0;
+}
+
+#themeswitch-mobile-container-sun-svg {
+    padding-top: 0.35rem;
+}
+
+#themeswitch-mobile-container-moon-svg {
+    margin-top: 0.2rem;
+}
+
+.themeswitch-container-mobile {
+    position: relative;
+}
+
+.themeswitch-menu-mobile li:nth-child(1) > svg {
+    padding-top: 0.4rem;
+    margin-right: -0.62rem;
+}
+
+.themeswitch-menu-mobile li:nth-child(2) {
+    height: 30px;
+}

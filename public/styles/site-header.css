@@ -36,12 +36,45 @@ input[type="checkbox"] {
     flex-shrink: 0;
 }
 
+.usernav-and-themeswitch {
+    display: flex;
+    align-items: center;
+    gap: 1.85rem;
+}
+
+.usernav-container-mobile {
+    position: relative;
+}
+
+.usernav-container-mobile > button {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: white;
+    cursor: pointer;
+}
+
+.usernav-container-desktop {
+    display: none;
+    gap: 2rem;
+}
+
+.usernav-login-li, .usernav-register-li {
+    color: white;
+    cursor: pointer;
+}
+
+.usernav-login-li:hover, .usernav-register-li:hover {
+    color: var(--clr-neutral-300);
+}
+
+
 .themeswitch-container {
     width: 112px;
     height: 24px;
-    display: flex;
+    display: none;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.8rem;
     flex-shrink: 0;
 }
 
@@ -143,6 +176,22 @@ input[type="checkbox"] {
 
     .main-search-container > form {
         padding-inline: 1.25rem;
+    }
+
+    .usernav-container-desktop {
+        display: flex;
+    }
+
+    .usernav-container-mobile {
+        display: none;
+    }
+
+    .themeswitch-container {
+        display: flex;
+    }
+
+    .themeswitch-container-mobile {
+        display: none;
     }
     
 }
