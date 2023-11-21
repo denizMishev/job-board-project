@@ -19,7 +19,9 @@ export function Jobcard({
         >
           <img
             alt={`${company} logo`}
-            src={require(`../logos/${company.toLowerCase()}.svg`)}
+            src={require(`../logos/${company
+              .replace(/\s/g, "")
+              .toLowerCase()}.svg`)}
           />
         </div>
         <div className="job-card-content">
