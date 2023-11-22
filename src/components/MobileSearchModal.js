@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useSearch } from "../Context/SearchContext";
 
 export function MobileSearchModal({ onClose, show, handleSearch }) {
   const [locationFilter, setLocationFilter] = useState("");
+  const { setSearchQuery } = useSearch();
 
   const handleSearchMobile = () => {
-    const noEvent = "calledFromMobile";
-    handleSearch(noEvent, locationFilter);
-
+    setSearchQuery((state) => ({
+      ...state,
+      locationSearch: locationFilter,
+    }));
     onClose();
   };
 

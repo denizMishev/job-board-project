@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearch } from "../Context/SearchContext";
 
 import { Link } from "react-router-dom";
@@ -11,30 +11,20 @@ export function Header() {
 
   const { searchQuery, setSearchQuery } = useSearch();
 
-  const handleSearch = (e, mobileLocationSearch) => {
-    if (e === "calledFromMobile") {
-      setSearchQuery((state) => ({
-        ...state,
-        locationSearch: mobileLocationSearch,
-      }));
-    } else {
-      console.log(e.target.elements.locationSearch.value, "otheader");
-      e.preventDefault();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchInput = {
+      mainSearch:
+        e.target.elements.mainSearch.value ||
+        e.target.elements.mobileMainSearch.value,
 
-      const searchInput = {
-        mainSearch:
-          e.target.elements.mainSearch.value ||
-          e.target.elements.mobileMainSearch.value,
-
-        locationSearch:
-          // e.target.elements.locationSearch.value || searchQuery.locationSearch,
-          e.target.elements.locationSearch.value,
-      };
-      setSearchQuery((state) => ({
-        ...state,
-        ...searchInput,
-      }));
-    }
+      locationSearch:
+        e.target.elements.locationSearch.value || searchQuery.locationSearch,
+    };
+    setSearchQuery((state) => ({
+      ...state,
+      ...searchInput,
+    }));
   };
 
   return (
