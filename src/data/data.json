@@ -478,5 +478,751 @@
         "Proactively solve the problems most important to the business"
       ]
     }
+  },
+  {
+    "id": 2,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "3mo ago",
+    "contract": "Full Time",
+    "location": "United Kingdom",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a skilled Software Developer with a passion for creating robust and scalable server-side applications? Join us at Blogr, where you'll have the opportunity to contribute to the development of mission-critical projects and collaborate with a dynamic team.",
+    "requirements": {
+      "content": "We're seeking candidates with strong expertise in server-side development, experience with database technologies, and the ability to write clean and maintainable code. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Familiarity with database technologies (e.g., MongoDB, PostgreSQL)",
+        "Knowledge of RESTful API design principles",
+        "Effective problem-solving and troubleshooting skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll be an integral part of our Product team, collaborating with frontend developers, UX/UI specialists, and product owners. You'll have the opportunity to contribute to the design and implementation of scalable and efficient backend systems.",
+      "items": [
+        "Collaborate with frontend developers to integrate user-facing elements",
+        "Contribute to the architecture and design of backend systems",
+        "Optimize server-side performance",
+        "Troubleshoot and resolve issues in a timely manner"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "1w ago",
+    "contract": "Full Time",
+    "location": "Australia",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join our team as a Software Engineer, where you'll play a crucial role in designing and developing intuitive and user-friendly software solutions. If you have a passion for creating high-quality code and solving complex problems, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in multiple programming languages, and a deep understanding of software architecture principles. Excellent communication and collaboration skills are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in multiple programming languages",
+        "Understanding of software architecture principles",
+        "Excellent communication and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll work closely with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the full software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the full software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "4w ago",
+    "contract": "Full Time",
+    "location": "Germany",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a talented Software Developer with a passion for creating efficient and scalable software solutions? Join us at Blogr, where you'll have the opportunity to contribute to the success of our products by developing high-quality code.",
+    "requirements": {
+      "content": "We're seeking candidates with experience in software development, strong proficiency in programming languages, and a commitment to writing clean and maintainable code. Effective problem-solving skills and collaboration are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Proficiency in programming languages",
+        "Commitment to writing clean and maintainable code",
+        "Effective problem-solving and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll work closely with cross-functional teams to develop and maintain high-quality software solutions. You'll have the opportunity to contribute to code reviews, collaborate with UX/UI specialists, and proactively address software development challenges.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Contribute to code reviews",
+        "Collaborate with UX/UI specialists",
+        "Proactively address software development challenges"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "2w ago",
+    "contract": "Full Time",
+    "location": "France",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join us as a Software Engineer at Blogr, where you'll have the opportunity to work on cutting-edge software projects and contribute to the success of our products. If you have a passion for software development and a desire to create innovative solutions, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in programming languages, and a deep understanding of software architecture. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in programming languages",
+        "Understanding of software architecture",
+        "Excellent problem-solving and communication skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll collaborate with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the entire software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the entire software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "3mo ago",
+    "contract": "Full Time",
+    "location": "United Kingdom",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a skilled Software Developer with a passion for creating robust and scalable server-side applications? Join us at Blogr, where you'll have the opportunity to contribute to the development of mission-critical projects and collaborate with a dynamic team.",
+    "requirements": {
+      "content": "We're seeking candidates with strong expertise in server-side development, experience with database technologies, and the ability to write clean and maintainable code. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Familiarity with database technologies (e.g., MongoDB, PostgreSQL)",
+        "Knowledge of RESTful API design principles",
+        "Effective problem-solving and troubleshooting skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll be an integral part of our Product team, collaborating with frontend developers, UX/UI specialists, and product owners. You'll have the opportunity to contribute to the design and implementation of scalable and efficient backend systems.",
+      "items": [
+        "Collaborate with frontend developers to integrate user-facing elements",
+        "Contribute to the architecture and design of backend systems",
+        "Optimize server-side performance",
+        "Troubleshoot and resolve issues in a timely manner"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "1w ago",
+    "contract": "Full Time",
+    "location": "Australia",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join our team as a Software Engineer, where you'll play a crucial role in designing and developing intuitive and user-friendly software solutions. If you have a passion for creating high-quality code and solving complex problems, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in multiple programming languages, and a deep understanding of software architecture principles. Excellent communication and collaboration skills are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in multiple programming languages",
+        "Understanding of software architecture principles",
+        "Excellent communication and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll work closely with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the full software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the full software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "4w ago",
+    "contract": "Full Time",
+    "location": "Germany",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a talented Software Developer with a passion for creating efficient and scalable software solutions? Join us at Blogr, where you'll have the opportunity to contribute to the success of our products by developing high-quality code.",
+    "requirements": {
+      "content": "We're seeking candidates with experience in software development, strong proficiency in programming languages, and a commitment to writing clean and maintainable code. Effective problem-solving skills and collaboration are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Proficiency in programming languages",
+        "Commitment to writing clean and maintainable code",
+        "Effective problem-solving and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll work closely with cross-functional teams to develop and maintain high-quality software solutions. You'll have the opportunity to contribute to code reviews, collaborate with UX/UI specialists, and proactively address software development challenges.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Contribute to code reviews",
+        "Collaborate with UX/UI specialists",
+        "Proactively address software development challenges"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "2w ago",
+    "contract": "Full Time",
+    "location": "France",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join us as a Software Engineer at Blogr, where you'll have the opportunity to work on cutting-edge software projects and contribute to the success of our products. If you have a passion for software development and a desire to create innovative solutions, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in programming languages, and a deep understanding of software architecture. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in programming languages",
+        "Understanding of software architecture",
+        "Excellent problem-solving and communication skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll collaborate with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the entire software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the entire software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "3mo ago",
+    "contract": "Full Time",
+    "location": "United Kingdom",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a skilled Software Developer with a passion for creating robust and scalable server-side applications? Join us at Blogr, where you'll have the opportunity to contribute to the development of mission-critical projects and collaborate with a dynamic team.",
+    "requirements": {
+      "content": "We're seeking candidates with strong expertise in server-side development, experience with database technologies, and the ability to write clean and maintainable code. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Familiarity with database technologies (e.g., MongoDB, PostgreSQL)",
+        "Knowledge of RESTful API design principles",
+        "Effective problem-solving and troubleshooting skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll be an integral part of our Product team, collaborating with frontend developers, UX/UI specialists, and product owners. You'll have the opportunity to contribute to the design and implementation of scalable and efficient backend systems.",
+      "items": [
+        "Collaborate with frontend developers to integrate user-facing elements",
+        "Contribute to the architecture and design of backend systems",
+        "Optimize server-side performance",
+        "Troubleshoot and resolve issues in a timely manner"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "1w ago",
+    "contract": "Full Time",
+    "location": "Australia",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join our team as a Software Engineer, where you'll play a crucial role in designing and developing intuitive and user-friendly software solutions. If you have a passion for creating high-quality code and solving complex problems, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in multiple programming languages, and a deep understanding of software architecture principles. Excellent communication and collaboration skills are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in multiple programming languages",
+        "Understanding of software architecture principles",
+        "Excellent communication and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll work closely with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the full software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the full software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "4w ago",
+    "contract": "Full Time",
+    "location": "Germany",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a talented Software Developer with a passion for creating efficient and scalable software solutions? Join us at Blogr, where you'll have the opportunity to contribute to the success of our products by developing high-quality code.",
+    "requirements": {
+      "content": "We're seeking candidates with experience in software development, strong proficiency in programming languages, and a commitment to writing clean and maintainable code. Effective problem-solving skills and collaboration are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Proficiency in programming languages",
+        "Commitment to writing clean and maintainable code",
+        "Effective problem-solving and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll work closely with cross-functional teams to develop and maintain high-quality software solutions. You'll have the opportunity to contribute to code reviews, collaborate with UX/UI specialists, and proactively address software development challenges.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Contribute to code reviews",
+        "Collaborate with UX/UI specialists",
+        "Proactively address software development challenges"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "2w ago",
+    "contract": "Full Time",
+    "location": "France",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join us as a Software Engineer at Blogr, where you'll have the opportunity to work on cutting-edge software projects and contribute to the success of our products. If you have a passion for software development and a desire to create innovative solutions, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in programming languages, and a deep understanding of software architecture. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in programming languages",
+        "Understanding of software architecture",
+        "Excellent problem-solving and communication skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll collaborate with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the entire software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the entire software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "3mo ago",
+    "contract": "Full Time",
+    "location": "United Kingdom",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a skilled Software Developer with a passion for creating robust and scalable server-side applications? Join us at Blogr, where you'll have the opportunity to contribute to the development of mission-critical projects and collaborate with a dynamic team.",
+    "requirements": {
+      "content": "We're seeking candidates with strong expertise in server-side development, experience with database technologies, and the ability to write clean and maintainable code. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Familiarity with database technologies (e.g., MongoDB, PostgreSQL)",
+        "Knowledge of RESTful API design principles",
+        "Effective problem-solving and troubleshooting skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll be an integral part of our Product team, collaborating with frontend developers, UX/UI specialists, and product owners. You'll have the opportunity to contribute to the design and implementation of scalable and efficient backend systems.",
+      "items": [
+        "Collaborate with frontend developers to integrate user-facing elements",
+        "Contribute to the architecture and design of backend systems",
+        "Optimize server-side performance",
+        "Troubleshoot and resolve issues in a timely manner"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "1w ago",
+    "contract": "Full Time",
+    "location": "Australia",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join our team as a Software Engineer, where you'll play a crucial role in designing and developing intuitive and user-friendly software solutions. If you have a passion for creating high-quality code and solving complex problems, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in multiple programming languages, and a deep understanding of software architecture principles. Excellent communication and collaboration skills are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in multiple programming languages",
+        "Understanding of software architecture principles",
+        "Excellent communication and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll work closely with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the full software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the full software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "4w ago",
+    "contract": "Full Time",
+    "location": "Germany",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a talented Software Developer with a passion for creating efficient and scalable software solutions? Join us at Blogr, where you'll have the opportunity to contribute to the success of our products by developing high-quality code.",
+    "requirements": {
+      "content": "We're seeking candidates with experience in software development, strong proficiency in programming languages, and a commitment to writing clean and maintainable code. Effective problem-solving skills and collaboration are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Proficiency in programming languages",
+        "Commitment to writing clean and maintainable code",
+        "Effective problem-solving and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll work closely with cross-functional teams to develop and maintain high-quality software solutions. You'll have the opportunity to contribute to code reviews, collaborate with UX/UI specialists, and proactively address software development challenges.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Contribute to code reviews",
+        "Collaborate with UX/UI specialists",
+        "Proactively address software development challenges"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "2w ago",
+    "contract": "Full Time",
+    "location": "France",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join us as a Software Engineer at Blogr, where you'll have the opportunity to work on cutting-edge software projects and contribute to the success of our products. If you have a passion for software development and a desire to create innovative solutions, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in programming languages, and a deep understanding of software architecture. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in programming languages",
+        "Understanding of software architecture",
+        "Excellent problem-solving and communication skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll collaborate with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the entire software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the entire software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "3mo ago",
+    "contract": "Full Time",
+    "location": "United Kingdom",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a skilled Software Developer with a passion for creating robust and scalable server-side applications? Join us at Blogr, where you'll have the opportunity to contribute to the development of mission-critical projects and collaborate with a dynamic team.",
+    "requirements": {
+      "content": "We're seeking candidates with strong expertise in server-side development, experience with database technologies, and the ability to write clean and maintainable code. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Familiarity with database technologies (e.g., MongoDB, PostgreSQL)",
+        "Knowledge of RESTful API design principles",
+        "Effective problem-solving and troubleshooting skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll be an integral part of our Product team, collaborating with frontend developers, UX/UI specialists, and product owners. You'll have the opportunity to contribute to the design and implementation of scalable and efficient backend systems.",
+      "items": [
+        "Collaborate with frontend developers to integrate user-facing elements",
+        "Contribute to the architecture and design of backend systems",
+        "Optimize server-side performance",
+        "Troubleshoot and resolve issues in a timely manner"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "1w ago",
+    "contract": "Full Time",
+    "location": "Australia",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join our team as a Software Engineer, where you'll play a crucial role in designing and developing intuitive and user-friendly software solutions. If you have a passion for creating high-quality code and solving complex problems, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in multiple programming languages, and a deep understanding of software architecture principles. Excellent communication and collaboration skills are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in multiple programming languages",
+        "Understanding of software architecture principles",
+        "Excellent communication and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll work closely with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the full software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the full software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "4w ago",
+    "contract": "Full Time",
+    "location": "Germany",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a talented Software Developer with a passion for creating efficient and scalable software solutions? Join us at Blogr, where you'll have the opportunity to contribute to the success of our products by developing high-quality code.",
+    "requirements": {
+      "content": "We're seeking candidates with experience in software development, strong proficiency in programming languages, and a commitment to writing clean and maintainable code. Effective problem-solving skills and collaboration are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Proficiency in programming languages",
+        "Commitment to writing clean and maintainable code",
+        "Effective problem-solving and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll work closely with cross-functional teams to develop and maintain high-quality software solutions. You'll have the opportunity to contribute to code reviews, collaborate with UX/UI specialists, and proactively address software development challenges.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Contribute to code reviews",
+        "Collaborate with UX/UI specialists",
+        "Proactively address software development challenges"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "2w ago",
+    "contract": "Full Time",
+    "location": "France",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join us as a Software Engineer at Blogr, where you'll have the opportunity to work on cutting-edge software projects and contribute to the success of our products. If you have a passion for software development and a desire to create innovative solutions, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in programming languages, and a deep understanding of software architecture. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in programming languages",
+        "Understanding of software architecture",
+        "Excellent problem-solving and communication skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll collaborate with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the entire software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the entire software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "3mo ago",
+    "contract": "Full Time",
+    "location": "United Kingdom",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a skilled Software Developer with a passion for creating robust and scalable server-side applications? Join us at Blogr, where you'll have the opportunity to contribute to the development of mission-critical projects and collaborate with a dynamic team.",
+    "requirements": {
+      "content": "We're seeking candidates with strong expertise in server-side development, experience with database technologies, and the ability to write clean and maintainable code. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Familiarity with database technologies (e.g., MongoDB, PostgreSQL)",
+        "Knowledge of RESTful API design principles",
+        "Effective problem-solving and troubleshooting skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll be an integral part of our Product team, collaborating with frontend developers, UX/UI specialists, and product owners. You'll have the opportunity to contribute to the design and implementation of scalable and efficient backend systems.",
+      "items": [
+        "Collaborate with frontend developers to integrate user-facing elements",
+        "Contribute to the architecture and design of backend systems",
+        "Optimize server-side performance",
+        "Troubleshoot and resolve issues in a timely manner"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "1w ago",
+    "contract": "Full Time",
+    "location": "Australia",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join our team as a Software Engineer, where you'll play a crucial role in designing and developing intuitive and user-friendly software solutions. If you have a passion for creating high-quality code and solving complex problems, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in multiple programming languages, and a deep understanding of software architecture principles. Excellent communication and collaboration skills are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in multiple programming languages",
+        "Understanding of software architecture principles",
+        "Excellent communication and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll work closely with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the full software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the full software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Developer",
+    "postedAt": "4w ago",
+    "contract": "Full Time",
+    "location": "Germany",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Are you a talented Software Developer with a passion for creating efficient and scalable software solutions? Join us at Blogr, where you'll have the opportunity to contribute to the success of our products by developing high-quality code.",
+    "requirements": {
+      "content": "We're seeking candidates with experience in software development, strong proficiency in programming languages, and a commitment to writing clean and maintainable code. Effective problem-solving skills and collaboration are essential.",
+      "items": [
+        "Proven experience as a Software Developer",
+        "Proficiency in programming languages",
+        "Commitment to writing clean and maintainable code",
+        "Effective problem-solving and collaboration skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Developer, you'll work closely with cross-functional teams to develop and maintain high-quality software solutions. You'll have the opportunity to contribute to code reviews, collaborate with UX/UI specialists, and proactively address software development challenges.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Contribute to code reviews",
+        "Collaborate with UX/UI specialists",
+        "Proactively address software development challenges"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "company": "Blogr",
+    "logo": "./assets/logos/blogr.svg",
+    "logoBackground": "hsl(12, 79%, 52%)",
+    "position": "Software Engineer",
+    "postedAt": "2w ago",
+    "contract": "Full Time",
+    "location": "France",
+    "website": "https://example.com/blogr",
+    "apply": "https://example.com/blogr/apply",
+    "description": "Join us as a Software Engineer at Blogr, where you'll have the opportunity to work on cutting-edge software projects and contribute to the success of our products. If you have a passion for software development and a desire to create innovative solutions, we want to hear from you!",
+    "requirements": {
+      "content": "We're seeking candidates with strong experience in software development, proficiency in programming languages, and a deep understanding of software architecture. Excellent problem-solving skills and effective communication are essential.",
+      "items": [
+        "Proven experience as a Software Engineer",
+        "Proficiency in programming languages",
+        "Understanding of software architecture",
+        "Excellent problem-solving and communication skills"
+      ]
+    },
+    "role": {
+      "content": "As a Software Engineer, you'll collaborate with cross-functional teams to design and implement innovative software solutions. You'll have the opportunity to contribute to the entire software development lifecycle, from concept to deployment.",
+      "items": [
+        "Collaborate with cross-functional teams",
+        "Design and implement innovative software solutions",
+        "Contribute to the entire software development lifecycle",
+        "Optimize code for performance and scalability"
+      ]
+    }
   }
 ]
+
+

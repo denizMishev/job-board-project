@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearch } from "../Context/SearchContext";
 
 import { Link } from "react-router-dom";
@@ -11,8 +11,26 @@ export function Header() {
 
   const { searchQuery, setSearchQuery } = useSearch();
 
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   console.log(searchQuery);
+  //   const searchInput = {
+  //     mainSearch:
+  //       e.target.elements.mainSearch.value ||
+  //       e.target.elements.mobileMainSearch.value,
+
+  //     locationSearch:
+  //       e.target.elements.locationSearch.value || searchQuery.locationSearch,
+  //   };
+  //   setSearchQuery((state) => ({
+  //     ...state,
+  //     ...searchInput,
+  //   }));
+  // };
+
   const handleSearch = (e) => {
     e.preventDefault();
+    console.log(searchQuery);
     const searchInput = {
       mainSearch:
         e.target.elements.mainSearch.value ||

@@ -12,14 +12,14 @@ try {
 
 const db = admin.firestore();
 
-const jsonData = require("./data.json");
+const jsonData = require("./data2.json");
 
 async function importData() {
   const batch = db.batch();
 
   try {
     for (const key in jsonData) {
-      const docRef = db.collection("jobs").doc();
+      const docRef = db.collection("jobs2").doc();
       const dataWithoutId = { ...jsonData[key] };
       delete dataWithoutId.id;
 
