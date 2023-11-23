@@ -8,7 +8,7 @@ export function MobileSearchModal({ onClose, show, handleSearch }) {
   const handleSearchMobile = () => {
     setSearchQuery((state) => ({
       ...state,
-      locationSearch: locationFilter,
+      mobileLocationSearch: locationFilter,
     }));
     onClose();
   };
