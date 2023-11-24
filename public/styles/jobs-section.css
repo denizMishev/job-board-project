@@ -18,14 +18,52 @@
 
 .pagination-container {
     padding-block: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-container-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .jobsection-pages-list {
     display: flex;
-    margin-inline: auto;
     justify-content: center;
-    max-width: 80%;
-    gap: 1rem;
+    align-items: center;
+    gap: 1.25rem;
+    border-radius: 50px;
+    padding: 1rem;
+}
+
+.pagination-arrowsvg-containers {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+}
+
+.pagination-arrowsvg-containers > svg {
+    width: 12px;
+    height: 12px;
+}
+
+.page-list-item {
+    padding-inline: 0.35rem;
+    cursor: pointer;
+}
+
+.page-list-item:hover {
+    color: var(--clr-primary-100);
+}
+
+.pagination-arrowsvg-containers:hover {
+    color: var(--clr-primary-100);
 }
 
 .jobsection-pages-list .page-list-item > button {
