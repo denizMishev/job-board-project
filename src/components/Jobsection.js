@@ -66,6 +66,7 @@ export function Jobsection() {
           });
 
           currentJobs = filteredJobs;
+          pageChangeHandler(1);
         } else {
           currentJobs = jobsData;
         }
@@ -129,7 +130,6 @@ export function Jobsection() {
                 </div>
                 <ul className="jobsection-pages-list | bg-neutral-100">
                   {arrayOfPages.map((pageNumber) => {
-                    console.log(pageNumber, currentPage, "render");
                     if (pageNumber === currentPage) {
                       return (
                         <li
