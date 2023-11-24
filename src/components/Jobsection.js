@@ -10,7 +10,7 @@ import { returnPaginationRange } from "../utils/utils";
 
 export function Jobsection() {
   const { searchQuery } = useSearch();
-  const jobsFirestoreCollection = collection(database, "jobs2");
+  const jobsFirestoreCollection = collection(database, "jobs");
 
   const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(
@@ -18,7 +18,6 @@ export function Jobsection() {
   );
   const [totalPages, setTotalPages] = useState(1);
   const [displayJobs, setDisplayJobs] = useState([]);
-  console.log(currentPage);
 
   const pageChangeHandler = (value) => {
     localStorage.setItem("onPage", value);
