@@ -13,9 +13,16 @@ export function Jobsection() {
   const jobsFirestoreCollection = collection(database, "jobs2");
 
   const itemsPerPage = 9;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(
+    localStorage.getItem("onPage") || 1
+  );
   const [totalPages, setTotalPages] = useState(1);
   const [displayJobs, setDisplayJobs] = useState([]);
+
+  const pageChangeHandler = (value) => {
+    localStorage.setItem("onPage", value);
+    setCurrentPage(value);
+  };
 
   useEffect(() => {
     let currentJobs;
@@ -126,7 +133,7 @@ export function Jobsection() {
                 </li>
 
                 {arrayTest.map((value) => (
-                  <li onClick={() => setCurrentPage(value)} key={value}>
+                  <li onClick={() => pageChangeHandler(value)} key={value}>
                     <span>{value}</span>
                   </li>
                 ))}
