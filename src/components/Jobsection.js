@@ -1,5 +1,4 @@
 import { Jobcard } from "./Jobcard";
-import { jobsData } from "../data/data";
 
 import { useEffect, useState } from "react";
 import { database } from "../firebaseConfig";
@@ -7,11 +6,13 @@ import { collection, getDocs } from "@firebase/firestore";
 
 import { useSearch } from "../Context/SearchContext";
 
+import { returnPaginationRange } from "../utils/utils";
+
 export function Jobsection() {
   const { searchQuery } = useSearch();
   const jobsFirestoreCollection = collection(database, "jobs2");
 
-  const itemsPerPage = 12;
+  const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [displayJobs, setDisplayJobs] = useState([]);
@@ -70,7 +71,15 @@ export function Jobsection() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+    // eslint-disable-next-line
   }, [searchQuery, currentPage]);
+
+  let arrayTest = returnPaginationRange(
+    totalPages,
+    currentPage,
+    itemsPerPage,
+    1
+  );
 
   return (
     <main>
@@ -92,7 +101,7 @@ export function Jobsection() {
             ))}
           </div>
 
-          {totalPages > 1 && (
+          {/* {totalPages > 1 && (
             <div className="pagination-container">
               <ul className="jobsection-pages-list">
                 {[...Array(totalPages).keys()].map((page) => (
@@ -102,6 +111,32 @@ export function Jobsection() {
                     </button>
                   </li>
                 ))}
+              </ul>
+            </div>
+          )} */}
+
+          {totalPages > 1 && (
+            <div className="pagination-container">
+              <ul className="jobsection-pages-list">
+                <li>
+                  <span>btn</span>
+                </li>
+                <li>
+                  <span>btn</span>
+                </li>
+
+                {arrayTest.map((value) => (
+                  <li onClick={() => setCurrentPage(value)} key={value}>
+                    <span>{value}</span>
+                  </li>
+                ))}
+
+                <li>
+                  <span>btn</span>
+                </li>
+                <li>
+                  <span>btn</span>
+                </li>
               </ul>
             </div>
           )}
