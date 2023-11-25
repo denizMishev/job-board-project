@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearch } from "../Context/SearchContext";
 
-export function MobileSearchModal({ onClose, show, handleSearch }) {
+export function MobileSearchModal({ onClose, show }) {
   const [locationFilter, setLocationFilter] = useState("");
   const { setSearchQuery } = useSearch();
 
