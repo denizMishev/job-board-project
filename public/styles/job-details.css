@@ -1,0 +1,238 @@
+.jobdetails > .jobdetails-container {
+    max-width: 730px;
+    position: relative;
+}
+
+.jobdetails-header {
+    min-height: 140px;
+    position: absolute;
+    top: -175px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.jobdetails-header-container {
+    display: flex;
+    justify-content: space-between;
+    height: 140px;
+}
+
+.jobdetails-image-and-company-container {
+    display: flex;
+    width: 50%;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.jobdetails-header-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.jobdetails-header-image-container > img{
+    width: 40%;
+    height: 40%;
+}
+
+.jobdetails-header-company-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    padding-left: 2.5rem;
+    gap: 1rem;
+}
+
+.jobdetails-header-button-container {
+    display: flex;
+    align-items: center;
+    padding-right: 2.5rem;
+}
+
+
+
+
+
+.jobdetails-info {
+    margin-top: 8rem;
+    padding: 3rem;
+}
+
+.jobdetails ul, .jobdetails ol {
+    margin-top: 1.85rem;
+}
+
+.jobdetails ul li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 45px;
+    margin-top: 1rem;
+}
+
+.jobdetails ul li::before {
+    content: "\2022"; 
+    color: var(--clr-primary-200);
+    font-size: 3em; 
+    position: absolute;
+    left: 0;
+}
+
+.jobdetails ol {
+    counter-reset: my-counter;
+}
+
+.jobdetails ol li {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 45px;
+    margin-top: 1rem;
+}
+
+.jobdetails ol li::before {
+    content: counter(my-counter); 
+    counter-increment: my-counter; 
+    color: var(--clr-primary-200);
+    font-size: 1.15em;  
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.jobdetails-info-company-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.jobdetails-company-details-container > h2 {
+    margin: 0.6rem 0;
+}
+
+.jobdetails-info-description-1-container {
+    margin-top: 2.5rem;
+}
+
+.jobdetails-info-requirements-container {
+    margin-top: 2.5rem;
+}
+
+.jobdetails-info-requirements-container > p {
+    margin-top: 1.8rem;
+}
+
+.jobdetails-info-description-2-container {
+    margin-top: 2.5rem;
+}
+
+.jobdetails-info-description-2-container > p {
+    margin-top: 1.8rem;
+}
+
+
+
+
+
+.jobdetails-footer {
+    margin-top: 5%;
+}
+
+.jobdetails-footer-container {
+    max-width: 730px;
+    min-height: 100px;
+    padding-inline: 1.2rem;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-company-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (max-width: 36em) {
+
+    .jobdetails-info {
+        margin-top: 15rem;
+    }
+
+    .jobdetails-header {
+        min-height: 230px;
+        top: -260px;
+        text-align: center;
+    }
+
+    .jobdetails-header-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 1.5rem;
+        gap: 1.5rem;
+        height: 230px;
+    }
+
+    .jobdetails-image-and-company-container {
+        display: unset;
+        width: unset;
+    }
+
+    .jobdetails-header-company-container {
+        display: unset;
+        width: unset;
+        padding-left: unset;
+        text-align: center;
+    }
+
+    .jobdetails-header-company-website {
+        display: block;
+        margin-top: 1rem;
+    }
+
+    .jobdetails-header-button-container {
+        padding-right: unset;
+    }
+
+    .jobdetails-header-image-container {
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+    }
+
+
+    .jobdetails-info {
+        padding-inline: 1.6rem;
+    }
+
+    .jobdetails-info-company-container {
+        display: unset;
+    }
+
+    .jobdetails-applynow-container {
+        margin-top: 3rem;
+    }
+
+    .jobdetails-applynow-container > button {
+        width: 100%;
+    }
+
+
+
+    .footer-company-info-container {
+        display: none;
+    }
+
+    .footer-applynow-container, .footer-applynow-container > button {
+        width: 100%;
+    }
+
+}

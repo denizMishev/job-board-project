@@ -1,7 +1,8 @@
 @import "site-header.css";
-@import "themeswitch.css";
+@import "theme-switch.css";
 @import "mobile-search-modal.css";
 @import "jobs-section.css";
+@import "job-details.css";
 @import "job-card.css";
 @import "components.css";
 @import "variables.css";

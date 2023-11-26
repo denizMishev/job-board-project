@@ -10,7 +10,7 @@
     top:-20px;
 }
 
-.job-time-container span:first-of-type::after {
+.job-time-container span:first-of-type::after, .jobdetails-info-company-container span:first-of-type::after {
     content: '';
     height: 4px;
     width: 4px;

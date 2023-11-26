@@ -2,8 +2,11 @@ import { useState } from "react";
 import { useSearch } from "../Context/SearchContext";
 
 import { MobileSearchModal } from "./MobileSearchModal";
+import { useLocation } from "react-router-dom";
 
 export function Search() {
+  const location = useLocation();
+
   const [showMobileSearchModal, setShowMobileSearchModal] = useState(false);
 
   const { setSearchQuery } = useSearch();
@@ -24,7 +27,11 @@ export function Search() {
   };
 
   return (
-    <div className="main-search-container">
+    <div
+      className={`main-search-container ${
+        location.pathname.includes("jobs") ? "display-none" : ""
+      }`}
+    >
       <form onSubmit={handleSearch} action="">
         <div className="form-elements-container">
           <div className="keyword-filter-container | bg-neutral-100">

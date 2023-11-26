@@ -90,6 +90,15 @@
   padding-inline: 0.85rem;
 }
 
+.button[data-type="inverted"] {
+  background-color: var(--clr-inverted-button-bg);
+  color: var(--clr-inverted-button);
+}
+
+.button[data-type="inverted"]:hover {
+  background-color: var(--clr-inverted-button-bg-hover);
+}
+
 /* custom checkbox */ /* custom checkbox */ /* custom checkbox */
 /* custom checkbox */ /* custom checkbox */
 /* custom checkbox */
