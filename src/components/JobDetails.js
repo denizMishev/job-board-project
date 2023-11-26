@@ -18,8 +18,6 @@ export function JobDetails() {
     });
   }, []);
 
-  console.log(jobData);
-
   return (
     <main className="bg-neutral-200">
       <section className="jobdetails bg-neutral-200">
