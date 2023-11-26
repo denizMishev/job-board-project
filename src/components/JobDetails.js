@@ -29,7 +29,7 @@ export function JobDetails() {
                   className="jobdetails-header-image-container"
                   style={{ backgroundColor: jobData?.logoBackground }}
                 >
-                  {jobData ? (
+                  {/* {jobData ? (
                     <img
                       alt={`${jobData.company} logo`}
                       src={require(`../logos/${jobData.company
@@ -38,7 +38,7 @@ export function JobDetails() {
                     />
                   ) : (
                     ""
-                  )}
+                  )} */}
                 </div>
                 <div className="jobdetails-header-company-container">
                   <h2 className="jobdetails-header-company-title | fs-300 fw-bold color-primary-switch-100">
@@ -89,8 +89,8 @@ export function JobDetails() {
                 </h6>
                 <p className="lh-200">{jobData?.requirements.content}</p>
                 <ul>
-                  {jobData?.requirements.items.map((reqItem) => (
-                    <li>
+                  {jobData?.requirements.items.map((reqItem, index) => (
+                    <li key={index}>
                       <span>{reqItem}</span>
                     </li>
                   ))}
@@ -103,8 +103,8 @@ export function JobDetails() {
                 </h6>
                 <p className="lh-200">{jobData?.role.content}</p>
                 <ol>
-                  {jobData?.role.items.map((reqItem) => (
-                    <li>
+                  {jobData?.role.items.map((reqItem, index) => (
+                    <li key={index}>
                       <span>{reqItem}</span>
                     </li>
                   ))}
