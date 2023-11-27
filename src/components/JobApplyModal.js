@@ -1,4 +1,50 @@
+import { useState } from "react";
+
+import { storage } from "../firebaseConfig";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
 export function JobApplyModal({ onClose, show }) {
+  const [data, setData] = useState({});
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    const file = e.dataTransfer.files[0];
+    setData(file);
+    // handleSubmit();
+  };
+
+  console.log(data);
+
+  const handleSubmit = (e) => {
+    console.log(data);
+    if (e) {
+      e.preventDefault();
+    }
+    const storageRef = ref(storage, data.name);
+    const uploadTask = uploadBytesResumable(storageRef, data);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("upload is" + progress + "% done");
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("file available at", downloadURL);
+        });
+      }
+    );
+  };
+
   if (!show) {
     return null;
   }
@@ -7,35 +53,25 @@ export function JobApplyModal({ onClose, show }) {
     <div onClick={onClose} className="modal">
       <div
         onClick={(e) => e.stopPropagation()}
-        className="modal-content | padding-300"
+        className="job-apply-container | modal-content padding-300"
       >
-        <div className="register-modal-container | form-container">
-          <header className="form-header | register-form-header">
-            <span className="form-logo fw-bold fs-400 color-primary-200 display-block">
-              devjobs
+        <div className="job-apply-form-container | form-container">
+          <header className="job-apply-form-header | form-header">
+            <span className="fw-bold fs-250 color-primary-switch-100 display-block">
+              Applying for:
             </span>
-            <span className="register-title | display-block fw-bold fs-250 color-primary-switch-100">
-              Create account
+            <span className="display-block fw-bold fs-350 color-primary-200">
+              Senior EJB Developer
             </span>
           </header>
           <form className="form">
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
-                First name
+                First and family name
               </label>
               <input
                 className="bg-neutral-100 color-primary-switch-100"
-                name="firstName"
-                type="text"
-              />
-            </div>
-            <div className="form-input-container color-primary-switch-100-light">
-              <label className="form-field-label" htmlFor="">
-                Last name
-              </label>
-              <input
-                className="bg-neutral-100 color-primary-switch-100"
-                name="lastName"
+                name="firstAndLastName"
                 type="text"
               />
             </div>
@@ -46,18 +82,40 @@ export function JobApplyModal({ onClose, show }) {
               <input
                 className="bg-neutral-100 color-primary-switch-100"
                 name="email"
-                type="email"
+                type="text"
               />
             </div>
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
-                Password
+                Cover letter
               </label>
-              <input
+              <textarea
                 className="bg-neutral-100 color-primary-switch-100"
-                name="password"
-                type="password"
-              />
+                name="coverLetter"
+                cols="20"
+                rows="5"
+              ></textarea>
+            </div>
+            <div className="form-input-container color-primary-switch-100-light">
+              <label className="form-field-label" htmlFor="">
+                File
+              </label>
+              <div>
+                <input
+                  type="file"
+                  onChange={(event) => setData(event.target.files[0])}
+                />
+                <div
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                  style={{
+                    border: "4px dashed #ccc",
+                    padding: "20px",
+                    textAlign: "center",
+                  }}
+                ></div>
+                <button onClick={handleSubmit}>Submit</button>
+              </div>
             </div>
             <button className="form-submit-button | button" type="submit">
               Submit

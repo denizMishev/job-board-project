@@ -4,11 +4,14 @@ import { useParams } from "react-router";
 import { database } from "../firebaseConfig";
 import { getDoc, doc } from "@firebase/firestore";
 
+import { JobApplyModal } from "./JobApplyModal";
+
 export function JobDetails() {
   const collectionName = "jobs";
   const { jobId } = useParams();
 
   const [jobData, setJobData] = useState(null);
+  const [showJobApplyModal, setShowJobApplyModal] = useState(false);
 
   const docRef = doc(database, collectionName, jobId);
 
@@ -16,12 +19,17 @@ export function JobDetails() {
     getDoc(docRef).then((doc) => {
       setJobData(doc.data());
     });
+    // eslint-disable-next-line
   }, []);
 
   return (
     <main className="bg-neutral-200">
       <section className="jobdetails bg-neutral-200">
         <div className="jobdetails-container | container">
+          <JobApplyModal
+            onClose={() => setShowJobApplyModal(false)}
+            show={showJobApplyModal}
+          />
           <header className="jobdetails-header | bg-neutral-100">
             <div className="jobdetails-header-container">
               <div className="jobdetails-image-and-company-container">
@@ -75,7 +83,12 @@ export function JobDetails() {
                   </span>
                 </div>
                 <div className="jobdetails-applynow-container">
-                  <button className="button">Apply Now</button>
+                  <button
+                    onClick={() => setShowJobApplyModal(true)}
+                    className="button"
+                  >
+                    Apply Now
+                  </button>
                 </div>
               </div>
 
