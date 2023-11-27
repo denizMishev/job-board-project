@@ -3,9 +3,21 @@ import { useParams } from "react-router";
 
 import { database, storage } from "../firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
-export function JobApplyModal({ onClose, show }) {
+export function JobApplyModal({ onClose, show, positionName }) {
+  const auth = getAuth();
+  console.log(auth);
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      console.log(user);
+    } else {
+      console.log("123");
+    }
+  });
+
   const { jobId } = useParams();
   const [data, setData] = useState({});
 
@@ -76,7 +88,7 @@ export function JobApplyModal({ onClose, show }) {
               Applying for:
             </span>
             <span className="display-block fw-bold fs-350 color-primary-200">
-              Senior EJB Developer
+              {positionName}
             </span>
           </header>
           <form className="form">

@@ -27,6 +27,7 @@ export function JobDetails() {
       <section className="jobdetails bg-neutral-200">
         <div className="jobdetails-container | container">
           <JobApplyModal
+            positionName={jobData?.position}
             onClose={() => setShowJobApplyModal(false)}
             show={showJobApplyModal}
           />

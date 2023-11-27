@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 
 import { database } from "../firebaseConfig";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
 export function RegisterModal({ onClose, show }) {
@@ -31,20 +35,27 @@ export function RegisterModal({ onClose, show }) {
     const { email, password, firstName, lastName } = registerFormValues;
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((response) => {
-        const userData = {
-          email: email,
-          first_name: firstName,
-          last_name: lastName,
-          saved_jobs: [],
-          jobs_applied_for: [],
-        };
+      .then((userCredential) => {
+        const user = userCredential.user;
 
-        return addDoc(usersCollection, userData);
-      })
-      .then(() => {
-        console.log("User added to Firestore");
-        onClose();
+        return updateProfile(user, {
+          displayName: `${firstName} ${lastName}`,
+        })
+          .then(() => {
+            const userData = {
+              email: email,
+              first_name: firstName,
+              last_name: lastName,
+              saved_jobs: [],
+              jobs_applied_for: [],
+            };
+
+            return addDoc(usersCollection, userData);
+          })
+          .then(() => {
+            console.log("user added to db");
+            onClose();
+          });
       })
       .catch((error) => {
         alert(error.message);
