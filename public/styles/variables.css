@@ -18,6 +18,7 @@ html {
     --clr-accent-200: hsla(214, 17%, 51%, 1);
     --clr-accent-100: hsla(212, 23%, 69%, 1);
     
+    --clr-neutral-500: hsla(0, 0%, 70%, 1);
     --clr-neutral-400: hsla(0, 0%, 92%, 1);
     --clr-neutral-300: hsla(0, 0%, 95%, 0.5);
     --clr-neutral-200: hsla(210, 22%, 96%, 1);

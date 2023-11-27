@@ -212,7 +212,7 @@
   gap: 0.8em;
 }
 
-.form-input-container input {
+.form-input-container > input {
   font-family: 'Kumbh Sans', sans-serif;
   border: none;
   outline: none;
@@ -266,22 +266,18 @@ input:-webkit-autofill:active {
   flex-direction: column;
   gap: 0.7rem;
   position: absolute;
-  /* top: calc(100% + 5px);  */
   top: 100%;
-  /* left: -50%; */
   right: -80px;
   transform: translateX(-50%);
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  /* text-align: center; */
   z-index: 1;
   border-radius: 8px;
   padding: 0.5rem;
   padding-bottom: 0.85rem;
   padding-inline: 0rem;
   font-size: var(--font-size-080);
-  /* width: 200%; */
 }
 
 .menu-popup li {
