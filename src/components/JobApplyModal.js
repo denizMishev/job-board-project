@@ -18,6 +18,8 @@ export function JobApplyModal({ onClose, show, positionName }) {
 
   const [uploadingFiles, setUploadingFiles] = useState([]);
   const [applyFormValues, setApplyFormValues] = useState({
+    applyingForJobID: jobId,
+    applicantUserId: "",
     firstAndLastName: "",
     email: "",
     coverLetter: "",
@@ -25,13 +27,14 @@ export function JobApplyModal({ onClose, show, positionName }) {
   });
 
   useEffect(() => {
-    setApplyFormValues({
+    setApplyFormValues((prevValues) => ({
+      ...prevValues,
+      applicantUserId: currentUser?.uid || "n/a",
       firstAndLastName: currentUser?.displayName || "",
       email: currentUser?.email || "",
-      coverLetter: "",
-      filesURLs: [],
-    });
-  }, [currentUser]);
+      filesURLs: uploadingFiles.map((file) => file.fileURL),
+    }));
+  }, [currentUser, uploadingFiles]);
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
@@ -43,22 +46,14 @@ export function JobApplyModal({ onClose, show, positionName }) {
     }));
   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
   const handleFileUpload = (file) => {
-    if (!file) {
-      console.log("No file selected");
-      return;
-    }
-
     const storageRef = ref(storage, file.name);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     const newUploadFile = {
       name: file.name,
       progress: 0,
+      fileURL: null,
     };
 
     setUploadingFiles((prevUploads) => [...prevUploads, newUploadFile]);
@@ -85,6 +80,15 @@ export function JobApplyModal({ onClose, show, positionName }) {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("file available at", downloadURL);
+
+          setUploadingFiles((prevUploads) => {
+            const updatedUploads = prevUploads.map((prevUpload) =>
+              prevUpload.name === newUploadFile.name
+                ? { ...prevUpload, fileURL: downloadURL }
+                : prevUpload
+            );
+            return updatedUploads;
+          });
         });
       }
     );
@@ -114,6 +118,41 @@ export function JobApplyModal({ onClose, show, positionName }) {
     return null;
   }
 
+  console.log(applyFormValues);
+
+  const jobApplicationsCollection = collection(database, "job_applications");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const {
+      applicantUserId,
+      applyingForJobID,
+      firstAndLastName,
+      email,
+      coverLetter,
+      filesURLs,
+    } = applyFormValues;
+
+    const jobApplicationData = {
+      job_id: applyingForJobID,
+      applicant_user_id: applicantUserId,
+      applicant_name: firstAndLastName,
+      applicant_email: email,
+      applicant_coverletter: coverLetter,
+      applicant_fileURLs: filesURLs,
+    };
+
+    return addDoc(jobApplicationsCollection, jobApplicationData)
+      .then(() => {
+        console.log("application submitted successfully");
+        onClose();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
   return (
     <div onClick={onClose} className="job-apply-form-curtain-modal | modal">
       <div
@@ -141,7 +180,7 @@ export function JobApplyModal({ onClose, show, positionName }) {
               {positionName}
             </span>
           </header>
-          <form className="form">
+          <form onSubmit={handleSubmit} className="form">
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
                 First and family name
