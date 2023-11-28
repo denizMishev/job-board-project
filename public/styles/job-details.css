@@ -60,11 +60,11 @@
     padding: 3rem;
 }
 
-.jobdetails ul, .jobdetails ol {
+.jobdetails .jobdetails-ul, .jobdetails ol {
     margin-top: 1.85rem;
 }
 
-.jobdetails ul li {
+.jobdetails .jobdetails-ul li {
     position: relative;
     display: flex;
     align-items: center;
@@ -72,7 +72,7 @@
     margin-top: 1rem;
 }
 
-.jobdetails ul li::before {
+.jobdetails .jobdetails-ul li::before {
     content: "\2022"; 
     color: var(--clr-primary-200);
     font-size: 3em; 
@@ -80,11 +80,11 @@
     left: 0;
 }
 
-.jobdetails ol {
+.jobdetails .jobdetails-ol {
     counter-reset: my-counter;
 }
 
-.jobdetails ol li {
+.jobdetails .jobdetails-ol li {
     display: flex;
     align-items: center;
     position: relative;
@@ -92,7 +92,7 @@
     margin-top: 1rem;
 }
 
-.jobdetails ol li::before {
+.jobdetails .jobdetails-ol li::before {
     content: counter(my-counter); 
     counter-increment: my-counter; 
     color: var(--clr-primary-200);
