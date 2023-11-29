@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearch } from "../Context/SearchContext";
+import { useSearch } from "../context/SearchContext";
 
 import { MobileSearchModal } from "./MobileSearchModal";
 import { useLocation } from "react-router-dom";

@@ -1,14 +1,14 @@
-import { Jobcard } from "./Jobcard";
+import { JobCard } from "./JobCard";
 
 import { useEffect, useState } from "react";
 import { database } from "../firebaseConfig";
 import { collection, getDocs } from "@firebase/firestore";
 
-import { useSearch } from "../Context/SearchContext";
+import { useSearch } from "../context/SearchContext";
 
 import { returnPaginationRange } from "../utils/utils";
 
-export function Jobsection() {
+export function JobSection() {
   const { searchQuery } = useSearch();
   const jobsFirestoreCollection = collection(database, "jobs");
 
@@ -95,7 +95,7 @@ export function Jobsection() {
         <div className="jobs-container | container">
           <div className="jobs-grid">
             {displayJobs.map((jobData) => (
-              <Jobcard
+              <JobCard
                 key={jobData.id}
                 jobId={jobData.id}
                 company={jobData.company}

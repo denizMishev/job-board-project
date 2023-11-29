@@ -1,5 +1,4 @@
 export function SuccessAnnouncementModal({ onClose, show, positionName }) {
-  console.log(show);
   if (!show) {
     return null;
   }

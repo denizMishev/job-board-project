@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export function Jobcard({
+export function JobCard({
   jobId,
   company,
   logoImage,

@@ -6,7 +6,7 @@ import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
 import { database } from "../firebaseConfig";
 import { getDoc, doc } from "@firebase/firestore";
 
-import { JobApplyModal } from "./JobApplyModal";
+import { JobApplyModal } from "./job application form/JobApplyModal";
 
 export function JobDetails() {
   const collectionName = "jobs";

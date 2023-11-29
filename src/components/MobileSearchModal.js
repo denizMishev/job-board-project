@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSearch } from "../Context/SearchContext";
+import { useSearch } from "../context/SearchContext";
 
 export function MobileSearchModal({ onClose, show }) {
   const [locationFilter, setLocationFilter] = useState("");
