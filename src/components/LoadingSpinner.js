@@ -1,6 +1,5 @@
 import React from "react";
 import { css } from "@emotion/react";
-import { RotateLoader } from "react-spinners";
 import { FadeLoader } from "react-spinners";
 
 const override = css`

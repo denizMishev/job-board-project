@@ -1,0 +1,15 @@
+.no-result-container {
+    gap: 2rem;
+}
+
+.no-results-icon-container {
+    width: 100px;
+    height: 100px;
+}
+
+.no-results-icon-container > svg {
+    width: 100%;
+    height: 100%;
+    color: var(--clr-primary-200);
+}
+

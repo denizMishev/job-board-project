@@ -43,6 +43,7 @@ export function Search() {
               />
             </svg>
             <input
+              id="keywordSearchInput"
               name="mainSearch"
               className="color-primary-switch-100 bg-neutral-100"
               type="text"
@@ -58,6 +59,7 @@ export function Search() {
               />
             </svg>
             <input
+              id="locationSearchInput"
               name="locationSearch"
               className="color-primary-switch-100 bg-neutral-100"
               type="text"
