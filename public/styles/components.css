@@ -99,6 +99,23 @@
   background-color: var(--clr-inverted-button-bg-hover);
 }
 
+/* close modal icon */ /* close modal icon */ /* close modal icon */
+/* close modal icon */ /* close modal icon */
+/* close modal icon */
+
+.close-button-container {
+  position: absolute;
+  cursor: pointer;
+  top: 4%;
+  right: 5%;
+  color: var(--clr-neutral-500);
+}
+
+.close-button-container > svg {
+  height: 28px;
+}
+
+
 /* custom checkbox */ /* custom checkbox */ /* custom checkbox */
 /* custom checkbox */ /* custom checkbox */
 /* custom checkbox */

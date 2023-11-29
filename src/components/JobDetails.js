@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
+import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
+
 import { database } from "../firebaseConfig";
 import { getDoc, doc } from "@firebase/firestore";
 
@@ -11,7 +13,9 @@ export function JobDetails() {
   const { jobId } = useParams();
 
   const [jobData, setJobData] = useState(null);
+
   const [showJobApplyModal, setShowJobApplyModal] = useState(false);
+  const [showSuccessAnnouncement, setShowSuccessAnnouncement] = useState(false);
 
   const docRef = doc(database, collectionName, jobId);
 
@@ -26,10 +30,17 @@ export function JobDetails() {
     <main className="bg-neutral-200">
       <section className="jobdetails bg-neutral-200">
         <div className="jobdetails-container | container">
+          <SuccessAnnouncementModal
+            onClose={() => setShowSuccessAnnouncement(false)}
+            show={showSuccessAnnouncement}
+            positionName={jobData?.position}
+          ></SuccessAnnouncementModal>
+
           <JobApplyModal
             positionName={jobData?.position}
             onClose={() => setShowJobApplyModal(false)}
             show={showJobApplyModal}
+            showSuccessAnnouncement={() => setShowSuccessAnnouncement(true)}
           />
           <header className="jobdetails-header | bg-neutral-100">
             <div className="jobdetails-header-container">
@@ -38,7 +49,7 @@ export function JobDetails() {
                   className="jobdetails-header-image-container"
                   style={{ backgroundColor: jobData?.logoBackground }}
                 >
-                  {jobData ? (
+                  {/* {jobData ? (
                     <img
                       alt={`${jobData.company} logo`}
                       src={require(`../logos/${jobData.company
@@ -47,7 +58,7 @@ export function JobDetails() {
                     />
                   ) : (
                     ""
-                  )}
+                  )} */}
                 </div>
                 <div className="jobdetails-header-company-container">
                   <h2 className="jobdetails-header-company-title | fs-300 fw-bold color-primary-switch-100">

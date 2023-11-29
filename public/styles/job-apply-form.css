@@ -9,18 +9,6 @@
     padding-top: 3.5rem;
 }
 
-.form-close-button-container {
-    position: absolute;
-    cursor: pointer;
-    top: 4%;
-    right: 5%;
-    color: var(--clr-neutral-500);
-}
-
-.form-close-button-container > svg {
-    height: 28px;
-}
-
 .job-apply-form-header {
     align-items: unset;
 }
@@ -73,10 +61,6 @@
 .form-input-container .job-apply-form-file-upload-container .file-upload-input {
     display: none;
 }
-
-
-
-
 
 
 
