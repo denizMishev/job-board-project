@@ -311,3 +311,15 @@ input:-webkit-autofill:active {
   background-color: var(--clr-primary-50);
 }
 
+/* loading-spinner */ /* loading-spinner */ /* loading-spinner */
+/* loading-spinner */ /* loading-spinner */
+/* loading-spinner */
+
+.loading-spinner-container {
+  padding-top: 1.5%;
+}
+
+.loading-spinner-text {
+  margin-top: 2.5%;
+  margin-left: 0.5%;
+}

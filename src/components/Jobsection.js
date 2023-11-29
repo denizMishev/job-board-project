@@ -7,9 +7,13 @@ import { collection, getDocs } from "@firebase/firestore";
 import { useSearch } from "../context/SearchContext";
 
 import { returnPaginationRange } from "../utils/utils";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export function JobSection() {
   const { searchQuery } = useSearch();
+
+  const [isLoading, setIsLoading] = useState(true);
+
   const jobsFirestoreCollection = collection(database, "jobs");
 
   const itemsPerPage = 9;
@@ -26,12 +30,14 @@ export function JobSection() {
 
   useEffect(() => {
     let currentJobs;
+    console.log("fetching uno");
     getDocs(jobsFirestoreCollection)
       .then((response) => {
         const jobsData = response.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+
         if (searchQuery) {
           let filteredJobs = jobsData.filter((job) => {
             const mainSearchQuery = searchQuery.mainSearch?.toLowerCase() || "";
@@ -75,6 +81,7 @@ export function JobSection() {
         const pageData = currentJobs.slice(startIndex, endIndex);
         setDisplayJobs(pageData);
         setTotalPages(Math.ceil(currentJobs.length / itemsPerPage));
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -93,21 +100,25 @@ export function JobSection() {
     <main>
       <section className="landingpage-jobs | bg-neutral-200">
         <div className="jobs-container | container">
-          <div className="jobs-grid">
-            {displayJobs.map((jobData) => (
-              <JobCard
-                key={jobData.id}
-                jobId={jobData.id}
-                company={jobData.company}
-                logoImage={jobData.logo}
-                logoBackgroundColor={jobData.logoBackground}
-                position={jobData.position}
-                postedAt={jobData.postedAt}
-                workingTime={jobData.contract}
-                location={jobData.location}
-              />
-            ))}
-          </div>
+          {isLoading ? (
+            <LoadingSpinner></LoadingSpinner>
+          ) : (
+            <div className="jobs-grid">
+              {displayJobs.map((jobData) => (
+                <JobCard
+                  key={jobData.id}
+                  jobId={jobData.id}
+                  company={jobData.company}
+                  logoImage={jobData.logo}
+                  logoBackgroundColor={jobData.logoBackground}
+                  position={jobData.position}
+                  postedAt={jobData.postedAt}
+                  workingTime={jobData.contract}
+                  location={jobData.location}
+                />
+              ))}
+            </div>
+          )}
           {totalPages > 1 && (
             <div className="pagination-container">
               <div className="pagination-container-inner">
