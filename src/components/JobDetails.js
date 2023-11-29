@@ -56,16 +56,16 @@ export function JobDetails() {
                     className="jobdetails-header-image-container"
                     style={{ backgroundColor: jobData?.logoBackground }}
                   >
-                    {/* {jobData ? (
-                    <img
-                      alt={`${jobData.company} logo`}
-                      src={require(`../logos/${jobData.company
-                        .replace(/\s/g, "")
-                        .toLowerCase()}.svg`)}
-                    />
-                  ) : (
-                    ""
-                  )} */}
+                    {jobData ? (
+                      <img
+                        alt={`${jobData.company} logo`}
+                        src={require(`../logos/${jobData.company
+                          .replace(/\s/g, "")
+                          .toLowerCase()}.svg`)}
+                      />
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="jobdetails-header-company-container">
                     <h2 className="jobdetails-header-company-title | fs-300 fw-bold color-primary-switch-100">
