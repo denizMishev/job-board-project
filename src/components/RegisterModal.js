@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 
+import {
+  registerErrorMessages,
+  firebaseErrorParser,
+} from "../utils/errorMessages";
+
 import { database } from "../firebaseConfig";
 import {
   getAuth,
@@ -19,6 +24,15 @@ export function RegisterModal({ onClose, show }) {
     password: "",
   });
 
+  const [focusedField, setFocusedField] = useState({
+    firstNameFocus: false,
+    lastNameFocus: false,
+    emailFocus: false,
+    passwordFocus: false,
+  });
+
+  const [firebaseError, setFirebaseError] = useState(false);
+
   const onChangeHandler = (e) => {
     const value = e.target.value;
     const target = e.target.name;
@@ -29,10 +43,23 @@ export function RegisterModal({ onClose, show }) {
     }));
   };
 
+  const onBlurHandler = (e) => {
+    const target = e.target.name + "Focus";
+
+    setFocusedField((state) => ({
+      ...state,
+      [target]: true,
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const { email, password, firstName, lastName } = registerFormValues;
+
+    if (firstName === "" || lastName === "") {
+      return;
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -58,7 +85,7 @@ export function RegisterModal({ onClose, show }) {
           });
       })
       .catch((error) => {
-        alert(error.message);
+        setFirebaseError(firebaseErrorParser(error.message));
       });
   };
 
@@ -72,6 +99,22 @@ export function RegisterModal({ onClose, show }) {
         onClick={(e) => e.stopPropagation()}
         className="modal-content | padding-300"
       >
+        <div
+          className="close-button-container"
+          onClick={onClose}
+          place={"register"}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 384 512"
+          >
+            <path
+              fill="currentColor"
+              d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+            />
+          </svg>
+        </div>
         <div className="register-modal-container | form-container">
           <header className="form-header | register-form-header">
             <span className="form-logo fw-bold fs-400 color-primary-200 display-block">
@@ -80,55 +123,88 @@ export function RegisterModal({ onClose, show }) {
             <span className="register-title | display-block fw-bold fs-250 color-primary-switch-100">
               Create account
             </span>
+            {firebaseError && (
+              <span className="register-form-backend-error">
+                {firebaseError}
+              </span>
+            )}
           </header>
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="form" onSubmit={handleSubmit} noValidate>
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
                 First name
               </label>
               <input
-                className="bg-neutral-100 color-primary-switch-100"
+                className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
                 name="firstName"
                 type="text"
+                required
+                pattern="^[A-Za-z0-9]+(?:\s[A-Za-z0-9]+)?$"
                 value={registerFormValues.firstName}
                 onChange={onChangeHandler}
+                onBlur={onBlurHandler}
+                focused={focusedField.firstNameFocus.toString()}
               />
+              <span className="user-form-error | color-red fs-100">
+                {registerErrorMessages.firstName}
+              </span>
             </div>
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
                 Last name
               </label>
               <input
-                className="bg-neutral-100 color-primary-switch-100"
+                className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
                 name="lastName"
                 type="text"
+                required
+                pattern="^[A-Za-z0-9]+(?:\s[A-Za-z0-9]+)?$"
                 value={registerFormValues.lastName}
                 onChange={onChangeHandler}
+                onBlur={onBlurHandler}
+                focused={focusedField.lastNameFocus.toString()}
               />
+              <span className="user-form-error | color-red fs-100">
+                {registerErrorMessages.lastName}
+              </span>
             </div>
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
                 E-mail
               </label>
               <input
-                className="bg-neutral-100 color-primary-switch-100"
+                className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
                 name="email"
                 type="email"
+                required
+                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                 value={registerFormValues.email}
                 onChange={onChangeHandler}
+                onBlur={onBlurHandler}
+                focused={focusedField.emailFocus.toString()}
               />
+              <span className="user-form-error | color-red fs-100">
+                {registerErrorMessages.email}
+              </span>
             </div>
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
                 Password
               </label>
               <input
-                className="bg-neutral-100 color-primary-switch-100"
+                className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
                 name="password"
                 type="password"
+                required
+                pattern="^[A-Za-z0-9]{8,30}$"
                 value={registerFormValues.password}
                 onChange={onChangeHandler}
+                onBlur={onBlurHandler}
+                focused={focusedField.passwordFocus.toString()}
               />
+              <span className="user-form-error | color-red fs-100">
+                {registerErrorMessages.password}
+              </span>
             </div>
             <button className="form-submit-button | button" type="submit">
               Submit

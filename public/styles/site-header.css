@@ -164,6 +164,12 @@ input[type="checkbox"] {
     font-size: unset;
 }
 
+.usernav-menu-mobile .usernav-menu-li {
+    height: 30px;
+    justify-content: unset;
+    padding-left: 2rem;
+}
+
 @media (min-width: 40em) {
     
     .keyword-filter-container, .location-filter-container, .submition-container {

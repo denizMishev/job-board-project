@@ -111,6 +111,10 @@
   color: var(--clr-neutral-500);
 }
 
+.close-button-container[place="register"] {
+  top: 2%;
+}
+
 .close-button-container > svg {
   height: 28px;
 }
@@ -196,12 +200,20 @@
 }
 
 .modal-content {
+  position: relative;
   width: 335px;
   background-color: var(--clr-neutral-100);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+@media (max-height: 50em) {
+  .modal-content {
+    height: 100vh;
+    overflow: scroll;
+  }
 }
 
 /* form component */ /* form component */  /* form component */ 
@@ -263,6 +275,19 @@
 input[type='password'] {
   font-family: Verdana;
   letter-spacing: 0.125em;
+}
+
+.user-form-error {
+  visibility: hidden;
+}
+
+.user-form-input-field:invalid[focused="true"] + span {
+  visibility: unset;
+}
+
+.form:invalid button {
+  background-color: var(--clr-neutral-500);
+  /* pointer-events: none; */
 }
 
 input:-webkit-autofill,

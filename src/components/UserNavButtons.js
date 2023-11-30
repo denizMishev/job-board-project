@@ -38,7 +38,10 @@ export function UserNavButtons() {
         </button>
         {menuVisibility && (
           <ul className="usernav-menu-mobile | menu-popup">
-            <li onClick={() => setShowLoginModal(true)}>
+            <li
+              className="usernav-menu-li"
+              onClick={() => setShowLoginModal(true)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="21"
@@ -52,7 +55,10 @@ export function UserNavButtons() {
               </svg>
               <button>Login</button>
             </li>
-            <li onClick={() => setShowRegisterModal(true)}>
+            <li
+              className="usernav-menu-li"
+              onClick={() => setShowRegisterModal(true)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="21"

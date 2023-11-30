@@ -18,6 +18,7 @@ html {
     --clr-accent-200: hsla(214, 17%, 51%, 1);
     --clr-accent-100: hsla(212, 23%, 69%, 1);
     
+    --clr-neutral-600: hsla(0, 0%, 66%, 1);
     --clr-neutral-500: hsla(0, 0%, 70%, 1);
     --clr-neutral-400: hsla(0, 0%, 92%, 1);
     --clr-neutral-300: hsla(0, 0%, 95%, 0.5);
@@ -25,6 +26,7 @@ html {
     --clr-neutral-100: hsla(0, 100%, 100%, 1);
 
     --clr-linkblue: hsla(240, 100%, 47%, 1);
+    --clr-red: hsla(0, 100%, 50%, 1);
 
     --clr-inverted-button-bg: hsla(235, 82%, 97%, 1);
     --clr-inverted-button-bg-hover: hsla(235, 69%, 85%, 1);
@@ -33,7 +35,7 @@ html {
     --font-weight-regular: 400;
     --font-weight-bold: 700;
 
-    --font-size-080: 0.775rem;
+    --font-size-080: 0.75rem;
     --font-size-100: 0.875rem; 
     --font-size-200: 1.125rem; 
     --font-size-250: 1.25rem;  
@@ -142,10 +144,13 @@ main {
     color: var(--clr-neutral-100);
   }
 
-  .color-linkblue {
+.color-linkblue {
     color: var(--clr-linkblue);
   }
 
+.color-red {
+  color: var(--clr-red);
+}
 
 
 .bg-primary-200 {
@@ -184,6 +189,10 @@ main {
 .fw-regular { font-weight: var(--font-weight-regular);} 
 .fw-bold { font-weight: var(--font-weight-bold); }
 
+
+.fs-080 {
+  font-size: var(--font-size-080);
+}
 
 .fs-100 {
     font-size: var(--font-size-100);
