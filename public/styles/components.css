@@ -235,6 +235,10 @@
   margin-top: 1.85em;
 }
 
+.form-container .login-form {
+  margin-top: 3.35rem;
+}
+
 .form-input-container {
   display: flex;
   flex-direction: column;
@@ -262,6 +266,7 @@
   text-align: center;
   margin-top: 2.5em;
   gap: 1rem;
+  padding-bottom: 2.5em;
 }
 
 .switch-form-cta {

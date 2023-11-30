@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
+import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
+
 export function LoginModal({ onClose, show }) {
   let auth = getAuth();
 
@@ -8,6 +10,9 @@ export function LoginModal({ onClose, show }) {
     email: "",
     password: "",
   });
+  const [firebaseError, setFirebaseError] = useState(false);
+
+  const [emailFocused, setEmailFocused] = useState(false);
 
   const onChangeHandler = (e) => {
     setLoginFormValues((state) => ({
@@ -27,13 +32,12 @@ export function LoginModal({ onClose, show }) {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
+        onClose();
         console.log(response.user);
       })
       .catch((error) => {
-        alert(error.message);
+        setFirebaseError(firebaseErrorParser(error.message));
       });
-
-    onClose();
   };
 
   return (
@@ -66,19 +70,31 @@ export function LoginModal({ onClose, show }) {
             <span className="login-title | display-block fw-bold fs-250 color-primary-switch-100">
               Sign in to your account
             </span>
+            {firebaseError && (
+              <span className="register-form-backend-error | color-red fw-bold">
+                {firebaseError}
+              </span>
+            )}
           </header>
-          <form className="form" onSubmit={handleSubmit}>
+          <form className="login-form | form" onSubmit={handleSubmit}>
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
                 E-mail
               </label>
               <input
-                className="bg-neutral-100 color-primary-switch-100"
+                className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
                 name="email"
                 type="email"
+                required
+                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                 value={loginFormValues.email}
                 onChange={onChangeHandler}
+                onBlur={() => setEmailFocused(true)}
+                focused={emailFocused.toString()}
               />
+              <span className="user-form-error | color-red fs-100">
+                {authErrorMessages.email}
+              </span>
             </div>
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
@@ -100,7 +116,7 @@ export function LoginModal({ onClose, show }) {
             <span className="display-block color-primary-switch-100">
               Don't have an account yet?
             </span>
-            <button className="switch-form-cta color-linkblue">
+            <button className="switch-form-cta color-linkblue fw-bold fs-200">
               Sign up
               <svg
                 xmlns="http://www.w3.org/2000/svg"

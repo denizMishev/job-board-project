@@ -1,4 +1,4 @@
-export const registerErrorMessages = {
+export const authErrorMessages = {
   firstName: `First name can't have special characters`,
   lastName: `Last name can't have special characters`,
   email: `Please enter a valid email`,

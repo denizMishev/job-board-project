@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-import {
-  registerErrorMessages,
-  firebaseErrorParser,
-} from "../utils/errorMessages";
+import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
 
 import { database } from "../firebaseConfig";
 import {
@@ -146,7 +143,7 @@ export function RegisterModal({ onClose, show }) {
                 focused={focusedField.firstNameFocus.toString()}
               />
               <span className="user-form-error | color-red fs-100">
-                {registerErrorMessages.firstName}
+                {authErrorMessages.firstName}
               </span>
             </div>
             <div className="form-input-container color-primary-switch-100-light">
@@ -165,7 +162,7 @@ export function RegisterModal({ onClose, show }) {
                 focused={focusedField.lastNameFocus.toString()}
               />
               <span className="user-form-error | color-red fs-100">
-                {registerErrorMessages.lastName}
+                {authErrorMessages.lastName}
               </span>
             </div>
             <div className="form-input-container color-primary-switch-100-light">
@@ -184,7 +181,7 @@ export function RegisterModal({ onClose, show }) {
                 focused={focusedField.emailFocus.toString()}
               />
               <span className="user-form-error | color-red fs-100">
-                {registerErrorMessages.email}
+                {authErrorMessages.email}
               </span>
             </div>
             <div className="form-input-container color-primary-switch-100-light">
@@ -203,7 +200,7 @@ export function RegisterModal({ onClose, show }) {
                 focused={focusedField.passwordFocus.toString()}
               />
               <span className="user-form-error | color-red fs-100">
-                {registerErrorMessages.password}
+                {authErrorMessages.password}
               </span>
             </div>
             <button className="form-submit-button | button" type="submit">
@@ -214,7 +211,7 @@ export function RegisterModal({ onClose, show }) {
             <span className="display-block color-primary-switch-100">
               Already have an account?
             </span>
-            <button className="switch-form-cta color-linkblue">
+            <button className="switch-form-cta color-linkblue fw-bold fs-200">
               Log in
               <svg
                 xmlns="http://www.w3.org/2000/svg"
