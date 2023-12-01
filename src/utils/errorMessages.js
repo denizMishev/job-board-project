@@ -1,8 +1,14 @@
 export const authErrorMessages = {
-  firstName: `First name can't have special characters`,
-  lastName: `Last name can't have special characters`,
+  firstName: `First name is required`,
+  lastName: `Last name is required`,
+  names: `Please input your first and last name with a space between them`,
   email: `Please enter a valid email`,
   password: `Password should be at least 8 characters`,
+};
+
+export const fileErrorMessages = {
+  type: `File type is not supported`,
+  size: `File size is too large`,
 };
 
 export const firebaseErrorParser = (errorString) => {

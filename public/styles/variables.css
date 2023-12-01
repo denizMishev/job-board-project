@@ -132,6 +132,10 @@ main {
     color: var(--clr-accent-100);
   }
   
+.color-neutral-500 {
+  color: var(--clr-neutral-500);
+}
+
   .color-neutral-400 {
     color: var(--clr-neutral-400);
   }

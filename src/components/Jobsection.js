@@ -1,7 +1,7 @@
 import { JobCard } from "./JobCard";
 
 import { useEffect, useState } from "react";
-import { database } from "../firebaseConfig";
+import { database, jobsCollection } from "../firebaseConfig";
 import { collection, getDocs } from "@firebase/firestore";
 
 import { useSearch } from "../context/SearchContext";
@@ -14,7 +14,7 @@ export function JobSection() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const jobsFirestoreCollection = collection(database, "jobs");
+  const databaseCollection = collection(database, jobsCollection);
 
   const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(
@@ -30,8 +30,7 @@ export function JobSection() {
 
   useEffect(() => {
     let currentJobs;
-    console.log("fetching uno");
-    getDocs(jobsFirestoreCollection)
+    getDocs(databaseCollection)
       .then((response) => {
         const jobsData = response.docs.map((doc) => ({
           id: doc.id,

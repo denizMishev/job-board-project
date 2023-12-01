@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 
 import { FileList } from "./FileList";
 
+import { fileErrorMessages } from "../../utils/errorMessages";
+import { allowedFileTypes, maxSizeInBytes } from "../../utils/errorParameters";
+
 import { storage } from "../../firebaseConfig";
 import {
   ref,
@@ -14,16 +17,33 @@ export function FileUploader({ sendUploadFiles }) {
   const [uploadingFiles, setUploadingFiles] = useState([]);
 
   const handleFileUpload = (file) => {
-    const storageRef = ref(storage, file.name);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
     const newUploadFile = {
       name: file.name,
       progress: 0,
       fileURL: null,
     };
 
+    if (!allowedFileTypes.includes(file.type)) {
+      newUploadFile.errorMessage = fileErrorMessages.type;
+
+      console.error("unsupported file type");
+    }
+
+    if (file.size > maxSizeInBytes) {
+      newUploadFile.errorMessage = fileErrorMessages.size;
+
+      console.error("error size");
+    }
+
     setUploadingFiles((prevUploads) => [...prevUploads, newUploadFile]);
+
+    if (newUploadFile.errorMessage) {
+      console.log("file error");
+      return;
+    }
+
+    const storageRef = ref(storage, file.name);
+    const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
       "state_changed",
@@ -60,19 +80,24 @@ export function FileUploader({ sendUploadFiles }) {
     );
   };
 
-  const handleFileDeletion = (fileName) => {
+  const handleFileDeletion = (file) => {
+    const fileName = file.name;
+
+    setUploadingFiles((prevUploads) =>
+      prevUploads.filter((prevUpload) => prevUpload.name !== fileName)
+    );
+
+    const fileInput = document.getElementById("fileUpload");
+    if (fileInput) {
+      fileInput.value = "";
+    }
+
+    if (file.errorMessage) return;
+
     const fileRef = ref(storage, fileName);
 
     deleteObject(fileRef)
       .then(() => {
-        setUploadingFiles((prevUploads) =>
-          prevUploads.filter((prevUpload) => prevUpload.name !== fileName)
-        );
-
-        const fileInput = document.getElementById("fileUpload");
-        if (fileInput) {
-          fileInput.value = "";
-        }
         console.log(`file ${fileName} deleted successfully.`);
       })
       .catch((error) => {
@@ -111,6 +136,7 @@ export function FileUploader({ sendUploadFiles }) {
             <input
               id="fileUpload"
               className="file-upload-input"
+              required
               type="file"
               onChange={(event) => handleFileUpload(event.target.files[0])}
             />

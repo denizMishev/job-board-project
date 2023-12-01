@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
+import { regexEmail } from "../utils/errorParameters";
 
 export function LoginModal({ onClose, show }) {
   let auth = getAuth();
@@ -76,7 +77,11 @@ export function LoginModal({ onClose, show }) {
               </span>
             )}
           </header>
-          <form className="login-form | form" onSubmit={handleSubmit}>
+          <form
+            className="login-form | form"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <div className="form-input-container color-primary-switch-100-light">
               <label className="form-field-label" htmlFor="">
                 E-mail
@@ -86,7 +91,7 @@ export function LoginModal({ onClose, show }) {
                 name="email"
                 type="email"
                 required
-                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                pattern={regexEmail}
                 value={loginFormValues.email}
                 onChange={onChangeHandler}
                 onBlur={() => setEmailFocused(true)}

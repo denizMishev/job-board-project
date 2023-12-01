@@ -3,14 +3,13 @@ import { useParams } from "react-router";
 
 import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
 
-import { database } from "../firebaseConfig";
+import { database, jobsCollection } from "../firebaseConfig";
 import { getDoc, doc } from "@firebase/firestore";
 
 import { JobApplyModal } from "./job application form/JobApplyModal";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function JobDetails() {
-  const collectionName = "jobs";
   const { jobId } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +19,7 @@ export function JobDetails() {
   const [showJobApplyModal, setShowJobApplyModal] = useState(false);
   const [showSuccessAnnouncement, setShowSuccessAnnouncement] = useState(false);
 
-  const docRef = doc(database, collectionName, jobId);
+  const docRef = doc(database, jobsCollection, jobId);
 
   useEffect(() => {
     getDoc(docRef).then((doc) => {

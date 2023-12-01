@@ -292,7 +292,16 @@ input[type='password'] {
 
 .form:invalid button {
   background-color: var(--clr-neutral-500);
-  /* pointer-events: none; */
+  pointer-events: none;
+}
+
+.form:invalid .required-fields {
+  visibility: unset;
+}
+
+.required-fields {
+  text-align: center;
+  visibility: hidden;
 }
 
 input:-webkit-autofill,

@@ -4,7 +4,7 @@ export function FileList({ uploadingFiles, handleFileDeletion }) {
       {uploadingFiles.map((uploadingFile) => (
         <li className="uploadedfiles-file" key={uploadingFile.name}>
           <div
-            onClick={() => handleFileDeletion(uploadingFile.name)}
+            onClick={() => handleFileDeletion(uploadingFile)}
             className="delete-uploaded-file-button-container"
           >
             <svg
@@ -34,14 +34,22 @@ export function FileList({ uploadingFiles, handleFileDeletion }) {
             <span className="file-name | display-block">
               {uploadingFile.name}
             </span>
-            <progress
-              className="display-block"
-              value={uploadingFile.progress}
-              max="100"
-            ></progress>
-            <span className="upload-progress-number | display-block">
-              {uploadingFile.progress}%
-            </span>
+            {uploadingFile.errorMessage ? (
+              <span className="display-block color-red fs-100">
+                {uploadingFile.errorMessage}
+              </span>
+            ) : (
+              <>
+                <progress
+                  className="display-block"
+                  value={uploadingFile.progress}
+                  max="100"
+                ></progress>
+                <span className="upload-progress-number | display-block">
+                  {uploadingFile.progress}%
+                </span>
+              </>
+            )}
           </div>
         </li>
       ))}

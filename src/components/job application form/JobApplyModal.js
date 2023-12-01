@@ -3,10 +3,16 @@ import { useParams } from "react-router";
 
 import { useAuth } from "../../context/AuthContext";
 
-import { database } from "../../firebaseConfig";
+import { authErrorMessages } from "../../utils/errorMessages";
 
+import { database, jobApplicationsCollection } from "../../firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 import { FileUploader } from "./FileUploader";
+import {
+  regexCoverLetter,
+  regexEmail,
+  regexFirstAndLastName,
+} from "../../utils/errorParameters";
 
 export function JobApplyModal({
   onClose,
@@ -27,15 +33,26 @@ export function JobApplyModal({
     filesURLs: [],
   });
 
+  const [focusedField, setFocusedField] = useState({
+    firstAndLastNameFocus: false,
+    emailFocus: false,
+  });
+
   useEffect(() => {
     setApplyFormValues((prevValues) => ({
       ...prevValues,
       applicantUserId: currentUser?.uid || "n/a",
       firstAndLastName: currentUser?.displayName || "",
       email: currentUser?.email || "",
+    }));
+  }, [currentUser]);
+
+  useEffect(() => {
+    setApplyFormValues((prevValues) => ({
+      ...prevValues,
       filesURLs: uploadingFiles.map((file) => file.fileURL),
     }));
-  }, [currentUser, uploadingFiles]);
+  }, [uploadingFiles]);
 
   const onChangeHandler = (e) => {
     const value = e.target.value;
@@ -47,7 +64,16 @@ export function JobApplyModal({
     }));
   };
 
-  const jobApplicationsCollection = collection(database, "job_applications");
+  const onBlurHandler = (e) => {
+    const target = e.target.name + "Focus";
+
+    setFocusedField((state) => ({
+      ...state,
+      [target]: true,
+    }));
+  };
+
+  const databaseCollection = collection(database, jobApplicationsCollection);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +96,7 @@ export function JobApplyModal({
       applicant_fileURLs: filesURLs,
     };
 
-    return addDoc(jobApplicationsCollection, jobApplicationData)
+    return addDoc(databaseCollection, jobApplicationData)
       .then(() => {
         console.log("application submitted successfully");
         onClose();
@@ -113,41 +139,55 @@ export function JobApplyModal({
                 {positionName}
               </span>
             </header>
-            <form onSubmit={handleSubmit} className="form">
+            <form onSubmit={handleSubmit} className="form" noValidate>
               <div className="form-input-container color-primary-switch-100-light">
                 <label className="form-field-label" htmlFor="">
-                  First and family name
+                  First and last name
                 </label>
                 <input
-                  className="bg-neutral-100 color-primary-switch-100"
+                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
                   name="firstAndLastName"
                   type="text"
+                  required
+                  pattern={regexFirstAndLastName}
                   value={applyFormValues.firstAndLastName}
                   onChange={onChangeHandler}
+                  onBlur={onBlurHandler}
+                  focused={focusedField.firstAndLastNameFocus.toString()}
                 />
+                <span className="user-form-error | color-red fs-100">
+                  {authErrorMessages.names}
+                </span>
               </div>
               <div className="form-input-container color-primary-switch-100-light">
                 <label className="form-field-label" htmlFor="">
                   E-mail
                 </label>
                 <input
-                  className="bg-neutral-100 color-primary-switch-100"
+                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
                   name="email"
-                  type="text"
+                  type="email"
+                  required
+                  pattern={regexEmail}
                   value={applyFormValues.email}
                   onChange={onChangeHandler}
+                  onBlur={onBlurHandler}
+                  focused={focusedField.emailFocus.toString()}
                 />
+                <span className="user-form-error | color-red fs-100">
+                  {authErrorMessages.email}
+                </span>
               </div>
-
               <div className="job-apply-form-letter-container | form-input-container color-primary-switch-100-light">
                 <label className="form-field-label" htmlFor="">
                   Cover letter
                 </label>
                 <textarea
-                  className="job-apply-form-textarea | bg-neutral-100 color-primary-switch-100"
+                  className="job-form-input-field | job-apply-form-textarea | bg-neutral-100 color-primary-switch-100"
                   name="coverLetter"
                   cols="20"
                   rows="5"
+                  pattern={regexCoverLetter}
                   value={applyFormValues.coverLetter}
                   onChange={onChangeHandler}
                 ></textarea>

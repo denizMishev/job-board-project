@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
 import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
+import {
+  regexEmail,
+  regexSingleName,
+  regexPassword,
+} from "../utils/errorParameters";
 
-import { database } from "../firebaseConfig";
+import { database, usersCollection } from "../firebaseConfig";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -12,7 +17,7 @@ import { addDoc, collection } from "firebase/firestore";
 
 export function RegisterModal({ onClose, show }) {
   const auth = getAuth();
-  const usersCollection = collection(database, "users");
+  const databaseCollection = collection(database, usersCollection);
 
   const [registerFormValues, setRegisterFormValues] = useState({
     firstName: "",
@@ -74,7 +79,7 @@ export function RegisterModal({ onClose, show }) {
               jobs_applied_for: [],
             };
 
-            return addDoc(usersCollection, userData);
+            return addDoc(databaseCollection, userData);
           })
           .then(() => {
             console.log("user added to db");
@@ -136,7 +141,7 @@ export function RegisterModal({ onClose, show }) {
                 name="firstName"
                 type="text"
                 required
-                pattern="^[A-Za-z0-9]+(?:\s[A-Za-z0-9]+)?$"
+                pattern={regexSingleName}
                 value={registerFormValues.firstName}
                 onChange={onChangeHandler}
                 onBlur={onBlurHandler}
@@ -155,7 +160,7 @@ export function RegisterModal({ onClose, show }) {
                 name="lastName"
                 type="text"
                 required
-                pattern="^[A-Za-z0-9]+(?:\s[A-Za-z0-9]+)?$"
+                pattern={regexSingleName}
                 value={registerFormValues.lastName}
                 onChange={onChangeHandler}
                 onBlur={onBlurHandler}
@@ -174,7 +179,7 @@ export function RegisterModal({ onClose, show }) {
                 name="email"
                 type="email"
                 required
-                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                pattern={regexEmail}
                 value={registerFormValues.email}
                 onChange={onChangeHandler}
                 onBlur={onBlurHandler}
@@ -193,7 +198,7 @@ export function RegisterModal({ onClose, show }) {
                 name="password"
                 type="password"
                 required
-                pattern="^[A-Za-z0-9]{8,30}$"
+                pattern={regexPassword}
                 value={registerFormValues.password}
                 onChange={onChangeHandler}
                 onBlur={onBlurHandler}
@@ -206,6 +211,9 @@ export function RegisterModal({ onClose, show }) {
             <button className="form-submit-button | button" type="submit">
               Submit
             </button>
+            <span className="required-fields | fs-100 color-neutral-500">
+              *All fields required
+            </span>
           </form>
           <div className="switch-form">
             <span className="display-block color-primary-switch-100">

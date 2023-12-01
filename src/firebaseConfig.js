@@ -15,3 +15,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const database = getFirestore(app);
 export const storage = getStorage(app);
+
+export const jobApplicationsCollection = "job_applications";
+export const jobsCollection = "jobs";
+export const usersCollection = "users";

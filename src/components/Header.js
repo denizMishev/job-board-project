@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Search } from "./Search";
 
+import { Logout } from "./Logout";
 import { UserNavButtons } from "./UserNavButtons";
 import { ThemeswitchSlider } from "./ThemeswitchSlider";
 
@@ -19,6 +20,7 @@ export function Header() {
             </svg>
           </Link>
           <div className="usernav-and-themeswitch">
+            <Logout></Logout>
             <UserNavButtons></UserNavButtons>
             <ThemeswitchSlider></ThemeswitchSlider>
           </div>
