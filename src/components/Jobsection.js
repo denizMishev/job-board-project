@@ -10,83 +10,95 @@ import { returnPaginationRange } from "../utils/utils";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function JobSection() {
-  const { searchQuery, setSearchQuery } = useSearch();
+  const {
+    searchQuery,
+    mainSearchQuery,
+    locationSearchQuery,
+    mobileLocationSearchQuery,
+    setSearchQuery,
+  } = useSearch();
+  const databaseCollection = collection(database, jobsCollection);
 
   const [isLoading, setIsLoading] = useState(true);
-
-  const databaseCollection = collection(database, jobsCollection);
+  const [allJobs, setAllJobs] = useState([]);
+  const [displayJobs, setDisplayJobs] = useState([]);
 
   const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(
     Number(localStorage.getItem("onPage")) || 1
   );
   const [totalPages, setTotalPages] = useState(1);
-  const [displayJobs, setDisplayJobs] = useState([]);
 
   const pageChangeHandler = (value) => {
     localStorage.setItem("onPage", value);
     setCurrentPage(value);
   };
 
+  const paginateData = (data, page, itemsPerPage) => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return data.slice(startIndex, endIndex);
+  };
+
   useEffect(() => {
-    let currentJobs;
-    getDocs(databaseCollection)
-      .then((response) => {
-        const jobsData = response.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+    getDocs(databaseCollection).then((response) => {
+      const jobs = response.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setAllJobs(jobs);
+    });
+  }, []);
 
-        if (searchQuery) {
-          let filteredJobs = jobsData.filter((job) => {
-            const mainSearchQuery = searchQuery.mainSearch?.toLowerCase() || "";
-            const locationSearchQuery =
-              searchQuery.locationSearch?.toLowerCase() || "";
-            const mobileLocationSearchQuery =
-              searchQuery.mobileLocationSearch?.toLowerCase() || "";
+  useEffect(() => {
+    if (searchQuery) {
+      let filteredJobs = allJobs.filter((job) => {
+        const combinedJobString = `${job.company} ${job.position} ${
+          job.location
+        } ${job.description} ${job.requirements.content} ${
+          job.role.content
+        } ${job.requirements.items.join("")}${job.role.items.join(
+          ""
+        )}`.toLowerCase();
 
-            const matchesMainSearchQuery =
-              mainSearchQuery === "" ||
-              job.company.toLowerCase().includes(mainSearchQuery) ||
-              job.description.toLowerCase().includes(mainSearchQuery) ||
-              job.position.toLowerCase().includes(mainSearchQuery) ||
-              job.requirements.items.some((requirement) =>
-                requirement.toLowerCase().includes(mainSearchQuery)
-              );
+        const matchesMainSearchQuery =
+          mainSearchQuery === "" ||
+          mainSearchQuery
+            .split(" ")
+            .every((word) =>
+              new RegExp(`\\b${word.toLowerCase()}\\b`).test(combinedJobString)
+            );
 
-            const matchesLocationSearchQuery =
-              locationSearchQuery === "" ||
-              job.location.toLowerCase().includes(locationSearchQuery);
+        const matchesLocationSearchQuery =
+          locationSearchQuery === "" ||
+          job.location.toLowerCase().includes(locationSearchQuery);
 
-            const matchesMobileLocationSearchQuery =
-              mobileLocationSearchQuery === "" ||
-              job.location.toLowerCase().includes(mobileLocationSearchQuery);
+        const matchesMobileLocationSearchQuery =
+          mobileLocationSearchQuery === "" ||
+          job.location.toLowerCase().includes(mobileLocationSearchQuery);
 
-            if (mobileLocationSearchQuery) {
-              return matchesMainSearchQuery && matchesMobileLocationSearchQuery;
-            } else {
-              return matchesMainSearchQuery && matchesLocationSearchQuery;
-            }
-          });
-
-          currentJobs = filteredJobs;
-          pageChangeHandler(1);
+        if (mobileLocationSearchQuery) {
+          return matchesMainSearchQuery && matchesMobileLocationSearchQuery;
         } else {
-          currentJobs = jobsData;
+          return matchesMainSearchQuery && matchesLocationSearchQuery;
         }
-
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const pageData = currentJobs.slice(startIndex, endIndex);
-        setDisplayJobs(pageData);
-        setTotalPages(Math.ceil(currentJobs.length / itemsPerPage));
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
       });
-    // eslint-disable-next-line
-  }, [searchQuery, currentPage]);
+
+      setDisplayJobs(paginateData(filteredJobs, currentPage, itemsPerPage));
+      setTotalPages(Math.ceil(filteredJobs.length / itemsPerPage));
+      setIsLoading(false);
+    } else {
+      setDisplayJobs(paginateData(allJobs, currentPage, itemsPerPage));
+      setTotalPages(Math.ceil(allJobs.length / itemsPerPage));
+      setIsLoading(false);
+    }
+  }, [
+    allJobs,
+    mainSearchQuery,
+    locationSearchQuery,
+    mobileLocationSearchQuery,
+    currentPage,
+  ]);
 
   let arrayOfPages = returnPaginationRange(
     totalPages,
@@ -102,6 +114,8 @@ export function JobSection() {
     locationSearchInput.value = "";
     setSearchQuery("");
   };
+
+  console.log(isLoading);
 
   return (
     <main>

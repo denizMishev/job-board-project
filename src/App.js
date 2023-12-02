@@ -14,7 +14,6 @@ function App() {
       <div className="App | bg-neutral-200">
         <Header />
         <Routes>
-          {/* <Route path="/" element={<JobSection />}></Route> */}
           <Route
             path="/"
             element={
