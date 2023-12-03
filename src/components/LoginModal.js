@@ -4,7 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
 import { regexEmail } from "../utils/errorParameters";
 
-export function LoginModal({ onClose, show }) {
+export function LoginModal({ onClose, show, showRegisterModal }) {
   let auth = getAuth();
 
   const [loginFormValues, setLoginFormValues] = useState({
@@ -22,10 +22,6 @@ export function LoginModal({ onClose, show }) {
     }));
   };
 
-  if (!show) {
-    return null;
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -40,6 +36,15 @@ export function LoginModal({ onClose, show }) {
         setFirebaseError(firebaseErrorParser(error.message));
       });
   };
+
+  const switchToRegister = () => {
+    onClose();
+    showRegisterModal(true);
+  };
+
+  if (!show) {
+    return null;
+  }
 
   return (
     <div onClick={onClose} className="modal">
@@ -121,7 +126,10 @@ export function LoginModal({ onClose, show }) {
             <span className="display-block color-primary-switch-100">
               Don't have an account yet?
             </span>
-            <button className="switch-form-cta color-linkblue fw-bold fs-200">
+            <button
+              onClick={() => switchToRegister()}
+              className="switch-form-cta color-linkblue fw-bold fs-200"
+            >
               Sign up
               <svg
                 xmlns="http://www.w3.org/2000/svg"

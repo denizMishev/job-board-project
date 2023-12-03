@@ -15,7 +15,7 @@ import {
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
-export function RegisterModal({ onClose, show }) {
+export function RegisterModal({ onClose, show, showLoginModal }) {
   const auth = getAuth();
   const databaseCollection = collection(database, usersCollection);
 
@@ -89,6 +89,11 @@ export function RegisterModal({ onClose, show }) {
       .catch((error) => {
         setFirebaseError(firebaseErrorParser(error.message));
       });
+  };
+
+  const switchToLogin = () => {
+    onClose();
+    showLoginModal(true);
   };
 
   if (!show) {
@@ -219,7 +224,10 @@ export function RegisterModal({ onClose, show }) {
             <span className="display-block color-primary-switch-100">
               Already have an account?
             </span>
-            <button className="switch-form-cta color-linkblue fw-bold fs-200">
+            <button
+              onClick={() => switchToLogin()}
+              className="switch-form-cta color-linkblue fw-bold fs-200"
+            >
               Log in
               <svg
                 xmlns="http://www.w3.org/2000/svg"

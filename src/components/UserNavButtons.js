@@ -27,10 +27,12 @@ export function UserNavButtons() {
       <RegisterModal
         onClose={() => setShowRegisterModal(false)}
         show={showRegisterModal}
+        showLoginModal={setShowLoginModal}
       />
       <LoginModal
         onClose={() => setShowLoginModal(false)}
         show={showLoginModal}
+        showRegisterModal={setShowRegisterModal}
       />
       <div className="usernav-container-mobile">
         <button onClick={menuVisibilityButton}>
