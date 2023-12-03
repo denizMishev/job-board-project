@@ -59,13 +59,22 @@ input[type="checkbox"] {
     gap: 2rem;
 }
 
-.usernav-login-li, .usernav-register-li {
+.usernav-li {
     color: white;
     cursor: pointer;
 }
 
-.usernav-login-li:hover, .usernav-register-li:hover {
+.usernav-li:hover {
     color: var(--clr-neutral-300);
+}
+
+.usernav-name {
+    font-weight: bold;
+    cursor: unset;
+}
+
+.usernav-name:hover {
+    color: white;
 }
 
 

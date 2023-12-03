@@ -13,3 +13,11 @@
     color: var(--clr-primary-200);
 }
 
+.no-result-container span:first-of-type {
+    text-align: center;
+}
+
+.no-result-container span:last-child {
+    cursor: pointer;
+}
+

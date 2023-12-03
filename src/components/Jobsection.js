@@ -1,6 +1,6 @@
 import { JobCard } from "./JobCard";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { database, jobsCollection } from "../firebaseConfig";
 import { collection, getDocs } from "@firebase/firestore";
 
@@ -35,15 +35,15 @@ export function JobSection() {
     return data.slice(startIndex, endIndex);
   };
 
-  useEffect(() => {
-    getDocs(databaseCollection).then((response) => {
-      const jobs = response.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setAllJobs(jobs);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getDocs(databaseCollection).then((response) => {
+  //     const jobs = response.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+  //     setAllJobs(jobs);
+  //   });
+  // }, []);
 
   useEffect(() => {
     if (mainSearchQuery || locationSearchQuery || mobileLocationSearchQuery) {

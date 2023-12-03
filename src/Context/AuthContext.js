@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getAuth } from "firebase/auth";
+// import { getAuth } from "firebase/auth";
 
-const auth = getAuth();
+// const auth = getAuth();
+import { auth } from "../firebaseConfig";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -23,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const value = {
-    currentUser,
+    authenticatedUser: currentUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

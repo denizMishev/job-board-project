@@ -20,7 +20,7 @@ export function JobApplyModal({
   positionName,
   showSuccessAnnouncement,
 }) {
-  const { currentUser } = useAuth();
+  const { authenticatedUser } = useAuth();
   const { jobId } = useParams();
 
   const [uploadingFiles, setUploadingFiles] = useState([]);
@@ -41,11 +41,11 @@ export function JobApplyModal({
   useEffect(() => {
     setApplyFormValues((prevValues) => ({
       ...prevValues,
-      applicantUserId: currentUser?.uid || "n/a",
-      firstAndLastName: currentUser?.displayName || "",
-      email: currentUser?.email || "",
+      applicantUserId: authenticatedUser?.uid || "n/a",
+      firstAndLastName: authenticatedUser?.displayName || "",
+      email: authenticatedUser?.email || "",
     }));
-  }, [currentUser]);
+  }, [authenticatedUser]);
 
   useEffect(() => {
     setApplyFormValues((prevValues) => ({
