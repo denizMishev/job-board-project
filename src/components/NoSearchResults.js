@@ -1,4 +1,16 @@
-export function NoSearchResults({ clearSearch }) {
+import { useSearch } from "../context/SearchContext";
+
+export function NoSearchResults() {
+  const { setSearchQuery } = useSearch();
+
+  const clearSearch = () => {
+    const keywordSearchInput = document.getElementById("keywordSearchInput");
+    const locationSearchInput = document.getElementById("locationSearchInput");
+    keywordSearchInput.value = "";
+    locationSearchInput.value = "";
+    setSearchQuery("");
+  };
+
   return (
     <div className="no-result-container | flex-col-center">
       <div className="no-results-icon-container">
@@ -21,7 +33,7 @@ export function NoSearchResults({ clearSearch }) {
         No results match this criteria
       </span>
       <span
-        onClick={clearSearch}
+        onClick={() => clearSearch()}
         className="display-block color-primary-200 fs-250 fw-bold"
       >
         Clear Search?
