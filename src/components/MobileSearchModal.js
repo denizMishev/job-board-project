@@ -3,7 +3,8 @@ import { useSearch } from "../context/SearchContext";
 
 export function MobileSearchModal({ onClose, show }) {
   const [locationFilter, setLocationFilter] = useState("");
-  const { setSearchQuery } = useSearch();
+  const { setSearchQuery, jobContractFilter, setJobContractFilter } =
+    useSearch();
 
   const handleSearchMobile = () => {
     setSearchQuery((state) => ({
@@ -65,7 +66,11 @@ export function MobileSearchModal({ onClose, show }) {
           <div>
             <label class="custom-checkbox-container | color-primary-switch-100 fw-bold">
               Full Time <span class="dynamic-text">Only</span>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={jobContractFilter}
+                onChange={() => setJobContractFilter(!jobContractFilter)}
+              />
               <span class="checkmark"></span>
             </label>
           </div>

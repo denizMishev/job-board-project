@@ -4,6 +4,7 @@ const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [jobContractFilter, setJobContractFilter] = useState(false);
 
   const mainSearchQuery = searchQuery.mainSearch?.toLowerCase() || "";
   const locationSearchQuery = searchQuery.locationSearch?.toLowerCase() || "";
@@ -18,6 +19,8 @@ export const SearchProvider = ({ children }) => {
         locationSearchQuery,
         mobileLocationSearchQuery,
         setSearchQuery,
+        jobContractFilter,
+        setJobContractFilter,
       }}
     >
       {children}

@@ -4,7 +4,7 @@ import { useErrorBoundary } from "react-error-boundary";
 
 import { useEffect, useState } from "react";
 import { database, jobsCollection } from "../firebaseConfig";
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, getDocs, query, where } from "@firebase/firestore";
 
 import { useSearch } from "../context/SearchContext";
 
@@ -21,8 +21,14 @@ export function JobSection() {
     mainSearchQuery,
     locationSearchQuery,
     mobileLocationSearchQuery,
+    jobContractFilter,
   } = useSearch();
+
   const databaseCollection = collection(database, jobsCollection);
+  const fullTimeJobsQuery = query(
+    databaseCollection,
+    where("contract", "==", "Full Time")
+  );
 
   const [allJobs, setAllJobs] = useState([]);
   const [displayJobs, setDisplayJobs] = useState([]);
@@ -40,18 +46,19 @@ export function JobSection() {
   };
 
   useEffect(() => {
-    getDocs(databaseCollection)
+    getDocs(jobContractFilter ? fullTimeJobsQuery : databaseCollection)
       .then((response) => {
         const jobs = response.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setAllJobs(jobs);
+        if (jobContractFilter) setCurrentPage(1);
       })
       .catch((error) => {
         showBoundary(error);
       });
-  }, []);
+  }, [jobContractFilter]);
 
   useEffect(() => {
     if (mainSearchQuery || locationSearchQuery || mobileLocationSearchQuery) {

@@ -7,9 +7,10 @@ import { useLocation } from "react-router-dom";
 export function Search() {
   const location = useLocation();
 
-  const [showMobileSearchModal, setShowMobileSearchModal] = useState(false);
+  const { setSearchQuery, jobContractFilter, setJobContractFilter } =
+    useSearch();
 
-  const { setSearchQuery } = useSearch();
+  const [showMobileSearchModal, setShowMobileSearchModal] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -70,7 +71,11 @@ export function Search() {
             <div>
               <label class="custom-checkbox-container | color-primary-switch-100 fw-bold">
                 Full Time <span class="dynamic-text">Only</span>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  checked={jobContractFilter}
+                  onChange={() => setJobContractFilter(!jobContractFilter)}
+                />
                 <span class="checkmark"></span>
               </label>
             </div>
