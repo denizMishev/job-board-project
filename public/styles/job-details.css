@@ -20,8 +20,6 @@
 .jobdetails-image-and-company-container {
     display: flex;
     width: 50%;
-    border-bottom-left-radius: 8px;
-    border-top-left-radius: 8px;
 }
 
 .jobdetails-header-image-container {
@@ -29,6 +27,8 @@
     align-items: center;
     justify-content: center;
     width: 40%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .jobdetails-header-image-container > img{
@@ -57,6 +57,7 @@
 .jobdetails-info {
     margin-top: 8rem;
     padding: 3rem;
+    border-radius: 8px;
 }
 
 .jobdetails .jobdetails-ul, .jobdetails ol {
@@ -107,7 +108,7 @@
     justify-content: space-between;
 }
 
-.jobdetails-company-details-container > h2 {
+.jobdetails-company-details-container > h2, .jobdetails-already-applied-for {
     margin: 0.6rem 0;
 }
 

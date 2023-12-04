@@ -6,8 +6,18 @@ import { useAuth } from "../../context/AuthContext";
 import { authErrorMessages } from "../../utils/errorMessages";
 import { useErrorBoundary } from "react-error-boundary";
 
-import { database, jobApplicationsCollection } from "../../firebaseConfig";
-import { addDoc, collection } from "firebase/firestore";
+import {
+  database,
+  jobApplicationsCollection,
+  jobsCollection,
+} from "../../firebaseConfig";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { FileUploader } from "./FileUploader";
 import {
   regexCoverLetter,
@@ -77,6 +87,7 @@ export function JobApplyModal({
   };
 
   const databaseCollection = collection(database, jobApplicationsCollection);
+  const applyingForJobDocumentRef = doc(database, jobsCollection, jobId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,15 +110,34 @@ export function JobApplyModal({
       applicant_fileURLs: filesURLs,
     };
 
-    return addDoc(databaseCollection, jobApplicationData)
-      .then(() => {
-        console.log("application submitted successfully");
-        onClose();
-        showSuccessAnnouncement();
-      })
-      .catch((error) => {
-        showBoundary(error);
+    if (applicantUserId !== "n/a") {
+      const addJobApplicationsPromise = addDoc(
+        databaseCollection,
+        jobApplicationData
+      );
+      const updateJobPromise = updateDoc(applyingForJobDocumentRef, {
+        applicantEmails: arrayUnion(authenticatedUser.email),
       });
+
+      return Promise.all([addJobApplicationsPromise, updateJobPromise])
+        .then(() => {
+          onClose();
+          showSuccessAnnouncement();
+        })
+        .catch((error) => {
+          showBoundary(error);
+        });
+    } else {
+      return addDoc(databaseCollection, jobApplicationData)
+        .then(() => {
+          console.log("application submitted successfully");
+          onClose();
+          showSuccessAnnouncement();
+        })
+        .catch((error) => {
+          showBoundary(error);
+        });
+    }
   };
 
   if (!show) {

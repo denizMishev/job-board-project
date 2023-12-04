@@ -3,12 +3,13 @@ import { useParams } from "react-router";
 
 import { useErrorBoundary } from "react-error-boundary";
 
-import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
+import { useAuth } from "../context/AuthContext";
 
 import { database, jobsCollection } from "../firebaseConfig";
 import { getDoc, doc } from "@firebase/firestore";
 
 import { JobApplyModal } from "./job application form/JobApplyModal";
+import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function JobDetails() {
@@ -19,6 +20,8 @@ export function JobDetails() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [jobData, setJobData] = useState(null);
+
+  const { authenticatedUser } = useAuth();
 
   const [showJobApplyModal, setShowJobApplyModal] = useState(false);
   const [showSuccessAnnouncement, setShowSuccessAnnouncement] = useState(false);
@@ -35,7 +38,11 @@ export function JobDetails() {
         showBoundary(error);
       });
     // eslint-disable-next-line
-  }, []);
+  }, [showSuccessAnnouncement]);
+
+  let userAlreadyApplied = jobData?.applicantEmails?.includes(
+    authenticatedUser.email
+  );
 
   return (
     <main className="bg-neutral-200">
@@ -111,6 +118,11 @@ export function JobDetails() {
                     <span className="color-primary-200 fw-bold">
                       {jobData?.location}
                     </span>
+                    {userAlreadyApplied && (
+                      <span className="jobdetails-already-applied-for | display-block">
+                        *You have already applied for this job
+                      </span>
+                    )}
                   </div>
                   <div className="jobdetails-applynow-container">
                     <button

@@ -62,10 +62,28 @@ input[type="checkbox"] {
 .usernav-li {
     color: white;
     cursor: pointer;
+    position: relative;
 }
 
-.usernav-li:hover {
-    color: var(--clr-neutral-300);
+
+.usernav-li::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    top: 90%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    transform: perspective(1em) rotateX(30deg) scale(0.85, 0.3);
+    filter: blur(0.6em);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.usernav-li:hover::before {
+    opacity: 0.8;
 }
 
 .usernav-name {
@@ -73,8 +91,8 @@ input[type="checkbox"] {
     cursor: unset;
 }
 
-.usernav-name:hover {
-    color: white;
+.usernav-name:hover::before {
+    opacity: 0;
 }
 
 
