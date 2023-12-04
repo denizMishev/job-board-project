@@ -1,6 +1,8 @@
 import { JobCard } from "./JobCard";
 
-import { useEffect, useState, useContext } from "react";
+import { useErrorBoundary } from "react-error-boundary";
+
+import { useEffect, useState } from "react";
 import { database, jobsCollection } from "../firebaseConfig";
 import { collection, getDocs } from "@firebase/firestore";
 
@@ -11,6 +13,8 @@ import { NoSearchResults } from "./NoSearchResults";
 import { PageSelector } from "./PageSelector";
 
 export function JobSection() {
+  const { showBoundary } = useErrorBoundary([]);
+
   console.log("render");
   const {
     searchQuery,
@@ -35,15 +39,19 @@ export function JobSection() {
     return data.slice(startIndex, endIndex);
   };
 
-  // useEffect(() => {
-  //   getDocs(databaseCollection).then((response) => {
-  //     const jobs = response.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }));
-  //     setAllJobs(jobs);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getDocs(databaseCollection)
+      .then((response) => {
+        const jobs = response.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAllJobs(jobs);
+      })
+      .catch((error) => {
+        showBoundary(error);
+      });
+  }, []);
 
   useEffect(() => {
     if (mainSearchQuery || locationSearchQuery || mobileLocationSearchQuery) {

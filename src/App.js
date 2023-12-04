@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 
+import { ErrorBoundary } from "react-error-boundary";
+
 import { SearchProvider } from "./context/SearchContext";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -8,27 +10,33 @@ import { Header } from "./components/Header";
 import { JobSection } from "./components/JobSection";
 import { JobDetails } from "./components/JobDetails";
 import { LoadingSpinner } from "./components/LoadingSpinner";
+import { ErrorHandler } from "./components/ErrorHandler";
 
 function App() {
   return (
-    <AuthProvider>
-      <SearchProvider>
-        <div className="App | bg-neutral-200">
-          <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Suspense fallback={<LoadingSpinner></LoadingSpinner>}>
-                  <JobSection />
-                </Suspense>
-              }
-            ></Route>
-            <Route path="/jobs/:jobId" element={<JobDetails />}></Route>
-          </Routes>
-        </div>
-      </SearchProvider>
-    </AuthProvider>
+    <ErrorBoundary
+      FallbackComponent={ErrorHandler}
+      onError={() => console.error("Unexpected error ocurred.")}
+    >
+      <AuthProvider>
+        <SearchProvider>
+          <div className="App | bg-neutral-200">
+            <Header />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={<LoadingSpinner></LoadingSpinner>}>
+                    <JobSection />
+                  </Suspense>
+                }
+              ></Route>
+              <Route path="/jobs/:jobId" element={<JobDetails />}></Route>
+            </Routes>
+          </div>
+        </SearchProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

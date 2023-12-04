@@ -5,6 +5,7 @@
 @import "jobs-section.css";
 @import "job-details.css";
 @import "no-results.css";
+@import "error-handler.css";
 @import "job-card.css";
 @import "job-apply-form.css";
 @import "success-announcement-modal.css";

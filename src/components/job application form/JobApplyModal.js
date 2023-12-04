@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 
 import { authErrorMessages } from "../../utils/errorMessages";
+import { useErrorBoundary } from "react-error-boundary";
 
 import { database, jobApplicationsCollection } from "../../firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
@@ -20,6 +21,8 @@ export function JobApplyModal({
   positionName,
   showSuccessAnnouncement,
 }) {
+  const { showBoundary } = useErrorBoundary([]);
+
   const { authenticatedUser } = useAuth();
   const { jobId } = useParams();
 
@@ -103,7 +106,7 @@ export function JobApplyModal({
         showSuccessAnnouncement();
       })
       .catch((error) => {
-        alert(error.message);
+        showBoundary(error);
       });
   };
 

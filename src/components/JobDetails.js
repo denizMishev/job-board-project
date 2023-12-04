@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
+import { useErrorBoundary } from "react-error-boundary";
+
 import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
 
 import { database, jobsCollection } from "../firebaseConfig";
@@ -10,6 +12,8 @@ import { JobApplyModal } from "./job application form/JobApplyModal";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function JobDetails() {
+  const { showBoundary } = useErrorBoundary([]);
+
   const { jobId } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -22,10 +26,14 @@ export function JobDetails() {
   const docRef = doc(database, jobsCollection, jobId);
 
   useEffect(() => {
-    getDoc(docRef).then((doc) => {
-      setJobData(doc.data());
-      setIsLoading(false);
-    });
+    getDoc(docRef)
+      .then((doc) => {
+        setJobData(doc.data());
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        showBoundary(error);
+      });
     // eslint-disable-next-line
   }, []);
 
@@ -161,7 +169,12 @@ export function JobDetails() {
                 <span className="color-accent-200">{jobData?.company}</span>
               </div>
               <div className="footer-applynow-container">
-                <button className="button">Apply Now</button>
+                <button
+                  onClick={() => setShowJobApplyModal(true)}
+                  className="button"
+                >
+                  Apply Now
+                </button>
               </div>
             </div>
           )}

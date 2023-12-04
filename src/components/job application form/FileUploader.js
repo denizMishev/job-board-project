@@ -4,6 +4,7 @@ import { FileList } from "./FileList";
 
 import { fileErrorMessages } from "../../utils/errorMessages";
 import { allowedFileTypes, maxSizeInBytes } from "../../utils/errorParameters";
+import { useErrorBoundary } from "react-error-boundary";
 
 import { storage } from "../../firebaseConfig";
 import {
@@ -14,6 +15,8 @@ import {
 } from "firebase/storage";
 
 export function FileUploader({ sendUploadFiles }) {
+  const { showBoundary } = useErrorBoundary([]);
+
   const [uploadingFiles, setUploadingFiles] = useState([]);
 
   const handleFileUpload = (file) => {
@@ -61,7 +64,7 @@ export function FileUploader({ sendUploadFiles }) {
         });
       },
       (error) => {
-        console.error(error.message);
+        showBoundary(error);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
