@@ -19,6 +19,10 @@ input[type="checkbox"] {
     accent-color: var(--clr-primary-200);
 }
 
+.site-header {
+    border-bottom-left-radius: 100px
+}
+
 .site-header-container {
     height: 160px;
     padding-top: 35px;

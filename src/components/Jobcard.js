@@ -19,7 +19,7 @@ export function JobCard({
         >
           <img
             alt={`${company} logo`}
-            src={require(`../logos/${company
+            src={require(`../../public/logos/${company
               .replace(/\s/g, "")
               .toLowerCase()}.svg`)}
           />

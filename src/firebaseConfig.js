@@ -19,5 +19,5 @@ export const database = getFirestore(app);
 export const storage = getStorage(app);
 
 export const jobApplicationsCollection = "job_applications";
-export const jobsCollection = "jobs";
+export const jobsCollection = "jobs2";
 export const usersCollection = "users";

@@ -37,7 +37,6 @@ export function JobDetails() {
       .catch((error) => {
         showBoundary(error);
       });
-    // eslint-disable-next-line
   }, [showSuccessAnnouncement]);
 
   let userAlreadyApplied = jobData?.applicantEmails?.includes(
@@ -73,7 +72,7 @@ export function JobDetails() {
                     {jobData ? (
                       <img
                         alt={`${jobData.company} logo`}
-                        src={require(`../logos/${jobData.company
+                        src={require(`../../public/logos/${jobData.company
                           .replace(/\s/g, "")
                           .toLowerCase()}.svg`)}
                       />

@@ -59,8 +59,18 @@
     cursor: pointer;
 }
 
+
+
 .page-list-item:hover {
     color: var(--clr-primary-100);
+}
+
+.page-dots {
+    cursor: unset;
+}
+
+.page-dots:hover {
+    color: unset;
 }
 
 .pagination-arrowsvg-containers:hover {

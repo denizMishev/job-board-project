@@ -1,18 +1,4 @@
-import { returnPaginationRange } from "../utils/utils";
-
-export function PageSelector({
-  itemsPerPage,
-  totalPages,
-  currentPage,
-  setCurrentPage,
-}) {
-  const arrayOfPages = returnPaginationRange(
-    totalPages,
-    currentPage,
-    itemsPerPage,
-    1
-  );
-
+export function PageSelector({ totalPages, currentPage, setCurrentPage }) {
   const pageChangeHandler = (value) => {
     localStorage.setItem("onPage", value);
     setCurrentPage(value);
@@ -38,33 +24,47 @@ export function PageSelector({
           </svg>
         </div>
         <ul className="jobsection-pages-list | bg-neutral-100">
-          {arrayOfPages.map((pageNumber) => {
-            if (pageNumber === currentPage) {
+          {Array.from({ length: totalPages }, (_, index) => {
+            const isCurrent = currentPage === index + 1;
+            const isInRange =
+              index + 1 === 1 ||
+              index + 1 === totalPages ||
+              (index + 1 >= currentPage - 1 && index + 1 <= currentPage + 1);
+
+            if (isInRange) {
               return (
                 <li
-                  className="page-list-item | color-primary-200 fw-bold"
-                  onClick={() => pageChangeHandler(pageNumber)}
-                  key={pageNumber}
+                  className={
+                    isCurrent
+                      ? "page-list-item | color-primary-200 fw-bold"
+                      : "page-list-item | color-primary-switch-100"
+                  }
+                  onClick={() => pageChangeHandler(index + 1)}
+                  key={index + 1}
                 >
-                  <span>{pageNumber}</span>
+                  <span>{index + 1}</span>
                 </li>
               );
-            } else {
+            } else if (
+              index + 1 === currentPage - 2 ||
+              index + 1 === currentPage + 2
+            ) {
               return (
                 <li
-                  className="page-list-item | color-primary-switch-100"
-                  onClick={() => pageChangeHandler(pageNumber)}
-                  key={pageNumber}
+                  className="page-dots | page-list-item color-primary-switch-100"
+                  key={index + 1}
                 >
-                  <span>{pageNumber}</span>
+                  <span>...</span>
                 </li>
               );
             }
+
+            return null;
           })}
         </ul>
         <div
           style={{
-            visibility: currentPage === totalPages ? "hidden" : "unset",
+            visibility: currentPage == totalPages ? "hidden" : "unset",
           }}
           onClick={() => pageChangeHandler(currentPage + 1)}
           className="pagination-arrowsvg-containers | color-primary-switch-100 bg-neutral-100"

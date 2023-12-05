@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("deleted");
+const serviceAccount = require("./deleted");
 
 try {
   admin.initializeApp({
@@ -12,7 +12,7 @@ try {
 
 const db = admin.firestore();
 
-const jsonData = require("./data2.json");
+const jsonData = require("./data.json");
 
 async function importData() {
   const batch = db.batch();

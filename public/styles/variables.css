@@ -32,6 +32,8 @@ html {
     --clr-inverted-button-bg-hover: hsla(235, 69%, 85%, 1);
     --clr-inverted-button: hsla(235, 69%, 61%, 1);
 
+    --boxshadow: rgba(0, 0, 0, 0.25);
+
     --font-weight-regular: 400;
     --font-weight-bold: 700;
 
@@ -73,6 +75,8 @@ html {
     --clr-inverted-button-bg: hsla(219, 29%, 19%, 1);
     --clr-inverted-button-bg-hover: hsla(219, 29%, 30%, 1);
     --clr-inverted-button: hsla(0, 100%, 100%, 1);
+  
+    --boxshadow: rgba(255, 255, 255, 0.15);
   }
 
 main {

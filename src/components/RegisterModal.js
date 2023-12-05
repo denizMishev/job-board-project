@@ -60,7 +60,6 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("loader");
     setIsLoading(true);
 
     const { email, password, firstName, lastName } = registerFormValues;

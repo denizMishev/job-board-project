@@ -15,7 +15,6 @@ import { PageSelector } from "./PageSelector";
 export function JobSection() {
   const { showBoundary } = useErrorBoundary([]);
 
-  console.log("render");
   const {
     searchQuery,
     mainSearchQuery,
@@ -32,6 +31,7 @@ export function JobSection() {
 
   const [allJobs, setAllJobs] = useState([]);
   const [displayJobs, setDisplayJobs] = useState([]);
+  const [filteredAndPaginatedJobs, setFilteredAndPaginatedJobs] = useState([]);
 
   const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(
@@ -94,13 +94,16 @@ export function JobSection() {
         }
       });
 
-      console.log(filteredJobs);
+      if (currentPage !== 1) {
+        setCurrentPage(1);
+      }
 
-      setCurrentPage(1);
-      setDisplayJobs(paginateData(filteredJobs, currentPage, itemsPerPage));
+      setDisplayJobs(filteredJobs);
       setTotalPages(Math.ceil(filteredJobs.length / itemsPerPage));
     } else {
-      setDisplayJobs(paginateData(allJobs, currentPage, itemsPerPage));
+      setDisplayJobs(allJobs);
+      setCurrentPage(1);
+
       setTotalPages(Math.ceil(allJobs.length / itemsPerPage));
     }
   }, [
@@ -108,8 +111,15 @@ export function JobSection() {
     mainSearchQuery,
     locationSearchQuery,
     mobileLocationSearchQuery,
-    currentPage,
   ]);
+
+  console.log(currentPage);
+
+  useEffect(() => {
+    setFilteredAndPaginatedJobs(
+      paginateData(displayJobs, currentPage, itemsPerPage)
+    );
+  }, [currentPage, displayJobs]);
 
   return (
     <main>
@@ -121,7 +131,7 @@ export function JobSection() {
           )}
           {displayJobs.length >= 1 && (
             <div className="jobs-grid">
-              {displayJobs.map((jobData) => (
+              {filteredAndPaginatedJobs.map((jobData) => (
                 <JobCard
                   key={jobData.id}
                   jobId={jobData.id}

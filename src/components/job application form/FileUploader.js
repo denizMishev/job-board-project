@@ -105,6 +105,7 @@ export function FileUploader({ sendUploadFiles }) {
       })
       .catch((error) => {
         console.error("error deleting file:", error.message);
+        showBoundary(error);
       });
   };
 

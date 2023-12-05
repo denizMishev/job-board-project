@@ -48,7 +48,7 @@ export function Search() {
               name="mainSearch"
               className="color-primary-switch-100 bg-neutral-100"
               type="text"
-              placeholder="Filter by title, companies, technologies.."
+              placeholder="Search for a keyword contained in the job"
             />
           </div>
           <div className="location-filter-container | bg-neutral-100">
