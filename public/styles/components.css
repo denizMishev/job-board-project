@@ -1,6 +1,4 @@
-/* slider */ /* slider */ /* slider */
-/* slider */ /* slider */
-/* slider */
+/* slider */ 
 
 .switch {
     position: relative;
@@ -66,9 +64,7 @@
     border-radius: 50%;
   }
 
-/* button */ /* button */ /* button */
-/* button */ /* button */
-/* button */
+/* button */ 
 
 .button {
   background-color: var(--clr-primary-200);
@@ -99,9 +95,7 @@
   background-color: var(--clr-inverted-button-bg-hover);
 }
 
-/* close modal icon */ /* close modal icon */ /* close modal icon */
-/* close modal icon */ /* close modal icon */
-/* close modal icon */
+/* close modal icon */ 
 
 .close-button-container {
   position: absolute;
@@ -120,9 +114,7 @@
 }
 
 
-/* custom checkbox */ /* custom checkbox */ /* custom checkbox */
-/* custom checkbox */ /* custom checkbox */
-/* custom checkbox */
+/* custom checkbox */ 
 
 .custom-checkbox-container {
   display: block;
@@ -182,8 +174,6 @@
   transform: rotate(45deg);
 }
 
-/* modal */ /* modal */ /* modal */
-/* modal */ /* modal */
 /* modal */
 
 .modal {
@@ -216,9 +206,7 @@
   }
 }
 
-/* form component */ /* form component */  /* form component */ 
-/* form component */ /* form component */ 
-/* form component */
+/* form component */ 
 
 .form-header {
   display: flex;
@@ -313,9 +301,7 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
 }
 
-/* menu pop-up */ /* menu pop-up */ /* menu pop-up */
-/* menu pop-up */ /* menu pop-up */
-/* menu pop-up */
+/* menu pop-up */ 
 
 .menu-popup {
   display: flex;
@@ -350,9 +336,7 @@ input:-webkit-autofill:active {
   background-color: var(--clr-primary-50);
 }
 
-/* loading-spinner */ /* loading-spinner */ /* loading-spinner */
-/* loading-spinner */ /* loading-spinner */
-/* loading-spinner */
+/* loading-spinner */ 
 
 .loading-spinner-container {
   padding-top: 1.5%;

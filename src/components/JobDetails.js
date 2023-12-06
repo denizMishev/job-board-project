@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { database, jobsCollection } from "../firebaseConfig";
 import { getDoc, doc } from "@firebase/firestore";
 
-import { JobApplyModal } from "./job application form/JobApplyModal";
+import { JobApplyModal } from "./job_application_form/JobApplyModal";
 import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
 import { LoadingSpinner } from "./LoadingSpinner";
 
