@@ -20,6 +20,6 @@ The app uses a React & HTML&CSS front-end and Firebase authentication and databa
 
 The app will run on a localhost URL which will open automatically.
 
-### Work in progress ###
+## Work in progress ##
 
 I am currently working on adding a new feature to this project - a user dashboard which will showcase the user's applied for jobs, saved jobs and also saved searches.
