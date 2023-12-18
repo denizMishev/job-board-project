@@ -26,10 +26,19 @@ I am currently working on adding a new feature to this project - a user dashboar
 
 ## **Screenshots** ##
 
+Main screen desktop
+
+
 ![image](https://github.com/denizMishev/job-board-project/assets/115874978/9a7147a6-effc-40d1-b920-285315531558)
+
+
+Job details desktop
+
 
 ![image](https://github.com/denizMishev/job-board-project/assets/115874978/e1b90240-f9ee-4742-b526-3ab1b8821deb)
 
-Mobile
+
+Mobile main screen with filter open
+
 
 ![image](https://github.com/denizMishev/job-board-project/assets/115874978/4c405893-be57-46f7-86d2-0ae5bf642f30)
