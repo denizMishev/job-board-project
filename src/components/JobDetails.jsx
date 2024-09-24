@@ -43,6 +43,11 @@ export function JobDetails() {
     authenticatedUser.email
   );
 
+  const svgURL = new URL(
+    `../assets/${jobData?.company.replace(/\s/g, "").toLowerCase()}.svg`,
+    import.meta.url
+  ).href;
+
   return (
     <main className="bg-neutral-200">
       <section className="jobdetails bg-neutral-200">
@@ -70,12 +75,7 @@ export function JobDetails() {
                     style={{ backgroundColor: jobData?.logoBackground }}
                   >
                     {jobData ? (
-                      <img
-                        alt={`${jobData.company} logo`}
-                        src={require(`../../public/logos/${jobData.company
-                          .replace(/\s/g, "")
-                          .toLowerCase()}.svg`)}
-                      />
+                      <img alt={`${jobData.company} logo`} src={svgURL} />
                     ) : (
                       ""
                     )}

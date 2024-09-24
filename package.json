@@ -15,16 +15,14 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.11",
     "react-router-dom": "^6.18.0",
-    "react-scripts": "5.0.1",
     "react-spinners": "^0.13.8",
     "react-svg": "^16.1.29",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -43,5 +41,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.7",
+    "vite-plugin-commonjs": "^0.10.3",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^5.0.1"
   }
 }

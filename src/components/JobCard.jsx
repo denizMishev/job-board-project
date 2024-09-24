@@ -10,6 +10,11 @@ export function JobCard({
   workingTime,
   location,
 }) {
+  const svgURL = new URL(
+    `../assets/${company.replace(/\s/g, "").toLowerCase()}.svg`,
+    import.meta.url
+  ).href;
+
   return (
     <Link className="display-block" to={`/jobs/${jobId}`}>
       <article className="job-card bg-neutral-100">
@@ -17,12 +22,7 @@ export function JobCard({
           className="job-logo-container"
           style={{ backgroundColor: logoBackgroundColor }}
         >
-          <img
-            alt={`${company} logo`}
-            src={require(`../../public/logos/${company
-              .replace(/\s/g, "")
-              .toLowerCase()}.svg`)}
-          />
+          <img alt={`${company} logo`} src={svgURL} />
         </div>
         <div className="job-card-content">
           <div className="job-time-container | color-accent-200">

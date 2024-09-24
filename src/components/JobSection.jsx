@@ -113,8 +113,6 @@ export function JobSection() {
     mobileLocationSearchQuery,
   ]);
 
-  console.log(currentPage);
-
   useEffect(() => {
     setFilteredAndPaginatedJobs(
       paginateData(displayJobs, currentPage, itemsPerPage)
