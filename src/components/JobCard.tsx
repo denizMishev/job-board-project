@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 
+interface JobCardProps {
+  jobId: string;
+  company: string;
+  logoBackgroundColor: string;
+  position: string;
+  postedAt: string;
+  workingTime: string;
+  location: string;
+}
+
 export function JobCard({
   jobId,
   company,
-  logoImage,
   logoBackgroundColor,
   position,
   postedAt,
   workingTime,
   location,
-}) {
+}: JobCardProps) {
   const svgURL = new URL(
     `../assets/${company.replace(/\s/g, "").toLowerCase()}.svg`,
     import.meta.url

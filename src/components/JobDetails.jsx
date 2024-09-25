@@ -40,7 +40,7 @@ export function JobDetails() {
   }, [showSuccessAnnouncement]);
 
   let userAlreadyApplied = jobData?.applicantEmails?.includes(
-    authenticatedUser.email
+    authenticatedUser?.email
   );
 
   const svgURL = new URL(
