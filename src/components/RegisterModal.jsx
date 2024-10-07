@@ -15,6 +15,7 @@ import {
 } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
+import Form from "./Form";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function RegisterModal({ onClose, show, showLoginModal }) {
@@ -22,43 +23,10 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
 
   const databaseCollection = collection(database, usersCollection);
 
-  const [registerFormValues, setRegisterFormValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
-
-  const [focusedField, setFocusedField] = useState({
-    firstNameFocus: false,
-    lastNameFocus: false,
-    emailFocus: false,
-    passwordFocus: false,
-  });
-
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const onChangeHandler = (e) => {
-    const value = e.target.value;
-    const target = e.target.name;
-
-    setRegisterFormValues((state) => ({
-      ...state,
-      [target]: value,
-    }));
-  };
-
-  const onBlurHandler = (e) => {
-    const target = e.target.name + "Focus";
-
-    setFocusedField((state) => ({
-      ...state,
-      [target]: true,
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, registerFormValues) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -100,6 +68,41 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
     onClose();
     showLoginModal(true);
   };
+
+  const registerFormFields = [
+    {
+      name: "firstName",
+      label: "First name",
+      type: "text",
+      required: true,
+      pattern: regexSingleName,
+      errorMessage: authErrorMessages.firstName,
+    },
+    {
+      name: "lastName",
+      label: "Last name",
+      type: "text",
+      required: true,
+      pattern: regexSingleName,
+      errorMessage: authErrorMessages.lastName,
+    },
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      required: true,
+      pattern: regexEmail,
+      errorMessage: authErrorMessages.email,
+    },
+    {
+      name: "password",
+      label: "Password",
+      type: "password",
+      required: true,
+      pattern: regexPassword,
+      errorMessage: authErrorMessages.password,
+    },
+  ];
 
   if (!show) {
     return null;
@@ -144,90 +147,7 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
                 </span>
               )}
             </header>
-            <form className="form" onSubmit={handleSubmit} noValidate>
-              <div className="form-input-container color-primary-switch-100-light">
-                <label className="form-field-label" htmlFor="">
-                  First name
-                </label>
-                <input
-                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
-                  name="firstName"
-                  type="text"
-                  required
-                  pattern={regexSingleName}
-                  value={registerFormValues.firstName}
-                  onChange={onChangeHandler}
-                  onBlur={onBlurHandler}
-                  focused={focusedField.firstNameFocus.toString()}
-                />
-                <span className="user-form-error | color-red fs-100">
-                  {authErrorMessages.firstName}
-                </span>
-              </div>
-              <div className="form-input-container color-primary-switch-100-light">
-                <label className="form-field-label" htmlFor="">
-                  Last name
-                </label>
-                <input
-                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
-                  name="lastName"
-                  type="text"
-                  required
-                  pattern={regexSingleName}
-                  value={registerFormValues.lastName}
-                  onChange={onChangeHandler}
-                  onBlur={onBlurHandler}
-                  focused={focusedField.lastNameFocus.toString()}
-                />
-                <span className="user-form-error | color-red fs-100">
-                  {authErrorMessages.lastName}
-                </span>
-              </div>
-              <div className="form-input-container color-primary-switch-100-light">
-                <label className="form-field-label" htmlFor="">
-                  E-mail
-                </label>
-                <input
-                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
-                  name="email"
-                  type="email"
-                  required
-                  pattern={regexEmail}
-                  value={registerFormValues.email}
-                  onChange={onChangeHandler}
-                  onBlur={onBlurHandler}
-                  focused={focusedField.emailFocus.toString()}
-                />
-                <span className="user-form-error | color-red fs-100">
-                  {authErrorMessages.email}
-                </span>
-              </div>
-              <div className="form-input-container color-primary-switch-100-light">
-                <label className="form-field-label" htmlFor="">
-                  Password
-                </label>
-                <input
-                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
-                  name="password"
-                  type="password"
-                  required
-                  pattern={regexPassword}
-                  value={registerFormValues.password}
-                  onChange={onChangeHandler}
-                  onBlur={onBlurHandler}
-                  focused={focusedField.passwordFocus.toString()}
-                />
-                <span className="user-form-error | color-red fs-100">
-                  {authErrorMessages.password}
-                </span>
-              </div>
-              <button className="form-submit-button | button" type="submit">
-                Submit
-              </button>
-              <span className="required-fields | fs-100 color-neutral-500">
-                *All fields required
-              </span>
-            </form>
+            <Form fields={registerFormFields} handleSubmit={handleSubmit} />
             <div className="switch-form">
               <span className="display-block color-primary-switch-100">
                 Already have an account?
