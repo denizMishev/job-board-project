@@ -1,29 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
 import { regexEmail } from "../utils/errorParameters";
 
+import Form from "./Form";
+
 export function LoginModal({ onClose, show, showRegisterModal }) {
   let auth = getAuth();
 
-  const [loginFormValues, setLoginFormValues] = useState({
-    email: "",
-    password: "",
-  });
   const [firebaseError, setFirebaseError] = useState(false);
 
-  const [emailFocused, setEmailFocused] = useState(false);
-
-  const onChangeHandler = (e) => {
-    setLoginFormValues((state) => ({
-      ...state,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e, loginFormValues) => {
+    // e.preventDefault();
 
     const { email, password } = loginFormValues;
 
@@ -41,6 +30,23 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
     onClose();
     showRegisterModal(true);
   };
+
+  const loginFormFields = [
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      required: true,
+      pattern: regexEmail,
+      errorMessage: authErrorMessages.email,
+    },
+    {
+      name: "password",
+      label: "Password",
+      type: "password",
+      required: true,
+    },
+  ];
 
   if (!show) {
     return null;
@@ -82,46 +88,7 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
               </span>
             )}
           </header>
-          <form
-            className="login-form | form"
-            onSubmit={handleSubmit}
-            noValidate
-          >
-            <div className="form-input-container color-primary-switch-100-light">
-              <label className="form-field-label" htmlFor="">
-                E-mail
-              </label>
-              <input
-                className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
-                name="email"
-                type="email"
-                required
-                pattern={regexEmail}
-                value={loginFormValues.email}
-                onChange={onChangeHandler}
-                onBlur={() => setEmailFocused(true)}
-                focused={emailFocused.toString()}
-              />
-              <span className="user-form-error | color-red fs-100">
-                {authErrorMessages.email}
-              </span>
-            </div>
-            <div className="form-input-container color-primary-switch-100-light">
-              <label className="form-field-label" htmlFor="">
-                Password
-              </label>
-              <input
-                className="bg-neutral-100 color-primary-switch-100"
-                name="password"
-                type="password"
-                value={loginFormValues.password}
-                onChange={onChangeHandler}
-              />
-            </div>
-            <button className="form-submit-button | button" type="submit">
-              Submit
-            </button>
-          </form>
+          <Form fields={loginFormFields} handleSubmit={handleSubmit} />
           <div className="switch-form">
             <span className="display-block color-primary-switch-100">
               Don't have an account yet?

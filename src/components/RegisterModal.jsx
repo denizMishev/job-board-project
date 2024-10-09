@@ -27,7 +27,7 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e, registerFormValues) => {
-    e.preventDefault();
+    // e.preventDefault();
     setIsLoading(true);
 
     const { email, password, firstName, lastName } = registerFormValues;
