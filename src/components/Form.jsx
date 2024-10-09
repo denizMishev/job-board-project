@@ -1,35 +1,9 @@
-import React, { useState } from "react";
+import { useForm } from "../hooks/useForm";
 import InputField from "../components/ui/InputField";
 
 function Form({ fields, handleSubmit }) {
-  const initialFormValues = fields.reduce((acc, field) => {
-    acc[field.name] = field.value || "";
-    return acc;
-  }, {});
-
-  const initialFocusedFields = fields.reduce((acc, field) => {
-    acc[`${field.name}Focus`] = false;
-    return acc;
-  }, {});
-
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const [focusedFields, setFocusedFields] = useState(initialFocusedFields);
-
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setFormValues((state) => ({
-      ...state,
-      [name]: value,
-    }));
-  };
-
-  const onBlurHandler = (e) => {
-    const name = `${e.target.name}Focus`;
-    setFocusedFields((state) => ({
-      ...state,
-      [name]: true,
-    }));
-  };
+  const { formValues, onChangeHandler, onBlurHandler, focusedFields } =
+    useForm(fields);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
