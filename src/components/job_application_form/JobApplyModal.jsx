@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
 
 import { useAuth } from "../../context/AuthContext";
@@ -18,12 +18,14 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { FileUploader } from "./FileUploader";
 import {
   regexCoverLetter,
   regexEmail,
   regexFirstAndLastName,
 } from "../../utils/errorParameters";
+
+import { FileUploader } from "./FileUploader";
+import Form from "../Form";
 
 export function JobApplyModal({
   onClose,
@@ -32,85 +34,33 @@ export function JobApplyModal({
   showSuccessAnnouncement,
 }) {
   const { showBoundary } = useErrorBoundary([]);
-
   const { authenticatedUser } = useAuth();
   const { jobId } = useParams();
 
   const [uploadingFiles, setUploadingFiles] = useState([]);
-  const [applyFormValues, setApplyFormValues] = useState({
-    applyingForJobID: jobId,
-    applicantUserId: "",
-    firstAndLastName: "",
-    email: "",
-    coverLetter: "",
-    filesURLs: [],
-  });
 
-  const [focusedField, setFocusedField] = useState({
-    firstAndLastNameFocus: false,
-    emailFocus: false,
-  });
+  const handleSubmit = async (e, applyFormValues) => {
+    const { firstAndLastName, email, coverLetter } = applyFormValues;
+    console.log(applyFormValues, "applyFormValues");
 
-  useEffect(() => {
-    setApplyFormValues((prevValues) => ({
-      ...prevValues,
-      applicantUserId: authenticatedUser?.uid || "n/a",
-      firstAndLastName: authenticatedUser?.displayName || "",
-      email: authenticatedUser?.email || "",
-    }));
-  }, [authenticatedUser]);
-
-  useEffect(() => {
-    setApplyFormValues((prevValues) => ({
-      ...prevValues,
-      filesURLs: uploadingFiles.map((file) => file.fileURL),
-    }));
-  }, [uploadingFiles]);
-
-  const onChangeHandler = (e) => {
-    const value = e.target.value;
-    const target = e.target.name;
-
-    setApplyFormValues((state) => ({
-      ...state,
-      [target]: value,
-    }));
-  };
-
-  const onBlurHandler = (e) => {
-    const target = e.target.name + "Focus";
-
-    setFocusedField((state) => ({
-      ...state,
-      [target]: true,
-    }));
-  };
-
-  const databaseCollection = collection(database, jobApplicationsCollection);
-  const applyingForJobDocumentRef = doc(database, jobsCollection, jobId);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const {
-      applicantUserId,
-      applyingForJobID,
-      firstAndLastName,
-      email,
-      coverLetter,
-      filesURLs,
-    } = applyFormValues;
+    const filesURLs = uploadingFiles
+      .filter((file) => file.fileURL)
+      .map((file) => file.fileURL);
 
     const jobApplicationData = {
-      job_id: applyingForJobID,
-      applicant_user_id: applicantUserId,
+      job_id: jobId,
+      applicant_user_id: authenticatedUser?.uid || "n/a",
       applicant_name: firstAndLastName,
       applicant_email: email,
       applicant_coverletter: coverLetter,
       applicant_fileURLs: filesURLs,
     };
+    console.log(jobApplicationData, "jobApplicationData");
 
-    if (applicantUserId !== "n/a") {
+    const databaseCollection = collection(database, jobApplicationsCollection);
+    const applyingForJobDocumentRef = doc(database, jobsCollection, jobId);
+
+    if (jobApplicationData.applicant_user_id !== "n/a") {
       const addJobApplicationsPromise = addDoc(
         databaseCollection,
         jobApplicationData
@@ -119,30 +69,58 @@ export function JobApplyModal({
         applicantEmails: arrayUnion(authenticatedUser.email),
       });
 
-      return Promise.all([addJobApplicationsPromise, updateJobPromise])
-        .then(() => {
-          onClose();
-          showSuccessAnnouncement();
-        })
-        .catch((error) => {
-          showBoundary(error);
-        });
+      try {
+        await Promise.all([addJobApplicationsPromise, updateJobPromise]);
+        onClose();
+        showSuccessAnnouncement();
+        console.log("application submitted successfully");
+      } catch (error) {
+        showBoundary(error);
+      }
     } else {
-      return addDoc(databaseCollection, jobApplicationData)
-        .then(() => {
-          console.log("application submitted successfully");
-          onClose();
-          showSuccessAnnouncement();
-        })
-        .catch((error) => {
-          showBoundary(error);
-        });
+      try {
+        await addDoc(databaseCollection, jobApplicationData);
+        console.log("application submitted successfully");
+        onClose();
+        showSuccessAnnouncement();
+      } catch (error_2) {
+        showBoundary(error_2);
+      }
     }
   };
 
   if (!show) {
     return null;
   }
+
+  const fields = [
+    {
+      name: "firstAndLastName",
+      label: "First and last name",
+      type: "text",
+      required: true,
+      pattern: regexFirstAndLastName,
+      errorMessage: authErrorMessages.names,
+      value: authenticatedUser?.displayName || "",
+    },
+    {
+      name: "email",
+      label: "Email",
+      type: "email",
+      required: true,
+      pattern: regexEmail,
+      errorMessage: authErrorMessages.email,
+      value: authenticatedUser?.email || "",
+    },
+    {
+      name: "coverLetter",
+      label: "Cover letter",
+      type: "textarea",
+      required: false,
+      pattern: regexCoverLetter,
+      errorMessage: "",
+    },
+  ];
 
   return (
     <div>
@@ -172,68 +150,9 @@ export function JobApplyModal({
                 {positionName}
               </span>
             </header>
-            <form onSubmit={handleSubmit} className="form" noValidate>
-              <div className="form-input-container color-primary-switch-100-light">
-                <label className="form-field-label" htmlFor="">
-                  First and last name
-                </label>
-                <input
-                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
-                  name="firstAndLastName"
-                  type="text"
-                  required
-                  pattern={regexFirstAndLastName}
-                  value={applyFormValues.firstAndLastName}
-                  onChange={onChangeHandler}
-                  onBlur={onBlurHandler}
-                  focused={focusedField.firstAndLastNameFocus.toString()}
-                />
-                <span className="user-form-error | color-red fs-100">
-                  {authErrorMessages.names}
-                </span>
-              </div>
-              <div className="form-input-container color-primary-switch-100-light">
-                <label className="form-field-label" htmlFor="">
-                  E-mail
-                </label>
-                <input
-                  className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
-                  name="email"
-                  type="email"
-                  required
-                  pattern={regexEmail}
-                  value={applyFormValues.email}
-                  onChange={onChangeHandler}
-                  onBlur={onBlurHandler}
-                  focused={focusedField.emailFocus.toString()}
-                />
-                <span className="user-form-error | color-red fs-100">
-                  {authErrorMessages.email}
-                </span>
-              </div>
-              <div className="job-apply-form-letter-container | form-input-container color-primary-switch-100-light">
-                <label className="form-field-label" htmlFor="">
-                  Cover letter
-                </label>
-                <textarea
-                  className="job-form-input-field | job-apply-form-textarea | bg-neutral-100 color-primary-switch-100"
-                  name="coverLetter"
-                  cols="20"
-                  rows="5"
-                  pattern={regexCoverLetter}
-                  value={applyFormValues.coverLetter}
-                  onChange={onChangeHandler}
-                ></textarea>
-              </div>
-              <FileUploader sendUploadFiles={setUploadingFiles}></FileUploader>
-
-              <button
-                className="job-apply-form-submit-button | form-submit-button button"
-                type="submit"
-              >
-                Submit application
-              </button>
-            </form>
+            <Form fields={fields} handleSubmit={handleSubmit}>
+              <FileUploader sendUploadFiles={setUploadingFiles} />
+            </Form>
           </div>
         </div>
       </div>

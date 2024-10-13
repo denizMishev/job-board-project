@@ -1,7 +1,7 @@
 import { useForm } from "../hooks/useForm";
 import InputField from "../components/ui/InputField";
 
-function Form({ fields, handleSubmit }) {
+function Form({ fields, handleSubmit, children }) {
   const { formValues, onChangeHandler, onBlurHandler, focusedFields } =
     useForm(fields);
 
@@ -22,6 +22,7 @@ function Form({ fields, handleSubmit }) {
           isFocused={focusedFields[`${field.name}Focus`]}
         />
       ))}
+      {children}
       <button className="form-submit-button | button" type="submit">
         Submit
       </button>
