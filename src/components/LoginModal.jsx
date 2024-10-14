@@ -11,9 +11,7 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
 
   const [firebaseError, setFirebaseError] = useState(false);
 
-  const handleSubmit = (e, loginFormValues) => {
-    // e.preventDefault();
-
+  const handleSubmit = (loginFormValues) => {
     const { email, password } = loginFormValues;
 
     signInWithEmailAndPassword(auth, email, password)

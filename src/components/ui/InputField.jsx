@@ -1,3 +1,5 @@
+import React from "react";
+
 function Input({
   name,
   label,
@@ -43,4 +45,4 @@ function Input({
   );
 }
 
-export default Input;
+export default React.memo(Input);

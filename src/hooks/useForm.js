@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 export function useForm(fields) {
   const initialFormValues = fields.reduce((acc, field) => {
@@ -14,21 +14,21 @@ export function useForm(fields) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [focusedFields, setFocusedFields] = useState(initialFocusedFields);
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = useCallback((e) => {
     const { name, value } = e.target;
     setFormValues((state) => ({
       ...state,
       [name]: value,
     }));
-  };
+  }, []);
 
-  const onBlurHandler = (e) => {
+  const onBlurHandler = useCallback((e) => {
     const name = `${e.target.name}Focus`;
     setFocusedFields((state) => ({
       ...state,
       [name]: true,
     }));
-  };
+  }, []);
 
   return {
     formValues,

@@ -39,7 +39,7 @@ export function JobApplyModal({
 
   const [uploadingFiles, setUploadingFiles] = useState([]);
 
-  const handleSubmit = async (e, applyFormValues) => {
+  const handleSubmit = async (applyFormValues) => {
     const { firstAndLastName, email, coverLetter } = applyFormValues;
     console.log(applyFormValues, "applyFormValues");
 

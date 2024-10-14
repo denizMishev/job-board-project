@@ -7,8 +7,10 @@ function Form({ fields, handleSubmit, children }) {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    handleSubmit(e, formValues);
+    handleSubmit(formValues);
   };
+
+  console.log("Form rendering test");
 
   return (
     <form className="form" onSubmit={onSubmitHandler} noValidate>

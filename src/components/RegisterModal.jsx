@@ -26,8 +26,7 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e, registerFormValues) => {
-    // e.preventDefault();
+  const handleSubmit = (registerFormValues) => {
     setIsLoading(true);
 
     const { email, password, firstName, lastName } = registerFormValues;
@@ -103,6 +102,8 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
       errorMessage: authErrorMessages.password,
     },
   ];
+
+  console.log("Register Modal rendering test");
 
   if (!show) {
     return null;
