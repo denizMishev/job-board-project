@@ -31,6 +31,7 @@ function Input({
         <input
           className="user-form-input-field | bg-neutral-100 color-primary-switch-100"
           name={name}
+          id={name}
           type={type}
           required={required}
           pattern={pattern}

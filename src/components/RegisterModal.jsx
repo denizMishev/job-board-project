@@ -103,8 +103,6 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
     },
   ];
 
-  console.log("Register Modal rendering test");
-
   if (!show) {
     return null;
   }

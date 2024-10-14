@@ -8,7 +8,7 @@ export const allowedFileTypes = [
 
 export const maxSizeInBytes = 10485760;
 
-export const regexEmail = "[a-z0-9]+@[a-z]+.[a-z]{2,20}";
+export const regexEmail = "^[^s@]+@[^s@]+.[^s@]+$";
 export const regexSingleName = "^.{1,1000}$";
 export const regexPassword = "^.{8,1000}$";
 

@@ -10,8 +10,6 @@ function Form({ fields, handleSubmit, children }) {
     handleSubmit(formValues);
   };
 
-  console.log("Form rendering test");
-
   return (
     <form className="form" onSubmit={onSubmitHandler} noValidate>
       {fields.map((field) => (
@@ -28,9 +26,6 @@ function Form({ fields, handleSubmit, children }) {
       <button className="form-submit-button | button" type="submit">
         Submit
       </button>
-      {/* <span className="required-fields | fs-100 color-neutral-500">
-        *All fields required
-      </span> */}
     </form>
   );
 }
