@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { registerUser } from "../api/registerUser";
 
 import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
 import {
@@ -7,60 +8,24 @@ import {
   regexPassword,
 } from "../utils/errorParameters";
 
-import { database, usersCollection } from "../firebaseConfig";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
-
 import Form from "./Form";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function RegisterModal({ onClose, show, showLoginModal }) {
-  const auth = getAuth();
-
-  const databaseCollection = collection(database, usersCollection);
-
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (registerFormValues) => {
+  const handleSubmit = async (registerFormValues) => {
     setIsLoading(true);
-
-    const { email, password, firstName, lastName } = registerFormValues;
-
-    if (firstName === "" || lastName === "") {
-      return;
+    try {
+      await registerUser(registerFormValues);
+      onClose();
+      console.log("User added to database");
+    } catch (error) {
+      setFirebaseError(firebaseErrorParser(error.message));
+    } finally {
+      setIsLoading(false);
     }
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-
-        return updateProfile(user, {
-          displayName: `${firstName} ${lastName}`,
-        })
-          .then(() => {
-            const userData = {
-              email: email,
-              first_name: firstName,
-              last_name: lastName,
-              saved_jobs: [],
-              jobs_applied_for: [],
-            };
-            return addDoc(databaseCollection, userData);
-          })
-          .then(() => {
-            onClose();
-            setIsLoading(false);
-            console.log("user added to db");
-          });
-      })
-      .catch((error) => {
-        setFirebaseError(firebaseErrorParser(error.message));
-      });
   };
 
   const switchToLogin = () => {
@@ -141,7 +106,7 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
                 Create account
               </span>
               {firebaseError && (
-                <span className="register-form-backend-error">
+                <span className="register-form-backend-error | color-red fs-200 fw-bold">
                   {firebaseError}
                 </span>
               )}
