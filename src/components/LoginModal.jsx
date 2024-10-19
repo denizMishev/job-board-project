@@ -1,27 +1,27 @@
 import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { loginUser } from "../api/loginUser";
 
 import { authErrorMessages, firebaseErrorParser } from "../utils/errorMessages";
 import { regexEmail } from "../utils/errorParameters";
 
 import Form from "./Form";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export function LoginModal({ onClose, show, showRegisterModal }) {
-  let auth = getAuth();
-
   const [firebaseError, setFirebaseError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (loginFormValues) => {
-    const { email, password } = loginFormValues;
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((response) => {
-        onClose();
-        console.log(response.user);
-      })
-      .catch((error) => {
-        setFirebaseError(firebaseErrorParser(error.message));
-      });
+  const handleSubmit = async (loginFormValues) => {
+    setIsLoading(true);
+    try {
+      await loginUser(loginFormValues);
+      onClose();
+      console.log("User logged in successfully");
+    } catch (error) {
+      setFirebaseError(firebaseErrorParser(error.message));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const switchToRegister = () => {
@@ -72,43 +72,47 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
             />
           </svg>
         </div>
-        <div className="login-modal-container | form-container">
-          <header className="form-header | login-form-header">
-            <span className="form-logo fw-bold fs-400 color-primary-200 display-block">
-              devjobs
-            </span>
-            <span className="login-title | display-block fw-bold fs-250 color-primary-switch-100">
-              Sign in to your account
-            </span>
-            {firebaseError && (
-              <span className="register-form-backend-error | color-red fw-bold">
-                {firebaseError}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className="login-modal-container | form-container">
+            <header className="form-header | login-form-header">
+              <span className="form-logo fw-bold fs-400 color-primary-200 display-block">
+                devjobs
               </span>
-            )}
-          </header>
-          <Form fields={loginFormFields} handleSubmit={handleSubmit} />
-          <div className="switch-form">
-            <span className="display-block color-primary-switch-100">
-              Don't have an account yet?
-            </span>
-            <button
-              onClick={() => switchToRegister()}
-              className="switch-form-cta color-linkblue fw-bold fs-200"
-            >
-              Sign up
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="1em"
-                viewBox="0 0 448 512"
+              <span className="login-title | display-block fw-bold fs-250 color-primary-switch-100">
+                Sign in to your account
+              </span>
+              {firebaseError && (
+                <span className="register-form-backend-error | color-red fw-bold fs-200">
+                  {firebaseError}
+                </span>
+              )}
+            </header>
+            <Form fields={loginFormFields} handleSubmit={handleSubmit} />
+            <div className="switch-form">
+              <span className="display-block color-primary-switch-100">
+                Don't have an account yet?
+              </span>
+              <button
+                onClick={() => switchToRegister()}
+                className="switch-form-cta color-linkblue fw-bold fs-200"
               >
-                <path
-                  fill="currentColor"
-                  d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                />
-              </svg>
-            </button>
+                Sign up
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 448 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
