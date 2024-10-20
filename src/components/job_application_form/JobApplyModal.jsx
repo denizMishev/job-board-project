@@ -37,15 +37,13 @@ export function JobApplyModal({
   const { authenticatedUser } = useAuth();
   const { jobId } = useParams();
 
-  const [uploadingFiles, setUploadingFiles] = useState([]);
+  const [applicantFileURLs, setApplicantFileURLs] = useState([]);
 
   const handleSubmit = async (applyFormValues) => {
     const { firstAndLastName, email, coverLetter } = applyFormValues;
     console.log(applyFormValues, "applyFormValues");
 
-    const filesURLs = uploadingFiles
-      .filter((file) => file.fileURL)
-      .map((file) => file.fileURL);
+    const filesURLs = applicantFileURLs;
 
     const jobApplicationData = {
       job_id: jobId,
@@ -151,7 +149,7 @@ export function JobApplyModal({
               </span>
             </header>
             <Form fields={fields} handleSubmit={handleSubmit}>
-              <FileUploader sendUploadFiles={setUploadingFiles} />
+              <FileUploader setApplicantFileURLs={setApplicantFileURLs} />
             </Form>
           </div>
         </div>

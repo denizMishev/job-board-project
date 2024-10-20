@@ -1,20 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { FileList } from "./FileList";
 
-import { fileErrorMessages } from "../../utils/errorMessages";
-import { allowedFileTypes, maxSizeInBytes } from "../../utils/errorParameters";
 import { useErrorBoundary } from "react-error-boundary";
 
-import { storage } from "../../firebaseConfig";
-import {
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-  deleteObject,
-} from "firebase/storage";
+import { uploadFile } from "../../api/uploadFile";
+import { deleteFile } from "../../api/deleteFile";
 
-export function FileUploader({ sendUploadFiles }) {
+export function FileUploader({ setApplicantFileURLs }) {
   const { showBoundary } = useErrorBoundary([]);
 
   const [uploadingFiles, setUploadingFiles] = useState([]);
@@ -26,92 +19,59 @@ export function FileUploader({ sendUploadFiles }) {
       fileURL: null,
     };
 
-    if (!allowedFileTypes.includes(file.type)) {
-      newUploadFile.errorMessage = fileErrorMessages.type;
-
-      console.error("unsupported file type");
-    }
-
-    if (file.size > maxSizeInBytes) {
-      newUploadFile.errorMessage = fileErrorMessages.size;
-
-      console.error("error size");
-    }
-
     setUploadingFiles((prevUploads) => [...prevUploads, newUploadFile]);
 
-    if (newUploadFile.errorMessage) {
-      console.log("file error");
-      return;
-    }
-
-    const storageRef = ref(storage, file.name);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("upload is " + progress + "% done");
+    uploadFile(
+      file,
+      (progress) => {
         setUploadingFiles((prevUploads) => {
-          const updatedUploads = prevUploads.map((prevUpload) =>
+          return prevUploads.map((prevUpload) =>
             prevUpload.name === newUploadFile.name
-              ? { ...prevUpload, progress: progress }
+              ? { ...prevUpload, progress }
               : prevUpload
           );
-          return updatedUploads;
         });
+      },
+      (downloadURL) => {
+        const updatedFile = {
+          ...newUploadFile,
+          fileURL: downloadURL,
+          progress: 100,
+        };
+        setUploadingFiles((prevUploads) => {
+          return prevUploads.map((prevUpload) =>
+            prevUpload.name === newUploadFile.name ? updatedFile : prevUpload
+          );
+        });
+        setApplicantFileURLs((prevFileURLs) => [
+          ...prevFileURLs,
+          updatedFile.fileURL,
+        ]);
       },
       (error) => {
         showBoundary(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log("file available at", downloadURL);
-
-          setUploadingFiles((prevUploads) => {
-            const updatedUploads = prevUploads.map((prevUpload) =>
-              prevUpload.name === newUploadFile.name
-                ? { ...prevUpload, fileURL: downloadURL }
-                : prevUpload
-            );
-            return updatedUploads;
-          });
-        });
       }
     );
   };
 
   const handleFileDeletion = (file) => {
-    const fileName = file.name;
-
-    setUploadingFiles((prevUploads) =>
-      prevUploads.filter((prevUpload) => prevUpload.name !== fileName)
-    );
-
-    const fileInput = document.getElementById("fileUpload");
-    if (fileInput) {
-      fileInput.value = "";
-    }
-
-    if (file.errorMessage) return;
-
-    const fileRef = ref(storage, fileName);
-
-    deleteObject(fileRef)
-      .then(() => {
-        console.log(`file ${fileName} deleted successfully.`);
-      })
-      .catch((error) => {
-        console.error("error deleting file:", error.message);
+    deleteFile(
+      file.name,
+      () => {
+        setUploadingFiles((prevUploads) =>
+          prevUploads.filter((prevUpload) => prevUpload.name !== file.name)
+        );
+        const fileInput = document.getElementById("fileUpload");
+        if (fileInput) {
+          fileInput.value = "";
+        }
+        console.log("file deleted successfully");
+      },
+      (error) => {
         showBoundary(error);
-      });
+      }
+    );
   };
-
-  useEffect(() => {
-    sendUploadFiles(uploadingFiles);
-  }, [uploadingFiles]);
 
   return (
     <>
@@ -122,12 +82,12 @@ export function FileUploader({ sendUploadFiles }) {
         <div className="job-apply-form-file-upload-container">
           <div
             className="job-apply-form-file-upload-dnd"
+            onDragOver={(e) => {
+              e.preventDefault();
+            }}
             onDrop={(event) => {
               event.preventDefault();
               handleFileUpload(event.dataTransfer.files[0]);
-            }}
-            onDragOver={(e) => {
-              e.preventDefault();
             }}
           >
             <span className="file-upload-instruction">
