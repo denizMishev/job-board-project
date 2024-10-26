@@ -3,21 +3,11 @@ import { useParams } from "react-router";
 
 import { useAuth } from "../../context/AuthContext";
 
+import { applyForJob } from "../../api/applyForJob";
+
 import { authErrorMessages } from "../../utils/errorMessages";
 import { useErrorBoundary } from "react-error-boundary";
 
-import {
-  database,
-  jobApplicationsCollection,
-  jobsCollection,
-} from "../../firebaseConfig";
-import {
-  addDoc,
-  arrayUnion,
-  collection,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
 import {
   regexCoverLetter,
   regexEmail,
@@ -40,50 +30,18 @@ export function JobApplyModal({
   const [applicantFileURLs, setApplicantFileURLs] = useState([]);
 
   const handleSubmit = async (applyFormValues) => {
-    const { firstAndLastName, email, coverLetter } = applyFormValues;
-    console.log(applyFormValues, "applyFormValues");
-
-    const filesURLs = applicantFileURLs;
-
-    const jobApplicationData = {
-      job_id: jobId,
-      applicant_user_id: authenticatedUser?.uid || "n/a",
-      applicant_name: firstAndLastName,
-      applicant_email: email,
-      applicant_coverletter: coverLetter,
-      applicant_fileURLs: filesURLs,
-    };
-    console.log(jobApplicationData, "jobApplicationData");
-
-    const databaseCollection = collection(database, jobApplicationsCollection);
-    const applyingForJobDocumentRef = doc(database, jobsCollection, jobId);
-
-    if (jobApplicationData.applicant_user_id !== "n/a") {
-      const addJobApplicationsPromise = addDoc(
-        databaseCollection,
-        jobApplicationData
+    try {
+      await applyForJob(
+        applyFormValues,
+        applicantFileURLs,
+        authenticatedUser,
+        jobId
       );
-      const updateJobPromise = updateDoc(applyingForJobDocumentRef, {
-        applicantEmails: arrayUnion(authenticatedUser.email),
-      });
-
-      try {
-        await Promise.all([addJobApplicationsPromise, updateJobPromise]);
-        onClose();
-        showSuccessAnnouncement();
-        console.log("application submitted successfully");
-      } catch (error) {
-        showBoundary(error);
-      }
-    } else {
-      try {
-        await addDoc(databaseCollection, jobApplicationData);
-        console.log("application submitted successfully");
-        onClose();
-        showSuccessAnnouncement();
-      } catch (error_2) {
-        showBoundary(error_2);
-      }
+      onClose();
+      showSuccessAnnouncement();
+      console.log("application submitted successfully");
+    } catch (error) {
+      showBoundary(error);
     }
   };
 
