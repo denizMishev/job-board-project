@@ -15,30 +15,26 @@ export async function registerUser(registerFormValues) {
   if (firstName === "" || lastName === "")
     throw new Error("First name and last name cannot be empty");
 
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCredential.user;
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  const user = userCredential.user;
 
-    await updateProfile(user, {
-      displayName: `${firstName} ${lastName}`,
-    });
+  await updateProfile(user, {
+    displayName: `${firstName} ${lastName}`,
+  });
 
-    const userData = {
-      email: email,
-      first_name: firstName,
-      last_name: lastName,
-      saved_jobs: [],
-      jobs_applied_for: [],
-    };
+  const userData = {
+    email: email,
+    first_name: firstName,
+    last_name: lastName,
+    saved_jobs: [],
+    jobs_applied_for: [],
+  };
 
-    await addDoc(databaseCollection, userData);
+  await addDoc(databaseCollection, userData);
 
-    return user;
-  } catch (error) {
-    throw error;
-  }
+  return user;
 }
