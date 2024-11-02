@@ -3,16 +3,15 @@ import { JobCard } from "./JobCard.tsx";
 import { useErrorBoundary } from "react-error-boundary";
 
 import { useEffect, useState } from "react";
-import { database, jobsCollection } from "../firebaseConfig";
-import { collection, getDocs, query, where } from "@firebase/firestore";
+import { getJobs } from "../api/getJobs.js";
 
-import { useSearch } from "../context/SearchContext";
+import { useSearch } from "../context/SearchContext.jsx";
 
-import { LoadingSpinner } from "./LoadingSpinner";
-import { NoSearchResults } from "./NoSearchResults";
-import { PageSelector } from "./PageSelector";
+import { LoadingSpinner } from "./LoadingSpinner.jsx";
+import { NoSearchResults } from "./NoSearchResults.jsx";
+import { PageSelector } from "./PageSelector.jsx";
 
-export function JobSection() {
+export function JobsSection() {
   const { showBoundary } = useErrorBoundary([]);
 
   const {
@@ -22,12 +21,6 @@ export function JobSection() {
     mobileLocationSearchQuery,
     jobContractFilter,
   } = useSearch();
-
-  const databaseCollection = collection(database, jobsCollection);
-  const fullTimeJobsQuery = query(
-    databaseCollection,
-    where("contract", "==", "Full Time")
-  );
 
   const [allJobs, setAllJobs] = useState([]);
   const [displayJobs, setDisplayJobs] = useState([]);
@@ -46,21 +39,29 @@ export function JobSection() {
   };
 
   useEffect(() => {
-    getDocs(jobContractFilter ? fullTimeJobsQuery : databaseCollection)
-      .then((response) => {
-        const jobs = response.docs.map((doc) => ({
+    (async () => {
+      try {
+        const filter = jobContractFilter
+          ? { field: "contract", operator: "==", value: "Full Time" }
+          : null;
+
+        const docs = await getJobs(filter);
+
+        const jobs = docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+
         setAllJobs(jobs);
         if (jobContractFilter) setCurrentPage(1);
-      })
-      .catch((error) => {
+      } catch (error) {
         showBoundary(error);
-      });
+      }
+    })();
   }, [jobContractFilter]);
 
   useEffect(() => {
+    //filtration logic
     if (mainSearchQuery || locationSearchQuery || mobileLocationSearchQuery) {
       let filteredJobs = allJobs.filter((job) => {
         const combinedJobString = `${job.company} ${job.position} ${
