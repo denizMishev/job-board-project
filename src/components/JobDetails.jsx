@@ -5,12 +5,11 @@ import { useErrorBoundary } from "react-error-boundary";
 
 import { useAuth } from "../context/AuthContext";
 
-import { database, jobsCollection } from "../firebaseConfig";
-import { getDoc, doc } from "@firebase/firestore";
-
 import { JobApplyModal } from "./job_application_form/JobApplyModal";
 import { SuccessAnnouncementModal } from "./SuccessAnnouncementModal";
 import { LoadingSpinner } from "./LoadingSpinner";
+
+import { getJob } from "../api/getJob";
 
 export function JobDetails() {
   const { showBoundary } = useErrorBoundary([]);
@@ -26,17 +25,16 @@ export function JobDetails() {
   const [showJobApplyModal, setShowJobApplyModal] = useState(false);
   const [showSuccessAnnouncement, setShowSuccessAnnouncement] = useState(false);
 
-  const docRef = doc(database, jobsCollection, jobId);
-
   useEffect(() => {
-    getDoc(docRef)
-      .then((doc) => {
-        setJobData(doc.data());
+    (async () => {
+      try {
+        const data = await getJob(jobId);
+        setJobData(data);
         setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         showBoundary(error);
-      });
+      }
+    })();
   }, [showSuccessAnnouncement]);
 
   let userAlreadyApplied = jobData?.applicantEmails?.includes(

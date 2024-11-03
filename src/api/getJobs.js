@@ -7,7 +7,7 @@ import { database, jobsCollection } from "../firebaseConfig";
  * @param {String} filter.field field value
  * @param {String} filter.operator operation string (e.g "<", "<=", "==", "<", "<=", "!=")
  * @param {String} filter.value value for comparison
- * @returns {Promise<Array>} promise that resolves to an array of firebase job documents.
+ * @returns {Promise<Array>} promise that resolves to an array of job objects with IDs extracted from their firebase doc ID.
  */
 
 export async function getJobs(filter = null) {
@@ -23,5 +23,9 @@ export async function getJobs(filter = null) {
   } else jobsQuery = databaseCollection;
 
   const response = await getDocs(jobsQuery);
-  return response.docs;
+  const jobs = response.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return jobs;
 }

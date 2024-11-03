@@ -47,14 +47,9 @@ export function JobsSection() {
           ? { field: "contract", operator: "==", value: "Full Time" }
           : null;
 
-        const docs = await getJobs(filter);
-
-        const jobs = docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
+        const jobs = await getJobs(filter);
         setAllJobs(jobs);
+
         if (jobContractFilter) setCurrentPage(1);
       } catch (error) {
         showBoundary(error);
@@ -64,8 +59,6 @@ export function JobsSection() {
 
   useEffect(() => {
     if (mainSearchQuery || locationSearchQuery || mobileLocationSearchQuery) {
-      console.log(allJobs, "allJobs");
-
       let filteredJobs = allJobs;
 
       if (mainSearchQuery) {
