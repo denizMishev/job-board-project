@@ -11,6 +11,8 @@ import { LoadingSpinner } from "./LoadingSpinner.jsx";
 import { NoSearchResults } from "./NoSearchResults.jsx";
 import { PageSelector } from "./PageSelector.jsx";
 
+import { filterObject } from "../helpers/filterObject.js";
+
 export function JobsSection() {
   const { showBoundary } = useErrorBoundary([]);
 
@@ -61,39 +63,41 @@ export function JobsSection() {
   }, [jobContractFilter]);
 
   useEffect(() => {
-    //filtration logic
     if (mainSearchQuery || locationSearchQuery || mobileLocationSearchQuery) {
-      let filteredJobs = allJobs.filter((job) => {
-        const combinedJobString = `${job.company} ${job.position} ${
-          job.location
-        } ${job.description} ${job.requirements.content} ${
-          job.role.content
-        } ${job.requirements.items.join("")}${job.role.items.join(
-          ""
-        )}`.toLowerCase();
+      console.log(allJobs, "allJobs");
 
-        const matchesMainSearchQuery =
-          mainSearchQuery === "" ||
+      let filteredJobs = allJobs;
+
+      if (mainSearchQuery) {
+        filteredJobs = filterObject(
+          filteredJobs,
+          [
+            "company",
+            "position",
+            "location",
+            "description",
+            "requirements.content",
+            "requirements.items",
+            "role.content",
+            "role.items",
+          ],
           mainSearchQuery
-            .split(" ")
-            .every((word) =>
-              new RegExp(`\\b${word.toLowerCase()}\\b`).test(combinedJobString)
-            );
+        );
+      }
 
-        const matchesLocationSearchQuery =
-          locationSearchQuery === "" ||
-          job.location.toLowerCase().includes(locationSearchQuery);
-
-        const matchesMobileLocationSearchQuery =
-          mobileLocationSearchQuery === "" ||
-          job.location.toLowerCase().includes(mobileLocationSearchQuery);
-
-        if (mobileLocationSearchQuery) {
-          return matchesMainSearchQuery && matchesMobileLocationSearchQuery;
-        } else {
-          return matchesMainSearchQuery && matchesLocationSearchQuery;
-        }
-      });
+      if (mobileLocationSearchQuery) {
+        filteredJobs = filterObject(
+          filteredJobs,
+          ["location"],
+          mobileLocationSearchQuery
+        );
+      } else if (locationSearchQuery) {
+        filteredJobs = filterObject(
+          filteredJobs,
+          ["location"],
+          locationSearchQuery
+        );
+      }
 
       if (currentPage !== 1) {
         setCurrentPage(1);
@@ -104,7 +108,6 @@ export function JobsSection() {
     } else {
       setDisplayJobs(allJobs);
       setCurrentPage(1);
-
       setTotalPages(Math.ceil(allJobs.length / itemsPerPage));
     }
   }, [
