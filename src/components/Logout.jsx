@@ -1,26 +1,23 @@
 import React from "react";
-
-import { getAuth, signOut } from "firebase/auth";
-
 import { useErrorBoundary } from "react-error-boundary";
+import { getAuth } from "firebase/auth";
+
+import { logoutUser } from "../api/logoutUser";
 
 export function Logout() {
   const { showBoundary } = useErrorBoundary([]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     const auth = getAuth();
-    const user = auth.currentUser;
 
-    if (user) {
-      signOut(auth)
-        .then(() => {
-          console.log("User signed out successfully");
-        })
-        .catch((error) => {
-          showBoundary(error);
-        });
+    if (auth.currentUser) {
+      try {
+        await logoutUser();
+      } catch (error) {
+        showBoundary(error);
+      }
     } else {
-      console.log("No user is currently logged in");
+      console.warn("no user logged in.");
     }
   };
 

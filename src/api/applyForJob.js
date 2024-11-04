@@ -11,6 +11,17 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
+/**
+ * submits job app user input data.
+ * if the user is authenticated, it also updates the job document with the applicant's email (used to display to the user a message that they've already applied for this job in the jobDetails component).
+ *
+ * @param {Object} applyFormValues - form values containing applicant's name, email, and cover letter.
+ * @param {String[]} applicantFileURLs - array of urls of the applicant's uploaded files in Firebase Storage.
+ * @param {Object|null} authenticatedUser - defaults to null if no auth.
+ * @param {String} jobId
+ * @returns {Promise<void>} resolves when the application has been processed.
+ */
+
 export async function applyForJob(
   applyFormValues,
   applicantFileURLs,

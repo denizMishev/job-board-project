@@ -3,6 +3,16 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { allowedFileTypes, maxSizeInBytes } from "../utils/errorParameters";
 import { fileErrorMessages } from "../utils/errorMessages";
 
+/**
+ * uploads a file to Firebase Storage with progress tracking and error handling.
+ * validates file type and size.
+ *
+ * @param {file} file - accepts pdf, png, jpeg, doc, ppt up to 10MB.
+ * @param {function} onProgress - callback function to receive upload progress percentage.
+ * @param {function} onSuccess - callback function to receive the download url upon successful upload.
+ * @param {function} onError - callback function to execute if an error occurs.
+ */
+
 export const uploadFile = (file, onProgress, onSuccess, onError) => {
   if (!allowedFileTypes.includes(file.type)) {
     const error = new Error(fileErrorMessages.type);
