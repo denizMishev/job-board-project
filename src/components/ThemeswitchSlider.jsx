@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useClickOutside } from "../hooks/useClickOutsideOfContainer";
 
 export function ThemeswitchSlider() {
   const [darkModeToggleChecked, setDarkModeToggleChecked] = useState(
@@ -6,8 +7,9 @@ export function ThemeswitchSlider() {
   );
   const [menuVisibility, setMenuVisibility] = useState(false);
 
-  const menuVisibilityButton = () => {
-    setMenuVisibility(!menuVisibility);
+  const menuVisibilityButton = (e) => {
+    e.stopPropagation();
+    setMenuVisibility((prev) => !prev);
   };
 
   useEffect(() => {
@@ -30,6 +32,15 @@ export function ThemeswitchSlider() {
 
   const addDarkMode = () => {
     setDarkModeToggleChecked(true);
+  };
+
+  const btnsMenuDomNode = useClickOutside(() => {
+    setMenuVisibility(false);
+  });
+
+  const closeBtnsMenuOnClick = (e) => {
+    e.stopPropagation();
+    setMenuVisibility(false);
   };
 
   return (
@@ -66,7 +77,11 @@ export function ThemeswitchSlider() {
           )}
         </div>
         {menuVisibility && (
-          <ul className="themeswitch-menu-mobile | menu-popup">
+          <ul
+            onClick={closeBtnsMenuOnClick}
+            ref={btnsMenuDomNode}
+            className="themeswitch-menu-mobile | menu-popup"
+          >
             <li onClick={removeDarkMode}>
               <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
                 <path

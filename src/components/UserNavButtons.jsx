@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { useAuth } from "../context/AuthContext";
 
 import { RegisterModal } from "./RegisterModal";
 import { LoginModal } from "./LoginModal";
 import { Logout } from "./Logout";
+import { useClickOutside } from "../hooks/useClickOutsideOfContainer";
 
 export function UserNavButtons() {
   const { authenticatedUser } = useAuth();
@@ -18,8 +19,18 @@ export function UserNavButtons() {
     setWaitForAuth(true);
   }, 650);
 
-  const menuVisibilityButton = () => {
-    setMenuVisibility(!menuVisibility);
+  const menuVisibilityButton = (e) => {
+    e.stopPropagation();
+    setMenuVisibility((prev) => !prev);
+  };
+
+  const btnsMenuDomNode = useClickOutside(() => {
+    setMenuVisibility(false);
+  });
+
+  const closeBtnsMenuOnClick = (e) => {
+    e.stopPropagation();
+    setMenuVisibility(false);
   };
 
   return (
@@ -49,7 +60,11 @@ export function UserNavButtons() {
           </svg>
         </button>
         {menuVisibility && (
-          <ul className="usernav-menu-mobile | menu-popup">
+          <ul
+            onClick={closeBtnsMenuOnClick}
+            ref={btnsMenuDomNode}
+            className="usernav-menu-mobile | menu-popup"
+          >
             {authenticatedUser ? (
               <li className="usernav-menu-li">
                 <svg
