@@ -1,4 +1,17 @@
+import { useNavigate } from "react-router-dom";
+
 export function ErrorHandler({ error, componentStack, resetErrorBoundary }) {
+  const navigate = useNavigate();
+
+  const errorHandler = () => {
+    if (error.type === "URL_ERR") {
+      navigate("/");
+      resetErrorBoundary();
+    } else {
+      resetErrorBoundary();
+    }
+  };
+
   return (
     <main className="flex-row-center">
       <section className="error-handler-container | fs-250 flex-col-center">
@@ -21,8 +34,8 @@ export function ErrorHandler({ error, componentStack, resetErrorBoundary }) {
         <span className="display-block color-primary-switch-100">
           {error.message}
         </span>
-        <button className="button" onClick={resetErrorBoundary}>
-          Reload page
+        <button className="button" onClick={errorHandler}>
+          {error.type === "URL_ERR" ? "Go to Home Page" : "Reload Page"}
         </button>
       </section>
     </main>

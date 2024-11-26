@@ -132,10 +132,10 @@ export function JobsSection() {
                   jobId={jobData.id}
                   company={jobData.company}
                   logoImage={jobData.logo}
-                  logoBackgroundColor={jobData.logoBackground}
+                  logoBackground={jobData.logoBackground}
                   position={jobData.position}
                   postedAt={jobData.postedAt}
-                  workingTime={jobData.contract}
+                  contract={jobData.contract}
                   location={jobData.location}
                 ></JobCard>
               ))}
