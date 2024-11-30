@@ -73,7 +73,6 @@ export function JobApplyModal({
       label: "Cover letter",
       type: "textarea",
       required: false,
-      pattern: regexCoverLetter,
       errorMessage: "",
     },
   ];

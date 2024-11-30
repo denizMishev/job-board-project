@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import { JobProps } from "../types/JobProps";
 
 export function JobCard({

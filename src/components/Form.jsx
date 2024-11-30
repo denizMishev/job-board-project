@@ -1,5 +1,7 @@
 import { useForm } from "../hooks/useForm";
-import InputField from "../components/ui/InputField";
+
+import InputField from "./ui/InputField.tsx";
+import TextAreaField from "./ui/TextAreaField";
 
 function Form({ fields, handleSubmit, children }) {
   const { formValues, onChangeHandler, onBlurHandler, focusedFields } =
@@ -12,16 +14,29 @@ function Form({ fields, handleSubmit, children }) {
 
   return (
     <form className="form" onSubmit={onSubmitHandler} noValidate>
-      {fields.map((field) => (
-        <InputField
-          key={field.name}
-          {...field}
-          value={formValues[field.name]}
-          onChange={onChangeHandler}
-          onBlur={onBlurHandler}
-          isFocused={focusedFields[`${field.name}Focus`]}
-        />
-      ))}
+      {fields.map(({ name, label, ...fieldProps }) =>
+        fieldProps.type === "textarea" ? (
+          <TextAreaField
+            key={name}
+            name={name}
+            label={label}
+            {...fieldProps}
+            value={formValues[name]}
+            onChange={onChangeHandler}
+          />
+        ) : (
+          <InputField
+            key={name}
+            name={name}
+            label={label}
+            {...fieldProps}
+            value={formValues[name]}
+            onChange={onChangeHandler}
+            onBlur={onBlurHandler}
+            isFocused={focusedFields[`${name}Focus`]}
+          />
+        )
+      )}
       {children}
       <button className="form-submit-button | button" type="submit">
         Submit
