@@ -1,11 +1,5 @@
 import React from "react";
-
-interface TextAreaFieldProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  name: string;
-  label: string;
-  errorMessage?: string;
-}
+import { TextareaFieldProps } from "../../types/TextareaFieldProps";
 
 function TextAreaField({
   name,
@@ -13,7 +7,7 @@ function TextAreaField({
   value,
   onChange,
   errorMessage,
-}: TextAreaFieldProps) {
+}: TextareaFieldProps) {
   return (
     <div className="form-input-container color-primary-switch-100-light">
       <label className="form-field-label" htmlFor={name}>

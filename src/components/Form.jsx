@@ -1,7 +1,7 @@
-import { useForm } from "../hooks/useForm";
+import { useForm } from "../hooks/useForm.ts";
 
 import InputField from "./ui/InputField.tsx";
-import TextAreaField from "./ui/TextAreaField";
+import TextAreaField from "./ui/TextareaField";
 
 function Form({ fields, handleSubmit, children }) {
   const { formValues, onChangeHandler, onBlurHandler, focusedFields } =

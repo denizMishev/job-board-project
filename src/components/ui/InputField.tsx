@@ -1,11 +1,5 @@
 import React from "react";
-
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  name: string;
-  label: string;
-  errorMessage?: string;
-  isFocused?: boolean;
-}
+import { InputFieldProps } from "../../types/InputFieldProps";
 
 function InputField({
   name,
