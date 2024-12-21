@@ -49,7 +49,7 @@ export function JobApplyModal({
     return null;
   }
 
-  const fields = [
+  const inputFields = [
     {
       name: "firstAndLastName",
       label: "First and last name",
@@ -68,6 +68,9 @@ export function JobApplyModal({
       errorMessage: authErrorMessages.email,
       value: authenticatedUser?.email || "",
     },
+  ];
+
+  const textareaFields = [
     {
       name: "coverLetter",
       label: "Cover letter",
@@ -105,7 +108,11 @@ export function JobApplyModal({
                 {positionName}
               </span>
             </header>
-            <Form fields={fields} handleSubmit={handleSubmit}>
+            <Form
+              inputFields={inputFields}
+              textareaFields={textareaFields}
+              handleSubmit={handleSubmit}
+            >
               <FileUploader setApplicantFileURLs={setApplicantFileURLs} />
             </Form>
           </div>

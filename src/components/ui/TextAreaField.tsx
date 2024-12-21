@@ -1,7 +1,7 @@
 import React from "react";
 import { TextareaFieldProps } from "../../types/TextareaFieldProps";
 
-function TextAreaField({
+function TextareaField({
   name,
   label,
   value,
@@ -27,4 +27,4 @@ function TextAreaField({
   );
 }
 
-export default React.memo(TextAreaField);
+export default React.memo(TextareaField);

@@ -20,7 +20,6 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
     try {
       await registerUser(registerFormValues);
       onClose();
-      console.log("User added to database");
     } catch (error) {
       setFirebaseError(firebaseErrorParser(error.message));
     } finally {
@@ -68,9 +67,7 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
     },
   ];
 
-  if (!show) {
-    return null;
-  }
+  if (!show) return null;
 
   return (
     <div onClick={onClose} className="modal">
@@ -111,7 +108,10 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
                 </span>
               )}
             </header>
-            <Form fields={registerFormFields} handleSubmit={handleSubmit} />
+            <Form
+              inputFields={registerFormFields}
+              handleSubmit={handleSubmit}
+            />
             <div className="switch-form">
               <span className="display-block color-primary-switch-100">
                 Already have an account?

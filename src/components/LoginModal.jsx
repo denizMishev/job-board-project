@@ -46,9 +46,7 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
     },
   ];
 
-  if (!show) {
-    return null;
-  }
+  if (!show) return null;
 
   return (
     <div onClick={onClose} className="modal">
@@ -89,7 +87,7 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
                 </span>
               )}
             </header>
-            <Form fields={loginFormFields} handleSubmit={handleSubmit} />
+            <Form inputFields={loginFormFields} handleSubmit={handleSubmit} />
             <div className="switch-form">
               <span className="display-block color-primary-switch-100">
                 Don't have an account yet?
