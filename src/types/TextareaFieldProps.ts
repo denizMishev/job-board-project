@@ -3,4 +3,5 @@ export interface TextareaFieldProps
   name: string;
   label: string;
   errorMessage?: string;
+  value?: string;
 }

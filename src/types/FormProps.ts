@@ -4,8 +4,6 @@ import { TextareaFieldProps } from "./TextareaFieldProps";
 export interface FormProps {
   inputFields?: InputFieldProps[];
   textareaFields?: TextareaFieldProps[];
-  handleSubmit: (
-    values: Record<string, string | number | readonly string[]>
-  ) => void;
+  handleSubmit: (values: Record<string, string>) => void;
   children?: React.ReactNode;
 }

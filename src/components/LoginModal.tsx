@@ -6,19 +6,32 @@ import { regexEmail } from "../utils/errorParameters";
 
 import Form from "./Form";
 import { LoadingSpinner } from "./LoadingSpinner";
+import { FirebaseError } from "firebase/app";
 
-export function LoginModal({ onClose, show, showRegisterModal }) {
+interface LoginModalProps {
+  onClose: () => void;
+  show: boolean;
+  showRegisterModal: (show: boolean) => void;
+}
+
+export function LoginModal({
+  onClose,
+  show,
+  showRegisterModal,
+}: LoginModalProps) {
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (loginFormValues) => {
+  const handleSubmit = async (loginFormValues: Record<string, string>) => {
     setIsLoading(true);
     try {
       await loginUser(loginFormValues);
       onClose();
       console.log("User logged in successfully");
     } catch (error) {
-      setFirebaseError(firebaseErrorParser(error.message));
+      if (error instanceof FirebaseError) {
+        setFirebaseError(firebaseErrorParser(error.message));
+      }
     } finally {
       setIsLoading(false);
     }
@@ -57,7 +70,7 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
         <div
           className="close-button-container"
           onClick={onClose}
-          place={"register"}
+          data-place={"register"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -4,4 +4,5 @@ export interface InputFieldProps
   label: string;
   errorMessage?: string;
   isFocused?: boolean;
+  value?: string;
 }

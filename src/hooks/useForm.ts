@@ -8,7 +8,7 @@ export function useForm(fields: FormFieldProps[]) {
   const initialFormValues = fields.reduce((acc, field) => {
     acc[field.name] = field.value || "";
     return acc;
-  }, {} as Record<string, string | number | readonly string[]>);
+  }, {} as Record<string, string>);
 
   const initialFocusedFields = fields.reduce((acc, field) => {
     acc[`${field.name}Focus`] = false;

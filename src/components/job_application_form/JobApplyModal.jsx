@@ -39,15 +39,12 @@ export function JobApplyModal({
       );
       onClose();
       showSuccessAnnouncement();
-      console.log("application submitted successfully");
     } catch (error) {
       showBoundary(error);
     }
   };
 
-  if (!show) {
-    return null;
-  }
+  if (!show) return null;
 
   const inputFields = [
     {
