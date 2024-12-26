@@ -1,14 +1,28 @@
 import { useSearch } from "../context/SearchContext";
 
+import { useErrorBoundary } from "react-error-boundary";
+
 export function NoSearchResults() {
   const { setSearchQuery } = useSearch();
+  const { showBoundary } = useErrorBoundary();
 
   const clearSearch = () => {
     const keywordSearchInput = document.getElementById("keywordSearchInput");
     const locationSearchInput = document.getElementById("locationSearchInput");
-    keywordSearchInput.value = "";
-    locationSearchInput.value = "";
-    setSearchQuery("");
+
+    if (
+      keywordSearchInput instanceof HTMLInputElement &&
+      locationSearchInput instanceof HTMLInputElement
+    ) {
+      keywordSearchInput.value = "";
+      locationSearchInput.value = "";
+      setSearchQuery("");
+    } else {
+      showBoundary({
+        type: "DOM_ERR",
+        message: "Please contact us for further assistance. ",
+      });
+    }
   };
 
   return (

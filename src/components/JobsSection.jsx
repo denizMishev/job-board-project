@@ -8,7 +8,7 @@ import { getJobs } from "../api/getJobs.js";
 import { useSearch } from "../context/SearchContext.jsx";
 
 import { LoadingSpinner } from "./LoadingSpinner";
-import { NoSearchResults } from "./NoSearchResults.jsx";
+import { NoSearchResults } from "./NoSearchResults";
 import { PageSelector } from "./PageSelector.jsx";
 
 import { filterObject } from "../helpers/filterObject.js";
