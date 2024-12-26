@@ -5,12 +5,12 @@ import TextareaField from "./ui/TextareaField";
 
 import { FormProps } from "../types/FormProps";
 
-function Form({
+function Form<T extends Record<string, string>>({
   inputFields = [],
   textareaFields = [],
   handleSubmit,
   children,
-}: FormProps) {
+}: FormProps<T>) {
   const allFields = [...inputFields, ...textareaFields];
   const { formValues, onChangeHandler, onBlurHandler, focusedFields } =
     useForm(allFields);
@@ -20,7 +20,7 @@ function Form({
       className="form"
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit(formValues);
+        handleSubmit(formValues as T);
       }}
       noValidate
     >

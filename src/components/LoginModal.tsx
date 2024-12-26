@@ -8,6 +8,8 @@ import Form from "./Form";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { FirebaseError } from "firebase/app";
 
+import { LoginFormValues } from "../types/LoginFormValues";
+
 interface LoginModalProps {
   onClose: () => void;
   show: boolean;
@@ -22,7 +24,7 @@ export function LoginModal({
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (loginFormValues: Record<string, string>) => {
+  const handleSubmit = async (loginFormValues: LoginFormValues) => {
     setIsLoading(true);
     try {
       await loginUser(loginFormValues);
@@ -100,7 +102,10 @@ export function LoginModal({
                 </span>
               )}
             </header>
-            <Form inputFields={loginFormFields} handleSubmit={handleSubmit} />
+            <Form<LoginFormValues>
+              inputFields={loginFormFields}
+              handleSubmit={handleSubmit}
+            />
             <div className="switch-form">
               <span className="display-block color-primary-switch-100">
                 Don't have an account yet?
