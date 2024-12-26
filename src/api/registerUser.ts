@@ -6,17 +6,9 @@ import {
 import { addDoc, collection } from "firebase/firestore";
 import { database, usersCollection } from "../firebaseConfig";
 
-/**
- * registers a user using firebase authentication and stores user data in firestore, all fields are required values, an updateProfile call will also be made to set up the user's display name value
- *
- * @async
- * @function registerUser
- * @param {Object} registerFormValues - user input register form values object.
- * @returns {Promise<user>} promise that resolves to the firebase authentication user object.
- * @throws {Error} throws error if first or last name value is empty, this must be manually handled in this func as firebase authentication does not require it.
- */
+import { RegisterFormValues } from "../types/RegisterFormValues";
 
-export async function registerUser(registerFormValues) {
+export async function registerUser(registerFormValues: RegisterFormValues) {
   const auth = getAuth();
   const databaseCollection = collection(database, usersCollection);
 
