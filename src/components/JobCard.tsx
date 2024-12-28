@@ -2,22 +2,33 @@ import { Link } from "react-router-dom";
 
 import { JobProps } from "../types/JobProps";
 
+type JobCardProps = Pick<
+  JobProps,
+  | "id"
+  | "company"
+  | "logoBackground"
+  | "position"
+  | "postedAt"
+  | "contract"
+  | "location"
+>;
+
 export function JobCard({
-  jobId,
+  id,
   company,
   logoBackground,
   position,
   postedAt,
   contract,
   location,
-}: JobProps) {
+}: JobCardProps) {
   const svgURL = new URL(
     `../assets/${company.replace(/\s/g, "").toLowerCase()}.svg`,
     import.meta.url
   ).href;
 
   return (
-    <Link className="display-block" to={`/jobs/${jobId}`}>
+    <Link className="display-block" to={`/jobs/${id}`}>
       <article className="job-card bg-neutral-100">
         <div
           className="job-logo-container"

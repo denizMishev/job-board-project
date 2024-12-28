@@ -20,7 +20,7 @@ export function NoSearchResults() {
     } else {
       showBoundary({
         type: "DOM_ERR",
-        message: "Please contact us for further assistance. ",
+        message: "Please contact us for further assistance.",
       });
     }
   };

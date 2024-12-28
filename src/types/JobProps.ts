@@ -1,14 +1,13 @@
 export interface JobProps {
-  jobId: string;
+  id: string;
   company: string;
+  contract: string;
+  description: string;
+  location: string;
+  logo: string;
   logoBackground: string;
   position: string;
   postedAt: string;
-  contract: string;
-  location: string;
-  description: string;
-  website: string;
-  applicantEmails: string[];
   requirements: {
     content: string;
     items: string[];
@@ -17,4 +16,6 @@ export interface JobProps {
     content: string;
     items: string[];
   };
+  website: string;
+  applicantEmails: string[];
 }
