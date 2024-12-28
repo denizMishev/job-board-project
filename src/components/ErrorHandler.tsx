@@ -1,6 +1,21 @@
 import { useNavigate } from "react-router-dom";
 
-export function ErrorHandler({ error, componentStack, resetErrorBoundary }) {
+interface Error {
+  type: string;
+  message: string;
+}
+
+interface ErrorHandlerProps {
+  error: Error;
+  componentStack?: string;
+  resetErrorBoundary: () => void;
+}
+
+export function ErrorHandler({
+  error,
+  componentStack,
+  resetErrorBoundary,
+}: ErrorHandlerProps) {
   const navigate = useNavigate();
 
   const errorHandler = () => {

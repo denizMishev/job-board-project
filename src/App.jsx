@@ -10,7 +10,7 @@ import { Header } from "./components/Header.tsx";
 import { JobsSection } from "./components/JobsSection.tsx";
 import { JobDetails } from "./components/JobDetails.tsx";
 import { LoadingSpinner } from "./components/LoadingSpinner";
-import { ErrorHandler } from "./components/ErrorHandler";
+import { ErrorHandler } from "./components/ErrorHandler.tsx";
 
 function App() {
   return (
