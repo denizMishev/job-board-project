@@ -14,7 +14,7 @@ import {
   regexFirstAndLastName,
 } from "../../utils/errorParameters";
 
-import { FileUploader } from "./FileUploader";
+import { FileUploader } from "./FileUploader.tsx";
 import Form from "../Form";
 
 export function JobApplyModal({

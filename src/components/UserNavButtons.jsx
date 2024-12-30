@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 import { RegisterModal } from "./RegisterModal";
 import { LoginModal } from "./LoginModal";
-import { Logout } from "./Logout";
+import { Logout } from "./Logout.tsx";
 import { useClickOutside } from "../hooks/useClickOutsideOfContainer";
 
 export function UserNavButtons() {

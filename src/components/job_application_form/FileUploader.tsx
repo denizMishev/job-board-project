@@ -7,12 +7,23 @@ import { useErrorBoundary } from "react-error-boundary";
 import { uploadFile } from "../../api/uploadFile";
 import { deleteFile } from "../../api/deleteFile";
 
-export function FileUploader({ setApplicantFileURLs }) {
-  const { showBoundary } = useErrorBoundary([]);
+interface UploadingFile {
+  name: string;
+  progress: number;
+  fileURL: string | null;
+  errorMessage?: string;
+}
 
-  const [uploadingFiles, setUploadingFiles] = useState([]);
+interface FileUploaderProps {
+  setApplicantFileURLs: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
-  const handleFileUpload = (file) => {
+export function FileUploader({ setApplicantFileURLs }: FileUploaderProps) {
+  const { showBoundary } = useErrorBoundary();
+
+  const [uploadingFiles, setUploadingFiles] = useState<UploadingFile[]>([]);
+
+  const handleFileUpload = (file: File) => {
     const newUploadFile = {
       name: file.name,
       progress: 0,
@@ -54,23 +65,25 @@ export function FileUploader({ setApplicantFileURLs }) {
     );
   };
 
-  const handleFileDeletion = (file) => {
-    deleteFile(
-      file.name,
-      () => {
-        setUploadingFiles((prevUploads) =>
-          prevUploads.filter((prevUpload) => prevUpload.name !== file.name)
-        );
-        const fileInput = document.getElementById("fileUpload");
-        if (fileInput) {
-          fileInput.value = "";
-        }
-        console.log("file deleted successfully");
-      },
-      (error) => {
-        showBoundary(error);
-      }
-    );
+  const handleFileDeletion = async (file: File) => {
+    try {
+      await deleteFile(file.name);
+
+      setUploadingFiles((prevUploads) =>
+        prevUploads.filter((prevUpload) => prevUpload.name !== file.name)
+      );
+
+      const fileInput = document.getElementById("fileUpload");
+      if (fileInput instanceof HTMLInputElement) {
+        fileInput.value = "";
+      } else
+        throw {
+          type: "DOM_ERR",
+          message: "Please reach out to us for further assistnace",
+        };
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   return (
@@ -102,7 +115,7 @@ export function FileUploader({ setApplicantFileURLs }) {
               className="file-upload-input"
               required
               type="file"
-              onChange={(event) => handleFileUpload(event.target.files[0])}
+              onChange={(event) => handleFileUpload(event.target.files![0])}
             />
           </div>
         </div>
