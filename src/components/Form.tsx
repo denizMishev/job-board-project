@@ -5,7 +5,7 @@ import TextareaField from "./ui/TextareaField";
 
 import { FormProps } from "../types/FormProps";
 
-function Form<T extends Record<string, string>>({
+function Form<T extends Record<string, string | undefined>>({
   inputFields = [],
   textareaFields = [],
   handleSubmit,
