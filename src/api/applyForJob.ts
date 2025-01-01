@@ -10,6 +10,8 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+import { JobApplicationFormValues } from "../types/JobAppFormValues";
+import { User } from "firebase/auth";
 
 /**
  * submits job app user input data.
@@ -23,10 +25,10 @@ import {
  */
 
 export async function applyForJob(
-  applyFormValues,
-  applicantFileURLs,
-  authenticatedUser,
-  jobId
+  applyFormValues: JobApplicationFormValues,
+  applicantFileURLs: string[],
+  authenticatedUser: User | null,
+  jobId: string
 ) {
   const { firstAndLastName, email, coverLetter } = applyFormValues;
 
@@ -48,7 +50,7 @@ export async function applyForJob(
       jobApplicationData
     );
     const updateJobPromise = updateDoc(applyingForJobDocumentRef, {
-      applicantEmails: arrayUnion(authenticatedUser.email),
+      applicantEmails: arrayUnion(authenticatedUser?.email),
     });
 
     await Promise.all([addJobApplicationsPromise, updateJobPromise]);
