@@ -4,11 +4,12 @@
 
 ## **Project description**
 
-The app uses a React & HTML&CSS front-end and Firebase authentication and database. It offers user authentication functionality, searching for key words contained in job offers / job location, filtering for full time job contracts only, pagination, both logged in and logged out users are able to apply for jobs by sending an application with a required attached file and the app will keep track of the jobs a logged in user has applied for, The app also utilizes a fully responsive design and has a dark mode switch as well.
+The app uses a React/TypeScript & HTML&CSS front-end and Firebase authentication and database. It offers user authentication functionality, searching for key words contained in job offers / job location, filtering for full time job contracts only, pagination, both logged in and logged out users are able to apply for jobs by sending an application with a required attached file and the app will keep track of the jobs a logged in user has applied for, The app also utilizes a fully responsive design and has a dark mode switch as well.
 
 ## **Built with:**
 
 - React 18.2.0
+- TypeScript 5.6.2
 - Firebase 10.6.0
 - React error boundary 4.0.11
 - Emotion.js 11.11.1
