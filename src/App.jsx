@@ -6,11 +6,11 @@ import { SearchProvider } from "./context/SearchContext";
 import { AuthProvider } from "./context/AuthContext";
 
 import { Routes, Route } from "react-router-dom";
-import { Header } from "./components/Header";
-import { JobsSection } from "./components/JobsSection";
-import { JobDetails } from "./components/JobDetails";
+import { Header } from "./components/Header.tsx";
+import { JobsSection } from "./components/JobsSection.tsx";
+import { JobDetails } from "./components/JobDetails.tsx";
 import { LoadingSpinner } from "./components/LoadingSpinner";
-import { ErrorHandler } from "./components/ErrorHandler";
+import { ErrorHandler } from "./components/ErrorHandler.tsx";
 
 function App() {
   return (

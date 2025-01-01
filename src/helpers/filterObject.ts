@@ -1,10 +1,19 @@
-const getNestedProperty = (obj, propertyPath) => {
+const getNestedProperty = (
+  obj: Record<string, unknown>,
+  propertyPath: string
+): unknown => {
   const properties = propertyPath.split(".");
 
-  let currentObj = obj;
+  let currentObj: unknown = obj;
+
   for (const prop of properties) {
-    if (currentObj && currentObj.hasOwnProperty(prop)) {
-      currentObj = currentObj[prop];
+    if (
+      currentObj &&
+      typeof currentObj === "object" &&
+      currentObj !== null &&
+      Object.prototype.hasOwnProperty.call(currentObj, prop)
+    ) {
+      currentObj = (currentObj as Record<string, unknown>)[prop];
     } else {
       return undefined;
     }
@@ -31,12 +40,12 @@ const getNestedProperty = (obj, propertyPath) => {
  *
  */
 
-export function filterObject(
-  targetArray,
-  propertiesToFilterThrough,
-  valueToFilterFor,
+export function filterObject<T extends Record<string, unknown>>(
+  targetArray: T[],
+  propertiesToFilterThrough: string[],
+  valueToFilterFor: string,
   matchAllWords = true
-) {
+): T[] {
   const queryWords = valueToFilterFor.toLowerCase().split(" ");
 
   const filteredArray = targetArray.filter((item) => {

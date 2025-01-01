@@ -69,14 +69,14 @@ export function Search() {
           </div>
           <div className="submition-container | bg-neutral-100">
             <div>
-              <label class="custom-checkbox-container | color-primary-switch-100 fw-bold">
-                Full Time <span class="dynamic-text">Only</span>
+              <label className="custom-checkbox-container | color-primary-switch-100 fw-bold">
+                Full Time <span className="dynamic-text">Only</span>
                 <input
                   type="checkbox"
                   checked={jobContractFilter}
                   onChange={() => setJobContractFilter(!jobContractFilter)}
                 />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
             </div>
             <button className="button" data-type="main-search-btn">

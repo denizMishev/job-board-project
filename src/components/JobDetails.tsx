@@ -11,14 +11,16 @@ import { LoadingSpinner } from "./LoadingSpinner";
 
 import { getJob } from "../api/getJob";
 
+import { JobProps } from "../types/JobProps";
+
 export function JobDetails() {
-  const { showBoundary } = useErrorBoundary([]);
+  const { showBoundary } = useErrorBoundary();
 
   const { jobId } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [jobData, setJobData] = useState(null);
+  const [jobData, setJobData] = useState<JobProps | null>(null);
 
   const { authenticatedUser } = useAuth();
 
@@ -28,9 +30,11 @@ export function JobDetails() {
   useEffect(() => {
     (async () => {
       try {
-        const data = await getJob(jobId);
-        setJobData(data);
-        setIsLoading(false);
+        const data = await getJob(jobId!);
+        if (data) {
+          setJobData(data);
+          setIsLoading(false);
+        } else throw { message: "Job not found.", type: "URL_ERR" };
       } catch (error) {
         showBoundary(error);
       }

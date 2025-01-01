@@ -1,20 +1,30 @@
-import { JobCard } from "./JobCard.tsx";
+import { useEffect, useState } from "react";
 
 import { useErrorBoundary } from "react-error-boundary";
 
-import { useEffect, useState } from "react";
+import { JobCard } from "./JobCard.js";
+import { LoadingSpinner } from "./LoadingSpinner.js";
+import { NoSearchResults } from "./NoSearchResults.js";
+import { PageSelector } from "./PageSelector.jsx";
+
 import { getJobs } from "../api/getJobs.js";
 
 import { useSearch } from "../context/SearchContext.jsx";
 
-import { LoadingSpinner } from "./LoadingSpinner.jsx";
-import { NoSearchResults } from "./NoSearchResults.jsx";
-import { PageSelector } from "./PageSelector.jsx";
-
 import { filterObject } from "../helpers/filterObject.js";
 
+import { JobProps } from "../types/JobProps.js";
+
+const ITEMS_PER_PAGE = 9;
+
+interface FilterObject {
+  field: string;
+  operator: string;
+  value: string;
+}
+
 export function JobsSection() {
-  const { showBoundary } = useErrorBoundary([]);
+  const { showBoundary } = useErrorBoundary();
 
   const {
     searchQuery,
@@ -24,28 +34,33 @@ export function JobsSection() {
     jobContractFilter,
   } = useSearch();
 
-  const [allJobs, setAllJobs] = useState([]);
-  const [displayJobs, setDisplayJobs] = useState([]);
-  const [filteredAndPaginatedJobs, setFilteredAndPaginatedJobs] = useState([]);
+  const [allJobs, setAllJobs] = useState<JobProps[]>([]);
+  const [displayJobs, setDisplayJobs] = useState<JobProps[]>([]);
+  const [filteredAndPaginatedJobs, setFilteredAndPaginatedJobs] = useState<
+    JobProps[]
+  >([]);
 
-  const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(
     Number(localStorage.getItem("onPage")) || 1
   );
   const [totalPages, setTotalPages] = useState(1);
 
-  const paginateData = (data, page, itemsPerPage) => {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
+  const paginateData = (
+    data: JobProps[],
+    page: number,
+    ITEMS_PER_PAGE: number
+  ) => {
+    const startIndex = (page - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
     return data.slice(startIndex, endIndex);
   };
 
   useEffect(() => {
     (async () => {
       try {
-        const filter = jobContractFilter
+        const filter: FilterObject | undefined = jobContractFilter
           ? { field: "contract", operator: "==", value: "Full Time" }
-          : null;
+          : undefined;
 
         const jobs = await getJobs(filter);
         setAllJobs(jobs);
@@ -63,7 +78,7 @@ export function JobsSection() {
 
       if (mainSearchQuery) {
         filteredJobs = filterObject(
-          filteredJobs,
+          filteredJobs as unknown as Record<string, unknown>[],
           [
             "company",
             "position",
@@ -75,21 +90,21 @@ export function JobsSection() {
             "role.items",
           ],
           mainSearchQuery
-        );
+        ) as unknown as JobProps[];
       }
 
       if (mobileLocationSearchQuery) {
         filteredJobs = filterObject(
-          filteredJobs,
+          filteredJobs as unknown as Record<string, unknown>[],
           ["location"],
           mobileLocationSearchQuery
-        );
+        ) as unknown as JobProps[];
       } else if (locationSearchQuery) {
         filteredJobs = filterObject(
-          filteredJobs,
+          filteredJobs as unknown as Record<string, unknown>[],
           ["location"],
           locationSearchQuery
-        );
+        ) as unknown as JobProps[];
       }
 
       if (currentPage !== 1) {
@@ -97,11 +112,11 @@ export function JobsSection() {
       }
 
       setDisplayJobs(filteredJobs);
-      setTotalPages(Math.ceil(filteredJobs.length / itemsPerPage));
+      setTotalPages(Math.ceil(filteredJobs.length / ITEMS_PER_PAGE));
     } else {
       setDisplayJobs(allJobs);
       setCurrentPage(1);
-      setTotalPages(Math.ceil(allJobs.length / itemsPerPage));
+      setTotalPages(Math.ceil(allJobs.length / ITEMS_PER_PAGE));
     }
   }, [
     allJobs,
@@ -112,7 +127,7 @@ export function JobsSection() {
 
   useEffect(() => {
     setFilteredAndPaginatedJobs(
-      paginateData(displayJobs, currentPage, itemsPerPage)
+      paginateData(displayJobs, currentPage, ITEMS_PER_PAGE)
     );
   }, [currentPage, displayJobs]);
 
@@ -129,13 +144,12 @@ export function JobsSection() {
               {filteredAndPaginatedJobs.map((jobData) => (
                 <JobCard
                   key={jobData.id}
-                  jobId={jobData.id}
+                  id={jobData.id}
                   company={jobData.company}
-                  logoImage={jobData.logo}
-                  logoBackgroundColor={jobData.logoBackground}
+                  logoBackground={jobData.logoBackground}
                   position={jobData.position}
                   postedAt={jobData.postedAt}
-                  workingTime={jobData.contract}
+                  contract={jobData.contract}
                   location={jobData.location}
                 ></JobCard>
               ))}
@@ -143,7 +157,6 @@ export function JobsSection() {
           )}
           {totalPages > 1 && (
             <PageSelector
-              itemsPerPage={itemsPerPage}
               totalPages={totalPages}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}

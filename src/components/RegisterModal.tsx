@@ -11,18 +11,32 @@ import {
 import Form from "./Form";
 import { LoadingSpinner } from "./LoadingSpinner";
 
-export function RegisterModal({ onClose, show, showLoginModal }) {
+import { RegisterFormValues } from "../types/RegisterFormValues";
+import { FirebaseError } from "firebase/app";
+
+interface RegisterModalProps {
+  onClose: () => void;
+  show: boolean;
+  showLoginModal: (show: boolean) => void;
+}
+
+export function RegisterModal({
+  onClose,
+  show,
+  showLoginModal,
+}: RegisterModalProps) {
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (registerFormValues) => {
+  const handleSubmit = async (registerFormValues: RegisterFormValues) => {
     setIsLoading(true);
     try {
       await registerUser(registerFormValues);
       onClose();
-      console.log("User added to database");
     } catch (error) {
-      setFirebaseError(firebaseErrorParser(error.message));
+      if (error instanceof FirebaseError) {
+        setFirebaseError(firebaseErrorParser(error.message));
+      }
     } finally {
       setIsLoading(false);
     }
@@ -68,9 +82,7 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
     },
   ];
 
-  if (!show) {
-    return null;
-  }
+  if (!show) return null;
 
   return (
     <div onClick={onClose} className="modal">
@@ -81,7 +93,7 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
         <div
           className="close-button-container"
           onClick={onClose}
-          place={"register"}
+          data-place={"register"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +123,10 @@ export function RegisterModal({ onClose, show, showLoginModal }) {
                 </span>
               )}
             </header>
-            <Form fields={registerFormFields} handleSubmit={handleSubmit} />
+            <Form
+              inputFields={registerFormFields}
+              handleSubmit={handleSubmit}
+            />
             <div className="switch-form">
               <span className="display-block color-primary-switch-100">
                 Already have an account?

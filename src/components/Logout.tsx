@@ -1,11 +1,10 @@
-import React from "react";
 import { useErrorBoundary } from "react-error-boundary";
 import { getAuth } from "firebase/auth";
 
 import { logoutUser } from "../api/logoutUser";
 
 export function Logout() {
-  const { showBoundary } = useErrorBoundary([]);
+  const { showBoundary } = useErrorBoundary();
 
   const handleLogout = async () => {
     const auth = getAuth();

@@ -6,19 +6,34 @@ import { regexEmail } from "../utils/errorParameters";
 
 import Form from "./Form";
 import { LoadingSpinner } from "./LoadingSpinner";
+import { FirebaseError } from "firebase/app";
 
-export function LoginModal({ onClose, show, showRegisterModal }) {
+import { LoginFormValues } from "../types/LoginFormValues";
+
+interface LoginModalProps {
+  onClose: () => void;
+  show: boolean;
+  showRegisterModal: (show: boolean) => void;
+}
+
+export function LoginModal({
+  onClose,
+  show,
+  showRegisterModal,
+}: LoginModalProps) {
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (loginFormValues) => {
+  const handleSubmit = async (loginFormValues: LoginFormValues) => {
     setIsLoading(true);
     try {
       await loginUser(loginFormValues);
       onClose();
       console.log("User logged in successfully");
     } catch (error) {
-      setFirebaseError(firebaseErrorParser(error.message));
+      if (error instanceof FirebaseError) {
+        setFirebaseError(firebaseErrorParser(error.message));
+      }
     } finally {
       setIsLoading(false);
     }
@@ -46,9 +61,7 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
     },
   ];
 
-  if (!show) {
-    return null;
-  }
+  if (!show) return null;
 
   return (
     <div onClick={onClose} className="modal">
@@ -59,7 +72,7 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
         <div
           className="close-button-container"
           onClick={onClose}
-          place={"register"}
+          data-place={"register"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +102,10 @@ export function LoginModal({ onClose, show, showRegisterModal }) {
                 </span>
               )}
             </header>
-            <Form fields={loginFormFields} handleSubmit={handleSubmit} />
+            <Form<LoginFormValues>
+              inputFields={loginFormFields}
+              handleSubmit={handleSubmit}
+            />
             <div className="switch-form">
               <span className="display-block color-primary-switch-100">
                 Don't have an account yet?

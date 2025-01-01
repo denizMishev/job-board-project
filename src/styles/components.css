@@ -1,75 +1,74 @@
-/* slider */ 
+/* slider */
 
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 48px;
-    height: 24px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -webkit-transition: .4s;
-    background-color: #FFFF;
-    transition: .4s;
-  }
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
 
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    bottom: 4px;
-    background-color: var(--clr-primary-200);
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-  .slider:hover::before {
-    background-color: var(--clr-primary-100);
-  }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: 0.4s;
+  background-color: #ffff;
+  transition: 0.4s;
+}
 
-  
-  input:checked + .slider {
-    background-color: #FFFF;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #FFFF;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 4px;
+  background-color: var(--clr-primary-200);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
 
-/* button */ 
+.slider:hover::before {
+  background-color: var(--clr-primary-100);
+}
+
+input:checked + .slider {
+  background-color: #ffff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ffff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* button */
 
 .button {
   background-color: var(--clr-primary-200);
   font-weight: var(--font-weight-bold);
-  color: #FFFF;
+  color: #ffff;
   text-align: center;
   cursor: pointer;
   padding-inline: clamp(0.9rem, -1.9011rem + 5.7754vw, 2.25rem);
@@ -95,7 +94,7 @@
   background-color: var(--clr-inverted-button-bg-hover);
 }
 
-/* close modal icon */ 
+/* close modal icon */
 
 .close-button-container {
   position: absolute;
@@ -105,7 +104,7 @@
   color: var(--clr-neutral-500);
 }
 
-.close-button-container[place="register"] {
+.close-button-container[data-place="register"] {
   top: 2%;
 }
 
@@ -113,8 +112,7 @@
   height: 28px;
 }
 
-
-/* custom checkbox */ 
+/* custom checkbox */
 
 .custom-checkbox-container {
   display: block;
@@ -145,11 +143,11 @@
 }
 
 .custom-checkbox-container:hover input ~ .checkmark {
-  background-color: var(--clr-neutral-400)
+  background-color: var(--clr-neutral-400);
 }
 
 .custom-checkbox-container input:checked ~ .checkmark {
-  background-color: var(--clr-primary-200)
+  background-color: var(--clr-primary-200);
 }
 
 .checkmark:after {
@@ -206,7 +204,7 @@
   }
 }
 
-/* form component */ 
+/* form component */
 
 .form-header {
   display: flex;
@@ -234,7 +232,7 @@
 }
 
 .form-input-container > input {
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   border: none;
   outline: none;
   border-bottom: 1px solid var(--clr-neutral-400);
@@ -265,7 +263,7 @@
   gap: 0.5rem;
 }
 
-input[type='password'] {
+input[type="password"] {
   font-family: Verdana;
   letter-spacing: 0.125em;
 }
@@ -274,7 +272,7 @@ input[type='password'] {
   visibility: hidden;
 }
 
-.user-form-input-field:invalid[focused="true"] + span {
+.user-form-input-field:invalid[data-focused="true"] + span {
   visibility: unset;
 }
 
@@ -295,13 +293,13 @@ input[type='password'] {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
-input:-webkit-autofill:active { 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: var(--clr-primary-switch-100);
-    transition: background-color 5000s ease-in-out 0s;
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: var(--clr-primary-switch-100);
+  transition: background-color 5000s ease-in-out 0s;
 }
 
-/* menu pop-up */ 
+/* menu pop-up */
 
 .menu-popup {
   display: flex;
@@ -336,7 +334,7 @@ input:-webkit-autofill:active {
   background-color: var(--clr-primary-50);
 }
 
-/* loading-spinner */ 
+/* loading-spinner */
 
 .loading-spinner-container {
   padding-top: 1.5%;

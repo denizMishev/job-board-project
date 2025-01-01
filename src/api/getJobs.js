@@ -10,7 +10,7 @@ import { database, jobsCollection } from "../firebaseConfig";
  * @returns {Promise<Array>} promise that resolves to an array of job objects with IDs extracted from their firebase doc ID.
  */
 
-export async function getJobs(filter = null) {
+export async function getJobs(filter = undefined) {
   const databaseCollection = collection(database, jobsCollection);
 
   let jobsQuery;

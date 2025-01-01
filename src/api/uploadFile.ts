@@ -1,5 +1,6 @@
 import { storage } from "../firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
 import { allowedFileTypes, maxSizeInBytes } from "../utils/errorParameters";
 import { fileErrorMessages } from "../utils/errorMessages";
 
@@ -13,7 +14,12 @@ import { fileErrorMessages } from "../utils/errorMessages";
  * @param {function} onError - callback function to execute if an error occurs.
  */
 
-export const uploadFile = (file, onProgress, onSuccess, onError) => {
+export const uploadFile = (
+  file: File,
+  onProgress: (progress: number) => void,
+  onSuccess: (downloadURL: string) => void,
+  onError: (error: Error) => void
+) => {
   if (!allowedFileTypes.includes(file.type)) {
     const error = new Error(fileErrorMessages.type);
     onError(error);

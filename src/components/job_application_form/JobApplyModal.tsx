@@ -7,49 +7,50 @@ import { applyForJob } from "../../api/applyForJob";
 
 import { authErrorMessages } from "../../utils/errorMessages";
 import { useErrorBoundary } from "react-error-boundary";
-
-import {
-  regexCoverLetter,
-  regexEmail,
-  regexFirstAndLastName,
-} from "../../utils/errorParameters";
+import { regexEmail, regexFirstAndLastName } from "../../utils/errorParameters";
 
 import { FileUploader } from "./FileUploader";
 import Form from "../Form";
+
+import { JobApplicationFormValues } from "../../types/JobAppFormValues";
+
+interface JobApplyModalProps {
+  onClose: () => void;
+  show: boolean;
+  positionName: string;
+  showSuccessAnnouncement: () => void;
+}
 
 export function JobApplyModal({
   onClose,
   show,
   positionName,
   showSuccessAnnouncement,
-}) {
-  const { showBoundary } = useErrorBoundary([]);
+}: JobApplyModalProps) {
+  const { showBoundary } = useErrorBoundary();
   const { authenticatedUser } = useAuth();
   const { jobId } = useParams();
 
-  const [applicantFileURLs, setApplicantFileURLs] = useState([]);
+  const [applicantFileURLs, setApplicantFileURLs] = useState<string[]>([]);
 
-  const handleSubmit = async (applyFormValues) => {
+  const handleSubmit = async (applyFormValues: JobApplicationFormValues) => {
     try {
       await applyForJob(
         applyFormValues,
         applicantFileURLs,
         authenticatedUser,
-        jobId
+        jobId!
       );
       onClose();
       showSuccessAnnouncement();
-      console.log("application submitted successfully");
     } catch (error) {
       showBoundary(error);
     }
   };
 
-  if (!show) {
-    return null;
-  }
+  if (!show) return null;
 
-  const fields = [
+  const inputFields = [
     {
       name: "firstAndLastName",
       label: "First and last name",
@@ -68,12 +69,14 @@ export function JobApplyModal({
       errorMessage: authErrorMessages.email,
       value: authenticatedUser?.email || "",
     },
+  ];
+
+  const textareaFields = [
     {
       name: "coverLetter",
       label: "Cover letter",
       type: "textarea",
       required: false,
-      pattern: regexCoverLetter,
       errorMessage: "",
     },
   ];
@@ -106,7 +109,11 @@ export function JobApplyModal({
                 {positionName}
               </span>
             </header>
-            <Form fields={fields} handleSubmit={handleSubmit}>
+            <Form
+              inputFields={inputFields}
+              textareaFields={textareaFields}
+              handleSubmit={handleSubmit}
+            >
               <FileUploader setApplicantFileURLs={setApplicantFileURLs} />
             </Form>
           </div>
